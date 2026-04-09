@@ -365,7 +365,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "/assets/home/Map7e.jpg", // 以 '/' 开头时相对于 /public 目录
+	avatar: "assets/images/map7e.jpg", // 相对于 /src 目录
 	name: "枫",
 	bio: "记录生活、代码与思考。",
 	typewriter: {
