@@ -27,7 +27,7 @@ export const siteConfig: SiteConfig = {
 	title: "Map7e Blog",
 	subtitle: "枫的博客，记录生活、代码与思考",
 	siteURL: "https://blog.map7e.com/", // 请替换为你的站点URL，以斜杠结尾
-	siteStartDate: "2025-01-01", // 站点开始运行日期，用于站点统计组件计算运行天数
+	siteStartDate: "2026-04-10", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
 
@@ -74,9 +74,9 @@ export const siteConfig: SiteConfig = {
 	},
 
 	bilibili: {
-		vmid: "your-bilibili-vmid", // 在此处设置你的Bilibili用户ID (uid)，例如 "1129280784"
+		vmid: "your-bilibili-3017899", // 在此处设置你的Bilibili用户ID (uid)，例如 "1129280784"
 		fetchOnDev: false, // 是否在开发环境下获取 Bilibili 数据（默认 false）
-		coverMirror: "", // 封面图片镜像源（可选，如果需要使用镜像源，例如 "https://images.weserv.nl/?url="）
+		coverMirror: "public\assets\home\Map7e.jpg", // 封面图片镜像源（可选，如果需要使用镜像源，例如 "https://images.weserv.nl/?url="）
 		useWebp: true, // 是否使用WebP格式（默认 true）
 
 		// bilibili 观看进度配置说明(可选，如需配置仔细阅读):
@@ -365,7 +365,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/avatar.webp", // 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
+	avatar: "/assets/home/Map7e.jpg", // 以 '/' 开头时相对于 /public 目录
 	name: "枫",
 	bio: "记录生活、代码与思考。",
 	typewriter: {
