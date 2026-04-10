@@ -1,0 +1,28 @@
+
+> mizuki@9.0 predev C:\home\map7e-blog-site
+> node scripts/sync-content.js || true
+
+已加载 .env 配置文件
+
+开始同步内容...
+
+内容目录不存在：C:\home\map7e-blog-site\content
+将使用独立仓库模式
+提示：请设置 CONTENT_REPO_URL 环境变量，或手动创建内容目录
+
+> mizuki@9.0 dev C:\home\map7e-blog-site
+> astro dev "--host" "127.0.0.1" "--port" "4321"
+
+[vite] connected.
+[2m19:43:19[22m [34m[types][39m Generated [2m1ms[22m
+[vite] connected.
+[2m19:43:19[22m [34m[content][39m Syncing content
+[2m19:43:19[22m [34m[content][39m Astro config changed
+[2m19:43:19[22m [34m[content][39m Clearing content store
+[2m19:43:19[22m [34m[content][39m Synced content
+[42m[1m astro [22m[49m [32mv6.1.2[39m [2mready in[22m 19220 [2mms[22m
+[2m┃[22m Local    [36mhttp://127.0.0.1:4321/[39m
+[2m19:43:19[22m [32mwatching for file changes...[39m
+[2m19:43:37[22m [34m[200][39m /devices/ [2m1799ms[22m
+[2m19:43:37[22m [34m[200][39m / [2m1822ms[22m
+ ELIFECYCLE  Command failed with exit code 3221225786.

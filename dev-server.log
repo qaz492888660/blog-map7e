@@ -1,0 +1,19 @@
+
+> mizuki@9.0 predev C:\home\map7e-blog-site
+> node scripts/sync-content.js || true
+
+已加载 .env 配置文件
+
+开始同步内容...
+
+内容分离功能已关闭（ENABLE_CONTENT_SYNC=false）
+提示：将使用本地内容，不会从远程仓库同步
+      若要启用内容分离，请在 .env 中设置：
+      ENABLE_CONTENT_SYNC=true
+      CONTENT_REPO_URL=<your-repo-url>
+
+
+> mizuki@9.0 dev C:\home\map7e-blog-site
+> astro dev
+
+[vite] connected.

@@ -21,12 +21,12 @@ import { LinkPreset } from "./types/config";
 // 移除i18n导入以避免循环依赖
 
 // 定义站点语言
-const SITE_LANG = "zh_CN"; // 主题内部语言代码，zh_CN 对应 zh-CN。
+const SITE_LANG = "zh_CN"; // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8; //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
-	title: "Map7e Blog",
-	subtitle: "枫的博客，记录生活、代码与思考",
-	siteURL: "https://blog.map7e.com/", // 请替换为你的站点URL，以斜杠结尾
+	title: "Mizuki",
+	subtitle: "一个演示博客",
+	siteURL: "https://mizuki.mysqil.com/", // 请替换为你的站点URL，以斜杠结尾
 	siteStartDate: "2026-04-10", // 站点开始运行日期，用于站点统计组件计算运行天数
 
 	timeZone: SITE_TIMEZONE,
@@ -40,14 +40,14 @@ export const siteConfig: SiteConfig = {
 
 	// 特色页面开关配置（关闭未使用的页面有助于提升 SEO，关闭后请记得在 navbarConfig 中移除对应链接）
 	featurePages: {
-		anime: false, // 番剧页面开关
-		diary: false, // 日记页面开关
-		friends: false, // 友链页面开关
-		projects: false, // 项目页面开关
-		skills: false, // 技能页面开关
-		timeline: false, // 时间线页面开关
-		albums: false, // 相册页面开关
-		devices: false, // 设备页面开关
+		anime: true, // 番剧页面开关
+		diary: true, // 日记页面开关
+		friends: true, // 友链页面开关
+		projects: true, // 项目页面开关
+		skills: true, // 技能页面开关
+		timeline: true, // 时间线页面开关
+		albums: true, // 相册页面开关
+		devices: true, // 设备页面开关
 	},
 
 	// 顶栏标题配置
@@ -55,7 +55,7 @@ export const siteConfig: SiteConfig = {
 		// 显示模式："text-icon" 显示图标+文本，"logo" 仅显示Logo
 		mode: "text-icon",
 		// 顶栏标题文本
-		text: "Map7e Blog",
+		text: "MizukiUI",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.webp
 		icon: "assets/home/home.webp",
 		// 网站Logo图片路径
@@ -74,9 +74,9 @@ export const siteConfig: SiteConfig = {
 	},
 
 	bilibili: {
-		vmid: "your-bilibili-3017899", // 在此处设置你的Bilibili用户ID (uid)，例如 "1129280784"
+		vmid: "your-bilibili-vmid", // 在此处设置你的Bilibili用户ID (uid)，例如 "1129280784"
 		fetchOnDev: false, // 是否在开发环境下获取 Bilibili 数据（默认 false）
-		coverMirror: "public\assets\home\Map7e.jpg", // 封面图片镜像源（可选，如果需要使用镜像源，例如 "https://images.weserv.nl/?url="）
+		coverMirror: "", // 封面图片镜像源（可选，如果需要使用镜像源，例如 "https://images.weserv.nl/?url="）
 		useWebp: true, // 是否使用WebP格式（默认 true）
 
 		// bilibili 观看进度配置说明(可选，如需配置仔细阅读):
@@ -162,12 +162,14 @@ export const siteConfig: SiteConfig = {
 
 		homeText: {
 			enable: true, // 在主页显示自定义文本
-			title: "Map7e Blog", // 主页横幅主标题
+			title: "欢迎来到我的博客", // 主页横幅主标题
 
 			subtitle: [
-				"记录生活、代码与思考",
-				"把日常写下来，也把问题想明白",
-				"这里会慢慢长成我的个人博客",
+				"这里记录日常、兴趣与一些碎碎念",
+				"把喜欢的内容慢慢写下来",
+				"分享生活里那些安静但真实的时刻",
+				"偶尔写代码，偶尔发呆，偶尔认真生活",
+				"今天也是适合写点东西的一天",
 			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
@@ -269,8 +271,9 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		LinkPreset.Archive,
+		// 支持自定义导航栏链接，支持多级菜单
 		{
-			name: "Links",
+			name: "链接",
 			url: "/links/",
 			icon: "material-symbols:link",
 			children: [
@@ -286,36 +289,30 @@ export const navBarConfig: NavBarConfig = {
 					external: true,
 					icon: "fa7-brands:bilibili",
 				},
-				{
-					name: "Gitee",
-					url: "https://gitee.com/matsuzakayuki/Mizuki",
-					external: true,
-					icon: "mdi:git",
-				},
 			],
 		},
 		{
-			name: "My",
+			name: "我的",
 			url: "/content/",
 			icon: "material-symbols:person",
 			children: [
 				{
-					name: "Anime",
+					name: "追番",
 					url: "/anime/",
 					icon: "material-symbols:movie",
 				},
 				{
-					name: "Diary",
+					name: "日记",
 					url: "/diary/",
 					icon: "material-symbols:book",
 				},
 				{
-					name: "Gallery",
+					name: "相册",
 					url: "/albums/",
 					icon: "material-symbols:photo-library",
 				},
 				{
-					name: "Devices",
+					name: "设备",
 					url: "/devices/",
 					icon: "material-symbols:devices",
 					external: false,
@@ -323,39 +320,39 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 		{
-			name: "About",
+			name: "关于",
 			url: "/content/",
 			icon: "material-symbols:info",
 			children: [
 				{
-					name: "About",
+					name: "关于我",
 					url: "/about/",
 					icon: "material-symbols:person",
 				},
 				{
-					name: "Friends",
+					name: "友链",
 					url: "/friends/",
 					icon: "material-symbols:group",
 				},
 			],
 		},
 		{
-			name: "Others",
+			name: "更多",
 			url: "#",
 			icon: "material-symbols:more-horiz",
 			children: [
 				{
-					name: "Projects",
+					name: "项目",
 					url: "/projects/",
 					icon: "material-symbols:work",
 				},
 				{
-					name: "Skills",
+					name: "技能",
 					url: "/skills/",
 					icon: "material-symbols:psychology",
 				},
 				{
-					name: "Timeline",
+					name: "时间线",
 					url: "/timeline/",
 					icon: "material-symbols:timeline",
 				},
@@ -365,14 +362,40 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/map7e.jpg", // 相对于 /src 目录
+	avatar: "/assets/home/map7e.jpg", // 以 '/' 开头时相对于 /public 目录
 	name: "枫",
-	bio: "记录生活、代码与思考。",
+	bio: "把喜欢的事慢慢写下来。",
 	typewriter: {
-		enable: false, // 启用个人简介打字机效果
+		enable: true, // 启用个人简介打字机效果
 		speed: 80, // 打字速度（毫秒）
 	},
-	links: [],
+	links: [
+		{
+			name: "Bilibili",
+			icon: "fa7-brands:bilibili",
+			url: "https://space.bilibili.com/3017899",
+		},
+		{
+			name: "Gitee",
+			icon: "mdi:git",
+			url: "",
+		},
+		{
+			name: "GitHub",
+			icon: "fa7-brands:github",
+			url: "https://github.com/qaz492888660",
+		},
+		{
+			name: "Codeberg",
+			icon: "simple-icons:codeberg",
+			url: "",
+		},
+		{
+			name: "Discord",
+			icon: "fa7-brands:discord",
+			url: "",
+		},
+	],
 };
 
 export const licenseConfig: LicenseConfig = {
@@ -446,19 +469,19 @@ export const shareConfig: ShareConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	title: "", // 公告标题，填空使用i18n字符串Key.announcement
-	content: "欢迎来到 Map7e Blog。这里会持续更新文章与随笔。", // 公告内容
+	content: "欢迎来到博客，这里会分享生活、兴趣和一些记录。", // 公告内容
 	closable: true, // 允许用户关闭公告
 	link: {
 		enable: true, // 启用链接
-		text: "关于我", // 链接文本
+		text: "了解更多", // 链接文本
 		url: "/about/", // 链接 URL
 		external: false, // 内部链接
 	},
 };
 
 export const musicPlayerConfig: MusicPlayerConfig = {
-	enable: false, // 启用音乐播放器功能
-	showFloatingPlayer: false, // 显示悬浮播放器 UI
+	enable: true, // 启用音乐播放器功能
+	showFloatingPlayer: true, // 显示悬浮播放器 UI
 	floatingEntryMode: "fab", // 悬浮入口模式："default" 为独立悬浮播放器，"fab" 为集成到通用 FAB 组
 	mode: "local", // 音乐播放器模式，可选 "local" 或 "meting"
 	meting_api:

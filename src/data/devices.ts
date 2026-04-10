@@ -1,5 +1,3 @@
-// 设备数据配置文件
-
 export interface Device {
 	name: string;
 	image: string;
@@ -8,30 +6,27 @@ export interface Device {
 	link: string;
 }
 
-// 设备类别类型，支持品牌和自定义类别
 export type DeviceCategory = Record<string, Device[]> & {
 	自定义?: Device[];
 };
 
 export const devicesData: DeviceCategory = {
-	OnePlus: [
+	手机: [
 		{
-			name: "OnePlus 13T",
+			name: "iPhone 12 Pro Max",
 			image: "/images/device/oneplus13t.webp",
-			specs: "Gray / 16G + 1TB",
-			description:
-				"Flagship performance, Hasselblad imaging, 80W SuperVOOC.",
-			link: "https://www.oneplus.com/cn/13t",
+			specs: "石墨色 / 256GB",
+			description: "目前日常主力机，主要用于拍照、社交和移动办公。",
+			link: "",
 		},
 	],
-	Router: [
+	路由器: [
 		{
-			name: "GL-MT3000",
+			name: "红米 AX6000",
 			image: "/images/device/mt3000.webp",
-			specs: "1000Mbps / 2.5G",
-			description:
-				"Portable WiFi 6 router suitable for business trips and home use.",
-			link: "https://www.gl-inet.cn/products/gl-mt3000/",
+			specs: "Wi-Fi 6 / 千兆宽带",
+			description: "家里常用路由器，负责日常网络覆盖和多设备连接。",
+			link: "",
 		},
 	],
 };
