@@ -164,7 +164,13 @@ export const siteConfig: SiteConfig = {
 			enable: true, // 在主页显示自定义文本
 			title: "欢迎来到我的博客", // 主页横幅主标题
 
-			subtitle: ["须知少年拏云志，曾许人间第一流"],
+			subtitle: [
+				"这里记录日常、兴趣与一些碎碎念",
+				"把喜欢的内容慢慢写下来",
+				"分享生活里那些安静但真实的时刻",
+				"偶尔写代码，偶尔发呆，偶尔认真生活",
+				"今天也是适合写点东西的一天",
+			],
 			typewriter: {
 				enable: true, // 启用副标题打字机效果
 
