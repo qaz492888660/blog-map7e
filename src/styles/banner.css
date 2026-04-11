@@ -56,8 +56,19 @@ body.wallpaper-transparent #toc-inner-wrapper:has(table-of-contents[data-loaded=
 /* 桌面端 Banner 模式下的主内容区域位置 */
 @media (min-width: 1280px) {
   body.enable-banner #banner-wrapper:not(.mobile-hide-banner) {
-    height: 118vh !important;
+    height: 100vh !important;
     top: 0 !important;
+    transform: none !important;
+  }
+
+  body.enable-banner #banner-carousel,
+  body.enable-banner #banner-single-container,
+  body.enable-banner .banner-image-slot-desktop {
+    height: 100% !important;
+  }
+
+  body.enable-banner #banner {
+    height: 100% !important;
     transform: none !important;
   }
 
