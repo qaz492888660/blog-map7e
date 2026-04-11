@@ -57,6 +57,7 @@ body.wallpaper-transparent #toc-inner-wrapper:has(table-of-contents[data-loaded=
 @media (min-width: 1280px) {
   body.enable-banner #banner-wrapper:not(.mobile-hide-banner) {
     height: 100vh !important;
+    min-height: 100vh !important;
     top: 0 !important;
     transform: none !important;
   }
@@ -70,6 +71,23 @@ body.wallpaper-transparent #toc-inner-wrapper:has(table-of-contents[data-loaded=
   body.enable-banner #banner {
     height: 100% !important;
     transform: none !important;
+  }
+
+  body.enable-banner #main-grid {
+    transform: none !important;
+  }
+
+  body.enable-banner #top-row {
+    height: calc(100vh - 4.5rem) !important;
+  }
+
+  body.enable-banner #banner-carousel img,
+  body.enable-banner #banner-single-container img,
+  body.enable-banner .banner-image-slot-desktop img,
+  body.enable-banner #banner {
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 60% !important;
   }
 
   body.enable-banner .absolute.w-full.z-30 {

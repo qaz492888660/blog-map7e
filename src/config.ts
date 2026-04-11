@@ -342,10 +342,15 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "/assets/home/map7e.jpg", // 以 '/' 开头时相对于 /public 目录
 	name: "枫",
-	bio: "把喜欢的事慢慢写下来。",
+	bio: "须知少年擎云志，曾许人间第一流。",
 	typewriter: {
 		enable: true, // 启用个人简介打字机效果
-		speed: 80, // 打字速度（毫秒）
+		speed: 125, // 打字速度（毫秒）
+		deleteSpeed: 70, // 删除速度（毫秒）
+		pauseTime: 10000, // 完整显示后停 10 秒再循环
+		loop: true, // 单句循环
+		pauseAtText: "须知少年擎云志，", // 在逗号处停顿
+		pauseAtTextDuration: 700, // 额外停顿 0.7 秒
 	},
 	links: [
 		{

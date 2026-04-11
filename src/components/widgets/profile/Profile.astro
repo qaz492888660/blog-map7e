@@ -43,13 +43,18 @@ import { i18n } from "../../../i18n/translation";
 		>
 		</div>
 
-		<div class="text-center text-neutral-400 mb-2.5 transition">
+		<div class="text-center text-neutral-400 text-sm lg:text-[0.95rem] leading-[1.7] whitespace-nowrap mb-2.5 transition">
 			{
 				profileConfig.typewriter?.enable ? (
 					<TypewriterText
 						text={profileConfig.bio || ""}
 						speed={profileConfig.typewriter.speed}
-						class="inline-block"
+						deleteSpeed={profileConfig.typewriter.deleteSpeed}
+						pauseTime={profileConfig.typewriter.pauseTime}
+						loop={profileConfig.typewriter.loop}
+						pauseAtText={profileConfig.typewriter.pauseAtText}
+						pauseAtTextDuration={profileConfig.typewriter.pauseAtTextDuration}
+						class="inline-block max-w-full"
 					/>
 				) : (
 					profileConfig.bio

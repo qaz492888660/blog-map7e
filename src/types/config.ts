@@ -239,6 +239,11 @@ export interface ProfileConfig {
 	typewriter?: {
 		enable: boolean; // 是否启用打字机效果
 		speed?: number; // 打字速度（毫秒）
+		deleteSpeed?: number; // 删除速度（毫秒）
+		pauseTime?: number; // 完整显示后的暂停时间（毫秒）
+		loop?: boolean; // 单条文本是否循环
+		pauseAtText?: string; // 在指定文本处额外暂停
+		pauseAtTextDuration?: number; // 额外暂停时长（毫秒）
 	};
 }
 
