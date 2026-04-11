@@ -340,7 +340,7 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "/assets/home/map7e.jpg", // 以 '/' 开头时相对于 /public 目录
+	avatar: "/assets/home/Map7e.jpg", // 以 '/' 开头时相对于 /public 目录
 	name: "枫",
 	bio: "须知少年擎云志，曾许人间第一流。",
 	typewriter: {

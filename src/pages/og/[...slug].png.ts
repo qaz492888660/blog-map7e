@@ -1,4 +1,5 @@
 import * as fs from "node:fs";
+import path from "node:path";
 
 import type { APIContext, GetStaticPaths } from "astro";
 import type { CollectionEntry } from "astro:content";
@@ -20,6 +21,17 @@ interface FontOptions {
 	lang?: string;
 }
 export const prerender = true;
+
+function resolveConfigAssetPath(assetPath: string): string {
+	const normalizedPath = assetPath.replace(/^\/+/, "");
+	const publicPath = path.resolve(process.cwd(), "public", normalizedPath);
+
+	if (fs.existsSync(publicPath)) {
+		return publicPath;
+	}
+
+	return path.resolve(process.cwd(), "src", normalizedPath);
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	if (!siteConfig.generateOgImages) {
@@ -113,12 +125,13 @@ export async function GET({
 		await fetchNotoSansSCFonts();
 
 	// Avatar + icon: still read from disk (small assets)
-	const avatarBuffer = fs.readFileSync(`./src/${profileConfig.avatar}`);
+	const avatarPath = profileConfig.avatar || "/assets/images/avatar.webp";
+	const avatarBuffer = fs.readFileSync(resolveConfigAssetPath(avatarPath));
 	const avatarBase64 = `data:image/png;base64,${avatarBuffer.toString("base64")}`;
 
-	let iconPath = "./public/favicon/favicon.ico";
+	let iconPath = path.resolve(process.cwd(), "public/favicon/favicon.ico");
 	if (siteConfig.favicon.length > 0) {
-		iconPath = `./public${siteConfig.favicon[0].src}`;
+		iconPath = resolveConfigAssetPath(siteConfig.favicon[0].src);
 	}
 	const iconBuffer = fs.readFileSync(iconPath);
 	const iconBase64 = `data:image/png;base64,${iconBuffer.toString("base64")}`;
