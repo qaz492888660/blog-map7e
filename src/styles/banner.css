@@ -55,8 +55,14 @@ body.wallpaper-transparent #toc-inner-wrapper:has(table-of-contents[data-loaded=
 
 /* 桌面端 Banner 模式下的主内容区域位置 */
 @media (min-width: 1280px) {
+  body.enable-banner #banner-wrapper:not(.mobile-hide-banner) {
+    height: 110vh !important;
+    top: 0 !important;
+    transform: none !important;
+  }
+
   body.enable-banner .absolute.w-full.z-30 {
-    top: 35vh !important;
+    top: 92vh !important;
   }
 }
 
