@@ -248,27 +248,6 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
 export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
-		LinkPreset.Archive,
-		// 支持自定义导航栏链接，支持多级菜单
-		{
-			name: "链接",
-			url: "/links/",
-			icon: "material-symbols:link",
-			children: [
-				{
-					name: "GitHub",
-					url: "https://github.com/qaz492888660",
-					external: true,
-					icon: "fa7-brands:github",
-				},
-				{
-					name: "Bilibili",
-					url: "https://space.bilibili.com/3017899",
-					external: true,
-					icon: "fa7-brands:bilibili",
-				},
-			],
-		},
 		{
 			name: "我的",
 			url: "/content/",
@@ -297,6 +276,27 @@ export const navBarConfig: NavBarConfig = {
 				},
 			],
 		},
+		// 支持自定义导航栏链接，支持多级菜单
+		{
+			name: "链接",
+			url: "/links/",
+			icon: "material-symbols:link",
+			children: [
+				{
+					name: "GitHub",
+					url: "https://github.com/qaz492888660",
+					external: true,
+					icon: "fa7-brands:github",
+				},
+				{
+					name: "Bilibili",
+					url: "https://space.bilibili.com/3017899",
+					external: true,
+					icon: "fa7-brands:bilibili",
+				},
+			],
+		},
+		LinkPreset.Archive,
 		{
 			name: "关于",
 			url: "/content/",

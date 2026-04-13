@@ -1,0 +1,180 @@
+
+> mizuki@9.0 predev F:\DEMO\blog-map7e
+> node scripts/sync-content.js || true
+
+已加载 .env 配置文件
+
+开始同步内容...
+
+内容目录不存在：F:\DEMO\blog-map7e\content
+将使用独立仓库模式
+提示：请设置 CONTENT_REPO_URL 环境变量，或手动创建内容目录
+
+> mizuki@9.0 dev F:\DEMO\blog-map7e
+> astro dev --host 0.0.0.0
+
+[vite] connected.
+[2m23:43:16[22m [34m[types][39m Generated [2m1ms[22m
+[vite] connected.
+[2m23:43:17[22m [34m[content][39m Syncing content
+[2m23:43:17[22m [34m[content][39m Synced content
+[2m23:43:17[22m [34m[vite][39m Forced re-optimization of dependencies
+[42m[1m astro [22m[49m [32mv6.1.2[39m [2mready in[22m 3159 [2mms[22m
+[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+[2m┃[22m Network  [36mhttp://192.168.5.138:4321/[39m
+[2m23:43:17[22m [32mwatching for file changes...[39m
+[2m23:43:32[22m [34m[200][39m / [2m1447ms[22m
+[2m23:55:23[22m [34m[200][39m / [2m30ms[22m
+[2m23:55:23[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mastro/runtime/client/dev-toolbar/entrypoint.js, @swup/astro/serialise, @swup/astro/idle, @swup/astro/client/Swup, @swup/astro/client/SwupA11yPlugin, @swup/astro/client/SwupScriptsPlugin[32m[39m
+[2m23:55:23[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m23:55:23[22m [33m[404][39m /assets/home/map7e.jpg [2m126ms[22m
+[2m23:55:24[22m [33m[404][39m /assets/home/map7e.jpg [2m27ms[22m
+[2m23:55:24[22m [33m[404][39m /assets/home/map7e.jpg [2m35ms[22m
+[2m23:55:24[22m [33m[404][39m /assets/home/map7e.jpg [2m33ms[22m
+[2m23:55:25[22m [34m[200][39m /api/calendar-data.json [2m1ms[22m
+[2m23:55:26[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:55:26[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:55:26[22m [33m[404][39m /assets/home/map7e.jpg [2m17ms[22m
+[2m23:55:27[22m [33m[404][39m /assets/home/map7e.jpg [2m17ms[22m
+[2m23:55:27[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:55:27[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:30[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:55:30[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:30[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:34[22m [33m[404][39m /assets/home/map7e.jpg [2m17ms[22m
+[2m23:55:34[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:34[22m [33m[404][39m /assets/home/map7e.jpg [2m21ms[22m
+[2m23:55:39[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:39[22m [33m[404][39m /assets/home/map7e.jpg [2m21ms[22m
+[2m23:55:39[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:40[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:40[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:55:40[22m [33m[404][39m /assets/home/map7e.jpg [2m20ms[22m
+[2m23:55:43[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:43[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:43[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:47[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:55:47[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:47[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:52[22m [33m[404][39m /assets/home/map7e.jpg [2m22ms[22m
+[2m23:55:52[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:52[22m [33m[404][39m /assets/home/map7e.jpg [2m22ms[22m
+[2m23:55:56[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:56[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:55:56[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:00[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:56:00[22m [33m[404][39m /assets/home/map7e.jpg [2m18ms[22m
+[2m23:56:00[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:05[22m [33m[404][39m /assets/home/map7e.jpg [2m21ms[22m
+[2m23:56:05[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:05[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:09[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:09[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:09[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:13[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:13[22m [33m[404][39m /assets/home/map7e.jpg [2m17ms[22m
+[2m23:56:13[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:19[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:19[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:19[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:22[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:22[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:56:22[22m [33m[404][39m /assets/home/map7e.jpg [2m17ms[22m
+[2m23:56:26[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:26[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:27[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:32[22m [33m[404][39m /assets/home/map7e.jpg [2m27ms[22m
+[2m23:56:32[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:32[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:35[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:35[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:35[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:39[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:39[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:39[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:44[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:44[22m [33m[404][39m /assets/home/map7e.jpg [2m20ms[22m
+[2m23:56:44[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:45[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:45[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:56:45[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:48[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:48[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:48[22m [33m[404][39m /assets/home/map7e.jpg [2m29ms[22m
+[2m23:56:53[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:53[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:53[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:57[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:56:57[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:56:57[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:57:01[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:57:01[22m [33m[404][39m /assets/home/map7e.jpg [2m25ms[22m
+[2m23:57:01[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:57:06[22m [33m[404][39m /assets/home/map7e.jpg [2m31ms[22m
+[2m23:57:06[22m [33m[404][39m /assets/home/map7e.jpg [2m18ms[22m
+[2m23:57:06[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:57:10[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:57:10[22m [33m[404][39m /assets/home/map7e.jpg [2m20ms[22m
+[2m23:57:10[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:57:14[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:14[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:14[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:18[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:18[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:57:18[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:57:23[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:23[22m [33m[404][39m /assets/home/map7e.jpg [2m25ms[22m
+[2m23:57:23[22m [33m[404][39m /assets/home/map7e.jpg [2m22ms[22m
+[2m23:57:39[22m [33m[404][39m /assets/home/map7e.jpg [2m35ms[22m
+[2m23:57:39[22m [33m[404][39m /assets/home/map7e.jpg [2m24ms[22m
+[2m23:57:39[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:57:40[22m [34m[200][39m / [2m18ms[22m
+[2m23:57:40[22m [33m[404][39m /assets/home/map7e.jpg [2m18ms[22m
+[2m23:57:40[22m [34m[200][39m /api/calendar-data.json [2m0ms[22m
+[2m23:57:41[22m [33m[404][39m /assets/home/map7e.jpg [2m18ms[22m
+[2m23:57:41[22m [33m[404][39m /assets/home/map7e.jpg [2m20ms[22m
+[2m23:57:41[22m [33m[404][39m /assets/home/map7e.jpg [2m29ms[22m
+[2m23:57:42[22m [33m[404][39m /assets/home/map7e.jpg [2m25ms[22m
+[2m23:57:42[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:42[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:43[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:43[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:43[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:46[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:46[22m [33m[404][39m /assets/home/map7e.jpg [2m21ms[22m
+[2m23:57:46[22m [33m[404][39m /assets/home/map7e.jpg [2m17ms[22m
+[2m23:57:50[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:57:50[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:57:50[22m [33m[404][39m /assets/home/map7e.jpg [2m27ms[22m
+[2m23:57:55[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:55[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:57:55[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:57[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:57[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:57[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:57:59[22m [33m[404][39m /assets/home/map7e.jpg [2m19ms[22m
+[2m23:58:00[22m [33m[404][39m /assets/home/map7e.jpg [2m23ms[22m
+[2m23:58:00[22m [33m[404][39m /assets/home/map7e.jpg [2m28ms[22m
+[2m23:58:04[22m [33m[404][39m /assets/home/map7e.jpg [2m16ms[22m
+[2m23:58:04[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:58:04[22m [33m[404][39m /assets/home/map7e.jpg [2m21ms[22m
+[2m23:58:10[22m [33m[404][39m /assets/home/map7e.jpg [2m26ms[22m
+[2m23:58:19[22m [34m[200][39m / [2m23ms[22m
+[2m23:58:29[22m [34m[200][39m / [2m15ms[22m
+[2m23:58:34[22m [33m[404][39m /assets/home/map7e.jpg [2m22ms[22m
+[2m23:58:34[22m [33m[404][39m /assets/home/map7e.jpg [2m14ms[22m
+[2m23:58:34[22m [33m[404][39m /assets/home/map7e.jpg [2m18ms[22m
+[2m23:58:36[22m [33m[404][39m /assets/home/map7e.jpg [2m15ms[22m
+[2m23:58:49[22m [34m[watch][39m src/config.ts
+[2m23:58:49[22m [34m[watch][39m src/config.ts
+[vite] program reload
+[2m23:58:49[22m [34m[watch][39m /src/styles/main.css
+[2m23:58:52[22m [34m[200][39m / [2m164ms[22m
+[2m23:58:58[22m [34m[200][39m / [2m22ms[22m
+[2m23:59:16[22m [34m[watch][39m /src/styles/main.css
+[2m23:59:16[22m [34m[200][39m / [2m139ms[22m
+[2m00:04:08[22m [34m[200][39m /api/calendar-data.json [2m1ms[22m
+[2m00:04:09[22m [34m[200][39m / [2m28ms[22m
+[2m00:04:09[22m [34m[200][39m /api/calendar-data.json [2m0ms[22m
+[2m00:04:14[22m [34m[200][39m / [2m26ms[22m
+[2m00:04:14[22m [34m[200][39m /api/calendar-data.json [2m0ms[22m

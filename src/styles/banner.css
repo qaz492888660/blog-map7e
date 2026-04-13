@@ -55,6 +55,45 @@ body.wallpaper-transparent #toc-inner-wrapper:has(table-of-contents[data-loaded=
 
 /* 桌面端 Banner 模式下的主内容区域位置 */
 @media (min-width: 1280px) {
+  body.enable-banner.lg\:is-home #banner-wrapper:not(.mobile-hide-banner) {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    top: 0 !important;
+    transform: none !important;
+  }
+
+  body.enable-banner.lg\:is-home #banner-carousel,
+  body.enable-banner.lg\:is-home #banner-single-container,
+  body.enable-banner.lg\:is-home .banner-image-slot-desktop {
+    height: 100% !important;
+  }
+
+  body.enable-banner.lg\:is-home #banner {
+    height: 100% !important;
+    transform: none !important;
+  }
+
+  body.enable-banner.lg\:is-home #main-grid {
+    transform: none !important;
+  }
+
+  body.enable-banner.lg\:is-home #top-row {
+    height: calc(100vh - 4.5rem) !important;
+  }
+
+  body.enable-banner.lg\:is-home #banner-carousel img,
+  body.enable-banner.lg\:is-home #banner-single-container img,
+  body.enable-banner.lg\:is-home .banner-image-slot-desktop img,
+  body.enable-banner.lg\:is-home #banner {
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 60% !important;
+  }
+
+  body.enable-banner.lg\:is-home .absolute.w-full.z-30 {
+    top: 100vh !important;
+  }
+
   body.enable-banner #banner-wrapper:not(.mobile-hide-banner) {
     height: 100vh !important;
     min-height: 100vh !important;

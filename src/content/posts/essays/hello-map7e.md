@@ -2,11 +2,17 @@
 title: 写在博客重新开始的时候
 published: 2026-04-10
 updated: 2026-04-10
-pinned: true
+slug: hello-map7e
 description: 这是博客重建后的第一篇文章，也是一段新的开始。
-tags: [生活, 记录, 博客]
+tags:
+  - 生活
+  - 记录
+  - 博客
 category: 随笔
+pinned: true
 author: 枫
+alias: hello-map7e
+permalink: ''
 draft: false
 ---
 

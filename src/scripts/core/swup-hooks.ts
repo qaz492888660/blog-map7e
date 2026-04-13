@@ -38,6 +38,7 @@ interface VisitObject {
 export class SwupHooksManager {
 	private bannerEnabled: boolean;
 	private handlers: SwupHookHandlers;
+	private pendingAutoScrollToContent = false;
 
 	private cachedElements: Map<string, Element | null> = new Map();
 
@@ -130,10 +131,13 @@ export class SwupHooksManager {
 
 			// 处理页面状态
 			const isHomePage = pathsEqual(visit.to.url, url("/"));
+			this.pendingAutoScrollToContent = this.shouldAutoScrollToContent(
+				isHomePage,
+				visit.to.url,
+			);
 			this.handleBodyClass(isHomePage);
 			this.handleBannerTextVisibility(isHomePage);
 			this.handleNavbarState(isHomePage);
-			this.handleMobileBannerVisibility(isHomePage);
 
 			// 扩展页面高度防止滚动动画跳跃
 			this.extendPageHeight(false);
@@ -152,11 +156,33 @@ export class SwupHooksManager {
 			// 扩展页面高度
 			this.extendPageHeight(false);
 
+			const shouldScrollToContent = this.pendingAutoScrollToContent;
+			this.pendingAutoScrollToContent = false;
+
 			// 滚动到页面顶部
-			window.scrollTo({
-				top: 0,
-				behavior: "instant",
-			});
+			const hash = window.location.hash;
+			if (hash && hash.length > 1) {
+				const targetId = decodeURIComponent(hash.substring(1));
+				const safeId =
+					typeof CSS !== "undefined" && CSS.escape
+						? CSS.escape(targetId)
+						: targetId.replace(/["\\]/g, "\\$&");
+				const target =
+					document.getElementById(targetId) ||
+					(document.querySelector(
+						`[id="${safeId}"], [name="${safeId}"]`,
+					) as HTMLElement | null);
+
+				if (target) {
+					target.scrollIntoView({ block: "start", behavior: "auto" });
+				} else {
+					window.scrollTo({ top: 0, behavior: "auto" });
+				}
+			} else if (shouldScrollToContent) {
+				this.scrollToMainContent();
+			} else {
+				window.scrollTo({ top: 0, behavior: "auto" });
+			}
 
 			// 同步主题状态
 			this.syncThemeState();
@@ -300,35 +326,52 @@ export class SwupHooksManager {
 	}
 
 	/**
-	 * 处理移动端 Banner 可见性
+	 * Decide whether the next view should keep the full hero and
+	 * only scroll the viewport down to the main content.
 	 */
-	private handleMobileBannerVisibility(isHomePage: boolean): void {
-		const bannerWrapper = this.getCachedElement(
-			SWUP_SELECTORS.bannerWrapper,
-		);
-		const mainContentWrapper = this.getCachedElement(
-			".absolute.w-full.z-30",
-		);
-
-		if (bannerWrapper && mainContentWrapper) {
-			if (isHomePage) {
-				// 首页：延迟移除隐藏类
-				setTimeout(() => {
-					bannerWrapper.classList.remove("mobile-hide-banner");
-				}, ANIMATION_CONFIG.mobileBannerDelay);
-				setTimeout(() => {
-					mainContentWrapper.classList.remove(
-						"mobile-main-no-banner",
-					);
-				}, ANIMATION_CONFIG.mobileContentDelay);
-			} else {
-				// 非首页：分阶段隐藏
-				bannerWrapper.classList.add("mobile-hide-banner");
-				setTimeout(() => {
-					mainContentWrapper.classList.add("mobile-main-no-banner");
-				}, ANIMATION_CONFIG.mobileBannerDelay);
-			}
+	private shouldAutoScrollToContent(
+		isHomePage: boolean,
+		targetUrl: string,
+	): boolean {
+		if (isHomePage || !this.bannerEnabled) {
+			return false;
 		}
+
+		try {
+			const parsedUrl = new URL(targetUrl, window.location.origin);
+			return parsedUrl.hash.length === 0;
+		} catch {
+			return true;
+		}
+	}
+
+	/**
+	 * Keep the hero height intact and move only the viewport to the
+	 * main panel after navigating to a non-home page.
+	 */
+	private scrollToMainContent(): void {
+		const mainPanel = this.getCachedElement(
+			SWUP_SELECTORS.mainPanel,
+		) as HTMLElement | null;
+		const navbarWrapper = this.getCachedElement(
+			SWUP_SELECTORS.navbarWrapper,
+		) as HTMLElement | null;
+		if (!mainPanel) {
+			window.scrollTo({ top: 0, behavior: "auto" });
+			return;
+		}
+
+		const navbarHeight = navbarWrapper?.getBoundingClientRect().height ?? 0;
+		const top =
+			window.scrollY +
+			mainPanel.getBoundingClientRect().top -
+			navbarHeight -
+			16;
+
+		window.scrollTo({
+			top: Math.max(0, top),
+			behavior: "smooth",
+		});
 	}
 
 	/**

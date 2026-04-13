@@ -1,0 +1,142 @@
+(node:4380) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 change listeners added to [FSWatcher]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+(Use `node --trace-warnings ...` to show where the warning was created)
+[31m[1m13:07:43[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:00[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:02[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:28[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:29[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:29[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:30[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:30[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:30[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:30[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:30[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:31[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:43[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)
+[31m[1m13:08:53[22m [ERROR] [vite][39m [31mInternal server error: 
+
+<script src="/admin/sveltia-cms.js"> references an asset in the "public/" directory. Please add the "is:inline" directive to keep this asset from being bundled.
+
+File: F:/DEMO/blog-map7e/src/pages/admin/index.astro?astro&type=script&index=0&lang.ts[39m
+      at LoadPluginContext.handler (F:\DEMO\blog-map7e\node_modules\.pnpm\astro@6.1.2_@types+node@25._c3dfa482217a9e4774ea1aa0e05ef9c2\node_modules\astro\dist\vite-plugin-astro\index.js:143:15)
+      at EnvironmentPluginContainer.load (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:28763:56)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async loadAndTransform (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:22628:21)
+      at async viteTransformMiddleware (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:24546:20)

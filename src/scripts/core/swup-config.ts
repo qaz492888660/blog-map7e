@@ -28,6 +28,7 @@ export const SWUP_SELECTORS = {
 	bannerWrapper: "#banner-wrapper",
 	banner: "#banner",
 	bannerTextOverlay: ".banner-text-overlay",
+	mainPanel: "#page-main-panel",
 
 	// 导航相关
 	navbar: "#navbar",

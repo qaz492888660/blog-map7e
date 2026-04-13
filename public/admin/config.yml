@@ -1,0 +1,250 @@
+backend:
+  name: github
+  repo: qaz492888660/blog-map7e
+  branch: main
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: diary
+    label: 日记
+    label_singular: 日记
+    folder: src/content/diary
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    preview_path: /diary
+    media_folder: public/images/diary
+    public_folder: /images/diary
+    summary: "{{fields.date}} {{fields.title}}"
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+      - label: 日期
+        name: date
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm:ssZ
+      - label: Slug
+        name: slug
+        widget: string
+        hint: 例如 spring-day-note
+      - label: 摘要
+        name: description
+        widget: text
+        required: false
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+        default: []
+      - label: 封面图
+        name: cover
+        widget: image
+        required: false
+        choose_url: false
+      - label: 图片列表
+        name: images
+        widget: list
+        required: false
+        default: []
+        field:
+          label: 图片
+          name: image
+          widget: image
+          choose_url: false
+      - label: 地点
+        name: location
+        widget: string
+        required: false
+      - label: 心情
+        name: mood
+        widget: string
+        required: false
+      - label: 草稿
+        name: draft
+        widget: boolean
+        required: false
+        default: false
+      - label: 正文
+        name: body
+        widget: markdown
+
+  - name: essays
+    label: 随笔
+    label_singular: 随笔
+    folder: src/content/posts/essays
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    preview_path: /posts/{{slug}}
+    media_folder: public/images/posts/essays
+    public_folder: /images/posts/essays
+    summary: "{{fields.published}} {{fields.title}}"
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+      - label: 发布时间
+        name: published
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm:ssZ
+      - label: 更新时间
+        name: updated
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm:ssZ
+        required: false
+      - label: Slug
+        name: slug
+        widget: string
+        hint: 例如 hello-map7e
+      - label: 摘要
+        name: description
+        widget: text
+        required: false
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+        default: []
+      - label: 封面图
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+      - label: 分类
+        name: category
+        widget: hidden
+        default: 随笔
+      - label: 置顶
+        name: pinned
+        widget: boolean
+        required: false
+        default: false
+      - label: 评论开关
+        name: comment
+        widget: boolean
+        required: false
+        default: true
+      - label: 作者
+        name: author
+        widget: string
+        required: false
+        default: 枫
+      - label: 兼容旧链接 alias
+        name: alias
+        widget: string
+        required: false
+      - label: 自定义 permalink
+        name: permalink
+        widget: string
+        required: false
+      - label: 草稿
+        name: draft
+        widget: boolean
+        required: false
+        default: false
+      - label: 正文
+        name: body
+        widget: markdown
+
+  - name: articles
+    label: 文章
+    label_singular: 文章
+    folder: src/content/posts/articles
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    preview_path: /posts/{{slug}}
+    media_folder: public/images/posts/articles
+    public_folder: /images/posts/articles
+    summary: "{{fields.published}} {{fields.title}}"
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+      - label: 发布时间
+        name: published
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm:ssZ
+      - label: 更新时间
+        name: updated
+        widget: datetime
+        format: YYYY-MM-DDTHH:mm:ssZ
+        required: false
+      - label: Slug
+        name: slug
+        widget: string
+        hint: 例如 astro-notes
+      - label: 摘要
+        name: description
+        widget: text
+        required: false
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+        default: []
+      - label: 分类
+        name: category
+        widget: string
+        required: false
+        default: 文章
+      - label: 封面图
+        name: image
+        widget: image
+        required: false
+        choose_url: false
+      - label: 置顶
+        name: pinned
+        widget: boolean
+        required: false
+        default: false
+      - label: 评论开关
+        name: comment
+        widget: boolean
+        required: false
+        default: true
+      - label: 作者
+        name: author
+        widget: string
+        required: false
+        default: 枫
+      - label: alias
+        name: alias
+        widget: string
+        required: false
+      - label: 自定义 permalink
+        name: permalink
+        widget: string
+        required: false
+      - label: 草稿
+        name: draft
+        widget: boolean
+        required: false
+        default: false
+      - label: 正文
+        name: body
+        widget: markdown
+
+  - name: pages
+    label: 页面
+    files:
+      - label: 关于我
+        name: about
+        file: src/content/spec/about.md
+        fields:
+          - label: 正文
+            name: body
+            widget: markdown
+      - label: 友链说明
+        name: friends
+        file: src/content/spec/friends.md
+        fields:
+          - label: 正文
+            name: body
+            widget: markdown

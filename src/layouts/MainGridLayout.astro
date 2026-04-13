@@ -52,8 +52,6 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 
 // 检查是否为首页
 const isHomePage = Astro.url.pathname === "/" || Astro.url.pathname === "";
-// 手机端非首页不显示banner的CSS类
-const mobileNonHomeBannerClass = !isHomePage ? "mobile-hide-banner" : "";
 
 // 计算主内容区域位置
 const finalMainPanelTop = getMainPanelTop(
@@ -130,14 +128,15 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 	<!-- Banner 组件 -->
 	<Banner
 		bannerImages={bannerImages}
-		mobileNonHomeBannerClass={mobileNonHomeBannerClass}
+		mobileNonHomeBannerClass=""
 		showTextOverlay={isHomePage &&
 			(siteConfig.banner.homeText?.enable ?? false)}
 	/>
 
 	<!-- Main content -->
 	<div
-		class={`absolute w-full z-30 pointer-events-none ${mobileNonHomeBannerClass ? "mobile-main-no-banner" : ""} ${siteConfig.wallpaperMode.defaultMode === "none" ? "no-banner-layout" : ""} ${transparentClass}`}
+		id="page-main-panel"
+		class={`absolute w-full z-30 pointer-events-none ${siteConfig.wallpaperMode.defaultMode === "none" ? "no-banner-layout" : ""} ${transparentClass}`}
 		style={`top: ${finalMainPanelTop}`}
 	>
 		<!-- The pointer-events-none here prevent blocking the click event of the TOC -->

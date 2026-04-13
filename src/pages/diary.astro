@@ -13,8 +13,7 @@ if (!siteConfig.featurePages.diary) {
 	return Astro.redirect("/404/");
 }
 
-const moments = getDiaryList();
-const allTags = getAllTags();
+const [moments, allTags] = await Promise.all([getDiaryList(), getAllTags()]);
 
 const filterTabs = [
 	{
