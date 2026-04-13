@@ -1,3 +1,8 @@
+auth:
+  github:
+    clientId: $GITHUB_CLIENT_ID
+    clientSecret: $GITHUB_CLIENT_SECRET
+    callbackUrl: https://blog.map7e.com/api/auth/callback
 backend:
   name: github
   repo: qaz492888660/blog-map7e
