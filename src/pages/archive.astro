@@ -35,7 +35,8 @@ const categories = [
 ---
 
 <MainGridLayout title={i18n(I18nKey.archive)}>
-	{showCategoryBar && <CategoryBar />}
+	<div id="archive-section">
+		{showCategoryBar && <CategoryBar />}
 	<!-- 引入右侧边栏布局管理器 -->
 	<script>
 		import("../scripts/right-sidebar-layout.js");
@@ -48,4 +49,5 @@ const categories = [
 		categories={categories}
 		client:only="svelte"
 	/>
+	</div>
 </MainGridLayout>

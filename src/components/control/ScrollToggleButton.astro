@@ -127,10 +127,6 @@ import { Icon } from "astro-icon/components";
 
 <script is:inline>
 	(() => {
-		function normalizePath(pathname) {
-			return pathname.replace(/\/+$/, "") || "/";
-		}
-
 		if (typeof window.ScrollToggleButtonManager === "undefined") {
 			window.ScrollToggleButtonManager = class ScrollToggleButtonManager {
 				constructor() {
@@ -142,6 +138,10 @@ import { Icon } from "astro-icon/components";
 					this.handleResize = this.updateState.bind(this);
 					this.handleClick = this.onClick.bind(this);
 					this.init();
+				}
+
+				getTargetElement() {
+					return document.getElementById("page-second-screen");
 				}
 
 				init() {
@@ -159,19 +159,16 @@ import { Icon } from "astro-icon/components";
 					this.updateState();
 				}
 
-				isHomePage() {
-					return normalizePath(window.location.pathname) === "/";
-				}
-
 				updateState() {
 					if (!this.button || !this.innerButton) {
 						return;
 					}
 
-					if (!this.isHomePage()) {
+					const targetElement = this.getTargetElement();
+					if (!targetElement) {
 						this.button.classList.add("hide");
 						this.button.classList.remove("is-second-screen");
-						this.innerButton.setAttribute("aria-label", "Scroll");
+						this.innerButton.setAttribute("aria-label", "Scroll to top");
 						window.dispatchEvent(
 							new CustomEvent("floating-control:visibility"),
 						);
@@ -197,9 +194,7 @@ import { Icon } from "astro-icon/components";
 				}
 
 				onClick() {
-					if (!this.isHomePage()) {
-						return;
-					}
+					const targetElement = this.getTargetElement();
 
 					const isSecondScreen =
 						window.scrollY >= window.innerHeight * 0.5;
@@ -208,9 +203,7 @@ import { Icon } from "astro-icon/components";
 						return;
 					}
 
-					document
-						.getElementById("home-second-screen")
-						?.scrollIntoView({
+					targetElement?.scrollIntoView({
 							behavior: "smooth",
 							block: "start",
 						});

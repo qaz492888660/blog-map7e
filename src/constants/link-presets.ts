@@ -16,7 +16,7 @@ export const LinkPresets: Record<LinkPreset, NavBarLink> = {
 	},
 	[LinkPreset.Archive]: {
 		name: i18n(I18nKey.archive),
-		url: "/archive/",
+		url: "/archive/#archive-section",
 		icon: "material-symbols:archive",
 	},
 	[LinkPreset.Friends]: {

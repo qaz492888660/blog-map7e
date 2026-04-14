@@ -157,7 +157,6 @@ if (siteConfig.font) {
 <html
 	lang={siteLang}
 	class="bg-[var(--page-bg)] text-[14px] md:text-[16px]"
-	class:list={[{ "home-two-screen": isHomePage }]}
 	data-overlayscrollbars-initialize
 >
 	<head>
@@ -210,7 +209,6 @@ if (siteConfig.font) {
 			{
 				"lg:is-home": isHomePage,
 				"enable-banner": enableBanner,
-				"home-two-screen": isHomePage,
 			},
 		]}
 		style={bodyFontFamily ? `font-family: ${bodyFontFamily};` : ""}
@@ -254,42 +252,6 @@ if (siteConfig.font) {
 	}}
 >
 	@reference "../styles/main.css";
-
-	html.home-two-screen,
-	body.home-two-screen {
-		scroll-behavior: smooth;
-		scroll-snap-type: y mandatory;
-	}
-
-	body.home-two-screen {
-		overscroll-behavior-y: contain;
-	}
-
-	body.home-two-screen #home-first-screen,
-	body.home-two-screen #home-second-screen {
-		min-height: 100vh;
-		scroll-snap-align: start;
-		scroll-snap-stop: always;
-	}
-
-	body.home-two-screen.enable-banner #banner-wrapper,
-	body.home-two-screen.enable-banner #banner {
-		height: 100vh !important;
-		min-height: 100vh !important;
-		transform: none !important;
-	}
-
-	body.home-two-screen.enable-banner #page-main-panel {
-		top: 100vh !important;
-	}
-
-	body.home-two-screen.enable-banner #main-grid {
-		transform: none !important;
-	}
-
-	body.home-two-screen.enable-banner #top-row {
-		height: calc(100vh - 4.5rem) !important;
-	}
 
 	@layer components {
 		@media (min-width: 1280px) {

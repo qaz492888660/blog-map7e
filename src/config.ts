@@ -250,27 +250,27 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		{
 			name: "我的",
-			url: "/content/",
+			url: "/diary/#diary-section",
 			icon: "material-symbols:person",
 			children: [
 				{
 					name: "追番",
-					url: "/anime/",
+					url: "/anime/#anime-section",
 					icon: "material-symbols:movie",
 				},
 				{
 					name: "日记",
-					url: "/diary/",
+					url: "/diary/#diary-section",
 					icon: "material-symbols:book",
 				},
 				{
 					name: "相册",
-					url: "/albums/",
+					url: "/albums/#albums-section",
 					icon: "material-symbols:photo-library",
 				},
 				{
 					name: "设备",
-					url: "/devices/",
+					url: "/devices/#devices-section",
 					icon: "material-symbols:devices",
 					external: false,
 				},
@@ -279,7 +279,7 @@ export const navBarConfig: NavBarConfig = {
 		// 支持自定义导航栏链接，支持多级菜单
 		{
 			name: "链接",
-			url: "/links/",
+			url: "/friends/#friends-section",
 			icon: "material-symbols:link",
 			children: [
 				{
@@ -299,39 +299,39 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Archive,
 		{
 			name: "关于",
-			url: "/content/",
+			url: "/about/#about-section",
 			icon: "material-symbols:info",
 			children: [
 				{
 					name: "关于我",
-					url: "/about/",
+					url: "/about/#about-section",
 					icon: "material-symbols:person",
 				},
 				{
 					name: "友链",
-					url: "/friends/",
+					url: "/friends/#friends-section",
 					icon: "material-symbols:group",
 				},
 			],
 		},
 		{
 			name: "更多",
-			url: "#",
+			url: "/projects/#projects-section",
 			icon: "material-symbols:more-horiz",
 			children: [
 				{
 					name: "项目",
-					url: "/projects/",
+					url: "/projects/#projects-section",
 					icon: "material-symbols:work",
 				},
 				{
 					name: "技能",
-					url: "/skills/",
+					url: "/skills/#skills-section",
 					icon: "material-symbols:psychology",
 				},
 				{
 					name: "时间线",
-					url: "/timeline/",
+					url: "/timeline/#timeline-section",
 					icon: "material-symbols:timeline",
 				},
 			],

@@ -199,11 +199,12 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 			}
 
 			<section
-				id={isHomePage ? "home-second-screen" : undefined}
+				id="page-second-screen"
 				class:list={[
 					"relative",
 					{ "underwater-section is-home-underwater": isHomePage },
 				]}
+				data-home-second-screen={isHomePage ? "true" : undefined}
 			>
 				{
 					isHomePage && (
@@ -329,6 +330,22 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 
 		.right-sidebar-container #right-sidebar {
 			height: fit-content;
+		}
+	</style>
+
+	<style is:global>
+		html:has(body #home-first-screen),
+		body:has(#home-first-screen) {
+			scroll-snap-type: y mandatory;
+			scroll-behavior: smooth;
+		}
+
+		body:has(#home-first-screen) #home-first-screen,
+		body:has(#home-first-screen)
+			#page-second-screen[data-home-second-screen="true"] {
+			min-height: 100vh;
+			scroll-snap-align: start;
+			scroll-snap-stop: always;
 		}
 	</style>
 
