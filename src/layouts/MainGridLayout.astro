@@ -34,7 +34,6 @@ interface Props {
 	headings?: MarkdownHeading[];
 }
 
-// 获取 banner 图片
 const bannerImages = await getBannerImages(siteConfig);
 
 const {
@@ -46,20 +45,16 @@ const {
 	postSlug,
 	headings = [],
 } = Astro.props;
+
 const hasBannerCredit = siteConfig.banner.credit.enable;
 const hasBannerLink = !!siteConfig.banner.credit.url;
-
-
-// 检查是否为首页
 const isHomePage = Astro.url.pathname === "/" || Astro.url.pathname === "";
 
-// 计算主内容区域位置
 const finalMainPanelTop = getMainPanelTop(
 	siteConfig.wallpaperMode.defaultMode,
 	BANNER_HEIGHT,
 );
 
-// 计算网格布局
 const {
 	gridCols,
 	sidebarClass,
@@ -77,14 +72,142 @@ const {
 const { hasRightSidebarComponents, hasMobileDrawerComponents } =
 	sidebarPresence;
 
-// 半透明效果
 const shouldEnable = shouldEnableTransparency(
 	siteConfig.wallpaperMode.defaultMode,
 );
 const transparentClass = getTransparencyClass(shouldEnable);
-
-// 布局模式
 const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
+
+const homeBubbles = [
+	{
+		left: "4%",
+		size: "0.65rem",
+		duration: "17s",
+		delay: "-3s",
+		drift: "14px",
+		bottom: "10%",
+	},
+	{
+		left: "9%",
+		size: "1.18rem",
+		duration: "24s",
+		delay: "-11s",
+		drift: "-16px",
+		bottom: "6%",
+	},
+	{
+		left: "15%",
+		size: "0.82rem",
+		duration: "20s",
+		delay: "-5s",
+		drift: "12px",
+		bottom: "18%",
+	},
+	{
+		left: "22%",
+		size: "1.45rem",
+		duration: "29s",
+		delay: "-18s",
+		drift: "20px",
+		bottom: "9%",
+	},
+	{
+		left: "29%",
+		size: "0.74rem",
+		duration: "19s",
+		delay: "-8s",
+		drift: "-10px",
+		bottom: "15%",
+	},
+	{
+		left: "36%",
+		size: "1.05rem",
+		duration: "23s",
+		delay: "-14s",
+		drift: "18px",
+		bottom: "7%",
+	},
+	{
+		left: "43%",
+		size: "0.58rem",
+		duration: "16s",
+		delay: "-2s",
+		drift: "-12px",
+		bottom: "13%",
+	},
+	{
+		left: "49%",
+		size: "1.62rem",
+		duration: "31s",
+		delay: "-21s",
+		drift: "22px",
+		bottom: "5%",
+	},
+	{
+		left: "55%",
+		size: "0.88rem",
+		duration: "22s",
+		delay: "-9s",
+		drift: "-14px",
+		bottom: "16%",
+	},
+	{
+		left: "61%",
+		size: "1.12rem",
+		duration: "25s",
+		delay: "-12s",
+		drift: "16px",
+		bottom: "8%",
+	},
+	{
+		left: "67%",
+		size: "0.7rem",
+		duration: "18s",
+		delay: "-6s",
+		drift: "10px",
+		bottom: "20%",
+	},
+	{
+		left: "73%",
+		size: "1.38rem",
+		duration: "28s",
+		delay: "-16s",
+		drift: "-18px",
+		bottom: "6%",
+	},
+	{
+		left: "79%",
+		size: "0.78rem",
+		duration: "21s",
+		delay: "-7s",
+		drift: "12px",
+		bottom: "14%",
+	},
+	{
+		left: "85%",
+		size: "1rem",
+		duration: "24s",
+		delay: "-13s",
+		drift: "-12px",
+		bottom: "11%",
+	},
+	{
+		left: "91%",
+		size: "0.62rem",
+		duration: "18s",
+		delay: "-4s",
+		drift: "9px",
+		bottom: "17%",
+	},
+	{
+		left: "95%",
+		size: "1.28rem",
+		duration: "27s",
+		delay: "-19s",
+		drift: "-14px",
+		bottom: "7%",
+	},
+];
 ---
 
 <Layout
@@ -104,14 +227,11 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 		pageScaling={siteConfig.pageScaling}
 	/>
 
-	<!-- 全屏壁纸 - 始终渲染，通过 JS 控制显示隐藏 -->
 	<FullscreenWallpaper config={fullscreenWallpaperConfig} />
-
-	<!-- 全局图标加载器 -->
 	<IconifyLoader />
 
-	<!-- Navbar -->
 	<slot slot="head" name="head" />
+
 	<div
 		id="top-row"
 		class="z-50 pointer-events-none relative transition-all duration-700 max-w-(--page-width) px-0 md:px-4 mx-auto"
@@ -125,7 +245,6 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 		</div>
 	</div>
 
-	<!-- Banner 组件 -->
 	<Banner
 		bannerImages={bannerImages}
 		mobileNonHomeBannerClass=""
@@ -133,113 +252,333 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 			(siteConfig.banner.homeText?.enable ?? false)}
 	/>
 
-	<!-- Main content -->
 	<div
 		id="page-main-panel"
 		class={`absolute w-full z-30 pointer-events-none ${siteConfig.wallpaperMode.defaultMode === "none" ? "no-banner-layout" : ""} ${transparentClass}`}
 		style={`top: ${finalMainPanelTop}`}
 	>
-		<!-- The pointer-events-none here prevent blocking the click event of the TOC -->
 		<div class="relative max-w-(--page-width) mx-auto pointer-events-auto">
-			<div
-				id="main-grid"
-				class={`relative z-10 transition duration-700 w-full left-0 right-0 grid ${gridCols} grid-rows-none md:grid-rows-[auto] mx-auto gap-4 px-2 md:px-4 ${!mobileShowSidebar || !hasMobileDrawerComponents ? "mobile-no-sidebar" : ""} ${hasRightSidebarComponents ? "mobile-both-sidebar" : ""}`}
-				data-layout-mode={defaultPostListLayout}
-			>
-				<!-- Banner image credit -->
-				{
-					hasBannerCredit && (
-						<a
-							href={siteConfig.banner.credit.url}
-							id="banner-credit"
-							target="_blank"
-							rel="noopener"
-							aria-label="Visit image source"
+			{
+				hasBannerCredit && (
+					<a
+						href={siteConfig.banner.credit.url}
+						id="banner-credit"
+						target="_blank"
+						rel="noopener"
+						aria-label="Visit image source"
+						class:list={[
+							"group onload-animation transition-all absolute z-20 flex justify-center items-center rounded-full " +
+								"px-3 right-4 -top-13 bg-black/60 hover:bg-black/70 h-9",
+							{
+								"hover:pr-9 active:bg-black/80":
+									hasBannerLink,
+							},
+						]}
+					>
+						<Icon
+							class="text-white/75 text-[1.25rem] mr-1"
+							name="material-symbols:copyright-outline-rounded"
+						/>
+						<div class="text-white/75 text-xs">
+							{siteConfig.banner.credit.text}
+						</div>
+						<Icon
 							class:list={[
-								"group onload-animation transition-all absolute flex justify-center items-center rounded-full " +
-									"px-3 right-4 -top-13 bg-black/60 hover:bg-black/70 h-9",
+								"transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 text-[0.75rem] opacity-0",
 								{
-									"hover:pr-9 active:bg-black/80":
+									"group-hover:opacity-100":
 										hasBannerLink,
 								},
 							]}
-						>
-							<Icon
-								class="text-white/75 text-[1.25rem] mr-1"
-								name="material-symbols:copyright-outline-rounded"
-							/>
-							<div class="text-white/75 text-xs">
-								{siteConfig.banner.credit.text}
+							name="fa7-solid:arrow-up-right-from-square"
+						/>
+					</a>
+				)
+			}
+
+			<section
+				class:list={[
+					"underwater-section",
+					{ "is-home-underwater": isHomePage },
+				]}
+			>
+				{
+					isHomePage && (
+						<>
+							<div class="underwater-surface" aria-hidden="true"></div>
+							<div class="underwater-light" aria-hidden="true"></div>
+							<div class="bubble-layer" aria-hidden="true">
+								{
+									homeBubbles.map((bubble) => (
+										<span
+											class="bubble"
+											style={`--bubble-left:${bubble.left};--bubble-size:${bubble.size};--bubble-duration:${bubble.duration};--bubble-delay:${bubble.delay};--bubble-drift:${bubble.drift};--bubble-bottom:${bubble.bottom};`}
+										></span>
+									))
+								}
 							</div>
-							<Icon
-								class:list={[
-									"transition absolute text-[oklch(0.75_0.14_var(--hue))] right-4 text-[0.75rem] opacity-0",
-									{
-										"group-hover:opacity-100":
-											hasBannerLink,
-									},
-								]}
-								name="fa7-solid:arrow-up-right-from-square"
-							/>
-						</a>
+						</>
 					)
 				}
 
-				{/* 侧边栏和主内容区域容器 */}
-				<div class="contents">
-					{
-						(mobileShowSidebar ||
-							tabletShowSidebar ||
-							desktopShowSidebar) && (
-							<SideBar
-								class={`${sidebarClass} ${transparentClass}`}
-								headings={headings}
-							/>
-						)
-					}
-
-					{
-						hasRightSidebarComponents && (
-							<div
-								class={`right-sidebar-container ${rightSidebarClass} ${transparentClass}`}
-							>
-								<RightSideBar headings={headings} />
-							</div>
-						)
-					}
-				</div>
-
-				<main
-					id="swup-container"
-					class={`${mainContentClass} transition-main`}
-				>
-					<div
-						id="content-wrapper"
-						class="onload-animation transition-leaving"
-					>
-						<!-- the overflow-hidden here prevent long text break the layout-->
-						<!-- make id different from windows.swup global property -->
-						<slot />
-						<div
-							class="footer col-span-full onload-animation hidden lg:block"
-						>
-							<Footer />
-						</div>
-					</div>
-				</main>
-
 				<div
-					class="footer col-span-full onload-animation block lg:hidden"
+					id="main-grid"
+					class={`relative z-10 transition duration-700 w-full left-0 right-0 grid ${gridCols} grid-rows-none md:grid-rows-[auto] mx-auto gap-4 px-2 md:px-4 ${!mobileShowSidebar || !hasMobileDrawerComponents ? "mobile-no-sidebar" : ""} ${hasRightSidebarComponents ? "mobile-both-sidebar" : ""}`}
+					data-layout-mode={defaultPostListLayout}
 				>
-					<Footer />
+					<div class="contents">
+						{
+							(mobileShowSidebar ||
+								tabletShowSidebar ||
+								desktopShowSidebar) && (
+								<SideBar
+									class={`${sidebarClass} ${transparentClass}`}
+									headings={headings}
+								/>
+							)
+						}
+
+						{
+							hasRightSidebarComponents && (
+								<div
+									class={`right-sidebar-container ${rightSidebarClass} ${transparentClass}`}
+								>
+									<RightSideBar headings={headings} />
+								</div>
+							)
+						}
+					</div>
+
+					<main
+						id="swup-container"
+						class={`${mainContentClass} transition-main`}
+					>
+						<div
+							id="content-wrapper"
+							class="onload-animation transition-leaving"
+						>
+							<slot />
+							<div
+								class="footer col-span-full onload-animation hidden lg:block"
+							>
+								<Footer />
+							</div>
+						</div>
+					</main>
+
+					<div
+						class="footer col-span-full onload-animation block lg:hidden"
+					>
+						<Footer />
+					</div>
 				</div>
-			</div>
+			</section>
 
 			<FloatingControls headings={headings} />
 		</div>
 	</div>
 
 	<style>
+		.underwater-section {
+			position: relative;
+		}
+
+		.underwater-section.is-home-underwater {
+			position: relative;
+			background:
+				url("/images/underwater-background.png") center 28% / cover
+					no-repeat !important;
+			background-color: transparent !important;
+			overflow: hidden;
+			isolation: isolate;
+			z-index: 0;
+		}
+
+		.underwater-section.is-home-underwater::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 50%;
+			width: 100vw;
+			transform: translateX(-50%);
+			z-index: 0;
+			pointer-events: none;
+			background:
+				url("/images/underwater-background.png") center 28% / cover
+					no-repeat !important;
+		}
+
+		.underwater-section.is-home-underwater::after {
+			content: none;
+		}
+
+		.underwater-surface {
+			position: absolute;
+			top: -6rem;
+			right: -6%;
+			left: -6%;
+			height: clamp(12rem, 22vw, 17rem);
+			z-index: 1;
+			pointer-events: none;
+			background:
+				radial-gradient(
+					118% 92% at 50% -14%,
+					rgba(255, 247, 232, 0.34) 0%,
+					rgba(226, 247, 252, 0.16) 42%,
+					rgba(148, 213, 232, 0.08) 62%,
+					rgba(96, 163, 208, 0) 82%
+				),
+				radial-gradient(
+					72% 66% at 50% 10%,
+					rgba(255, 255, 255, 0.08) 0%,
+					rgba(255, 255, 255, 0) 76%
+				);
+			filter: blur(20px);
+			opacity: 0.62;
+			mix-blend-mode: screen;
+		}
+
+		.underwater-surface::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background:
+				radial-gradient(
+					24% 86% at 18% 42%,
+					rgba(255, 255, 255, 0.12) 0%,
+					rgba(255, 255, 255, 0) 70%
+				),
+				radial-gradient(
+					28% 82% at 78% 36%,
+					rgba(216, 247, 255, 0.12) 0%,
+					rgba(216, 247, 255, 0) 72%
+				);
+			filter: blur(26px);
+			opacity: 0.72;
+		}
+
+		.underwater-surface::after {
+			content: none;
+		}
+
+		.underwater-light {
+			position: absolute;
+			top: 0;
+			right: -4%;
+			left: -4%;
+			height: min(28rem, 44vw);
+			z-index: 2;
+			pointer-events: none;
+			background:
+				radial-gradient(
+					20rem 12rem at 18% 8%,
+					rgba(244, 253, 255, 0.14) 0%,
+					rgba(244, 253, 255, 0) 72%
+				),
+				radial-gradient(
+					20rem 12rem at 80% 12%,
+					rgba(191, 241, 255, 0.12) 0%,
+					rgba(191, 241, 255, 0) 74%
+				),
+				radial-gradient(
+					34rem 18rem at 50% 10%,
+					rgba(255, 255, 255, 0.07) 0%,
+					rgba(255, 255, 255, 0) 72%
+				);
+			filter: blur(22px);
+			mix-blend-mode: screen;
+			opacity: 0.42;
+		}
+
+		.bubble-layer {
+			position: absolute;
+			inset: clamp(1rem, 3vw, 2rem) 0 0;
+			z-index: 3;
+			pointer-events: none;
+			overflow: hidden;
+		}
+
+		.bubble {
+			position: absolute;
+			left: var(--bubble-left);
+			bottom: var(--bubble-bottom);
+			width: calc(var(--bubble-size) * 1.5);
+			height: calc(var(--bubble-size) * 1.5);
+			border-radius: 999px;
+			background: radial-gradient(
+				circle at 32% 28%,
+				rgba(255, 255, 255, 0.82) 0%,
+				rgba(255, 255, 255, 0.42) 24%,
+				rgba(255, 255, 255, 0.18) 54%,
+				rgba(255, 255, 255, 0) 78%
+			);
+			box-shadow:
+				inset 0 0 0 1px rgba(255, 255, 255, 0.34),
+				0 0 18px rgba(177, 235, 255, 0.22);
+			filter: blur(0.1px);
+			mix-blend-mode: screen;
+			opacity: 0;
+			will-change: transform, opacity;
+			animation:
+				underwater-bubble-rise var(--bubble-duration) linear infinite,
+				underwater-bubble-sway calc(var(--bubble-duration) * 0.46)
+					ease-in-out infinite;
+			animation-delay: var(--bubble-delay);
+		}
+
+		.bubble:nth-child(4n) {
+			box-shadow:
+				inset 0 0 0 1px rgba(255, 255, 255, 0.4),
+				0 0 24px rgba(202, 243, 255, 0.26);
+		}
+
+		.bubble:nth-child(5n) {
+			background: radial-gradient(
+				circle at 32% 28%,
+				rgba(255, 255, 255, 0.88) 0%,
+				rgba(255, 255, 255, 0.44) 22%,
+				rgba(255, 255, 255, 0.16) 56%,
+				rgba(255, 255, 255, 0) 80%
+			);
+		}
+
+		@keyframes underwater-bubble-rise {
+			0% {
+				transform: translate3d(0, 3.5rem, 0) scale(0.7);
+				opacity: 0;
+			}
+
+			12% {
+				opacity: 0.28;
+			}
+
+			24% {
+				opacity: 0.46;
+			}
+
+			78% {
+				opacity: 0.28;
+			}
+
+			100% {
+				transform: translate3d(var(--bubble-drift), -40rem, 0)
+					scale(1.24);
+				opacity: 0;
+			}
+		}
+
+		@keyframes underwater-bubble-sway {
+			0%,
+			100% {
+				margin-left: 0;
+			}
+
+			50% {
+				margin-left: calc(var(--bubble-drift) * -0.65);
+			}
+		}
+
 		.right-sidebar-container {
 			align-self: start;
 			display: contents;
@@ -248,9 +587,31 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 		.right-sidebar-container #right-sidebar {
 			height: fit-content;
 		}
+
+		@media (max-width: 767px) {
+			.underwater-surface {
+				top: -4.5rem;
+				height: clamp(9rem, 24vw, 12rem);
+			}
+
+			.underwater-light {
+				height: min(20rem, 56vw);
+				opacity: 0.38;
+			}
+
+			.bubble:nth-child(3n) {
+				display: none;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			.bubble {
+				animation: none;
+				opacity: 0.12;
+			}
+		}
 	</style>
 
-	<!-- 侧边栏TOC模式 -->
 	{
 		siteConfig.toc.enable && siteConfig.toc.desktopSidebar && (
 			<div class="absolute w-full z-0 hidden 2xl:block">
@@ -284,7 +645,6 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 		)
 	}
 
-	<!-- 保留此元素以确保Swup正常工作 -->
 	{
 		(!siteConfig.toc.enable || !siteConfig.toc.desktopSidebar) && (
 			<div id="toc-container" class="hidden" />
@@ -293,6 +653,5 @@ const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 </Layout>
 
 <!--
-  Banner 和网格布局样式已提取到 src/styles/banner.css
-  该文件通过 src/styles/main.css 导入
+  Banner and grid layout styles are imported by src/styles/main.css
 -->

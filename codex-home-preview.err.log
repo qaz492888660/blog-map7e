@@ -1,0 +1,11 @@
+[1m[31m[astro][39m[22m Unable to load your Astro config
+
+spawn EPERM
+  [1mLocation:[22m
+    [4mF:\DEMO\blog-map7e\node_modules\.pnpm\vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5\node_modules\vite\dist\node\chunks\config.js:2230:2[24m
+  [1mStack trace:[22m
+[2m    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at Object.execFile (node:child_process:346:17)
+    at optimizeSafeRealPathSync (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:2230:2)
+    at getRealPath (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:32937:36)
+    at tryCleanFsResolve (file:///F:/DEMO/blog-map7e/node_modules/.pnpm/vite@7.3.2_@types+node@25.5_47e477d8d790864a6dd26d0eb02416e5/node_modules/vite/dist/node/chunks/config.js:32655:21)[22m

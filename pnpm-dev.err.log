@@ -1,3 +1,18 @@
-警告：未设置 CONTENT_REPO_URL，将使用本地内容
-(node:19176) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 change listeners added to [FSWatcher]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
-(Use `node --trace-warnings ...` to show where the warning was created)
+node:fs:2705
+      const stats = binding.lstat(base, true, undefined, true /* throwIfNoEntry */);
+                            ^
+
+Error: EPERM: operation not permitted, lstat 'C:\Users\Administrator'
+    at Object.realpathSync (node:fs:2705:29)
+    at toRealPath (node:internal/modules/helpers:63:13)
+    at Function._findPath (node:internal/modules/cjs/loader:777:22)
+    at resolveMainPath (node:internal/modules/run_main:39:23)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:162:20)
+    at node:internal/main/run_main_module:36:49 {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'lstat',
+  path: 'C:\\Users\\Administrator'
+}
+
+Node.js v22.12.0
