@@ -1,0 +1,234 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div
+	id="scroll-toggle-btn"
+	class="floating-btn btn-card flex items-center rounded-2xl overflow-hidden transition hide"
+>
+	<button
+		id="scroll-toggle-btn-inner"
+		type="button"
+		aria-label="Scroll to second screen"
+		class="h-full w-full rounded-2xl"
+	>
+		<span class="toggle-icon toggle-icon-down" aria-hidden="true">
+			<Icon name="material-symbols:keyboard-arrow-down-rounded" />
+		</span>
+		<span class="toggle-icon toggle-icon-up" aria-hidden="true">
+			<Icon name="material-symbols:keyboard-arrow-up-rounded" />
+		</span>
+	</button>
+</div>
+
+<style lang="stylus">
+.floating-btn
+	color: var(--primary)
+	font-size: 1.5rem
+	font-weight: bold
+	width: 3rem
+	height: 3rem
+	opacity: 1
+	cursor: pointer
+	pointer-events: auto
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+	border-radius: 1rem
+	border: 1px solid rgba(148, 163, 184, 0.45)
+	flex-shrink: 0
+	overflow: hidden
+	min-width: 0
+	min-height: 0
+	padding: 0.25rem
+
+	:global(svg)
+		font-size: 1.6rem
+		opacity: 1
+		transition: opacity 0.2s ease 0.1s
+
+	&.hide
+		transform: scale(0.5)
+		opacity: 0
+		pointer-events: none
+		height: 0 !important
+		width: 0 !important
+		margin: 0 !important
+		border-width: 0 !important
+		padding: 0 !important
+
+		:global(svg)
+			opacity: 0
+			transition: opacity 0.1s ease
+
+	&:active
+		transform: scale(0.9)
+
+	&:hover
+		color: var(--primary)
+		box-shadow: var(--shadow-button)
+
+	&.active
+		background: var(--btn-card-bg-active)
+
+:global(.dark) .floating-btn
+	border: 1px solid rgba(255, 255, 255, 0.15)
+	color: var(--primary, #60a5fa)
+
+	&:hover
+		box-shadow: var(--shadow-button-dark)
+
+.toggle-icon
+	position: absolute
+	inset: 0
+	display: flex
+	align-items: center
+	justify-content: center
+	transition: opacity 0.2s ease, transform 0.25s ease
+
+.toggle-icon-up
+	opacity: 0
+	transform: translateY(0.35rem) scale(0.92)
+
+.toggle-icon-down
+	opacity: 1
+	transform: translateY(0) scale(1)
+
+.floating-btn.is-second-screen .toggle-icon-down
+	opacity: 0
+	transform: translateY(-0.35rem) scale(0.92)
+
+.floating-btn.is-second-screen .toggle-icon-up
+	opacity: 1
+	transform: translateY(0) scale(1)
+
+#scroll-toggle-btn-inner
+	position: relative
+	display: block
+
+@media (max-width: 768px)
+	.floating-btn
+		width: 2.75rem
+		height: 2.75rem
+		font-size: 1.4rem
+		border-radius: 0.75rem
+
+		:global(svg)
+			font-size: 1.4rem
+
+@media (max-width: 480px)
+	.floating-btn
+		width: 2.5rem
+		height: 2.5rem
+		font-size: 1.25rem
+		border-radius: 0.5rem
+
+		:global(svg)
+			font-size: 1.2rem
+</style>
+
+<script is:inline>
+	(() => {
+		function normalizePath(pathname) {
+			return pathname.replace(/\/+$/, "") || "/";
+		}
+
+		if (typeof window.ScrollToggleButtonManager === "undefined") {
+			window.ScrollToggleButtonManager = class ScrollToggleButtonManager {
+				constructor() {
+					this.button = document.getElementById("scroll-toggle-btn");
+					this.innerButton = document.getElementById(
+						"scroll-toggle-btn-inner",
+					);
+					this.handleScroll = this.updateState.bind(this);
+					this.handleResize = this.updateState.bind(this);
+					this.handleClick = this.onClick.bind(this);
+					this.init();
+				}
+
+				init() {
+					if (!this.button || !this.innerButton) {
+						return;
+					}
+
+					window.addEventListener("scroll", this.handleScroll, {
+						passive: true,
+					});
+					window.addEventListener("resize", this.handleResize, {
+						passive: true,
+					});
+					this.innerButton.addEventListener("click", this.handleClick);
+					this.updateState();
+				}
+
+				isHomePage() {
+					return normalizePath(window.location.pathname) === "/";
+				}
+
+				updateState() {
+					if (!this.button || !this.innerButton) {
+						return;
+					}
+
+					if (!this.isHomePage()) {
+						this.button.classList.add("hide");
+						this.button.classList.remove("is-second-screen");
+						this.innerButton.setAttribute("aria-label", "Scroll");
+						window.dispatchEvent(
+							new CustomEvent("floating-control:visibility"),
+						);
+						return;
+					}
+
+					const isSecondScreen =
+						window.scrollY >= window.innerHeight * 0.5;
+					this.button.classList.remove("hide");
+					this.button.classList.toggle(
+						"is-second-screen",
+						isSecondScreen,
+					);
+					this.innerButton.setAttribute(
+						"aria-label",
+						isSecondScreen
+							? "Scroll to top"
+							: "Scroll to second screen",
+					);
+					window.dispatchEvent(
+						new CustomEvent("floating-control:visibility"),
+					);
+				}
+
+				onClick() {
+					if (!this.isHomePage()) {
+						return;
+					}
+
+					const isSecondScreen =
+						window.scrollY >= window.innerHeight * 0.5;
+					if (isSecondScreen) {
+						window.scrollTo({ top: 0, behavior: "smooth" });
+						return;
+					}
+
+					document
+						.getElementById("home-second-screen")
+						?.scrollIntoView({
+							behavior: "smooth",
+							block: "start",
+						});
+				}
+
+				destroy() {
+					window.removeEventListener("scroll", this.handleScroll);
+					window.removeEventListener("resize", this.handleResize);
+					this.innerButton?.removeEventListener(
+						"click",
+						this.handleClick,
+					);
+				}
+			};
+		}
+
+		window.__scrollToggleButtonManager?.destroy?.();
+		window.__scrollToggleButtonManager =
+			new window.ScrollToggleButtonManager();
+	})();
+</script>

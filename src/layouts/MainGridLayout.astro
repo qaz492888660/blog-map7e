@@ -78,136 +78,7 @@ const shouldEnable = shouldEnableTransparency(
 const transparentClass = getTransparencyClass(shouldEnable);
 const defaultPostListLayout = siteConfig.postListLayout?.defaultMode || "list";
 
-const homeBubbles = [
-	{
-		left: "4%",
-		size: "0.65rem",
-		duration: "17s",
-		delay: "-3s",
-		drift: "14px",
-		bottom: "10%",
-	},
-	{
-		left: "9%",
-		size: "1.18rem",
-		duration: "24s",
-		delay: "-11s",
-		drift: "-16px",
-		bottom: "6%",
-	},
-	{
-		left: "15%",
-		size: "0.82rem",
-		duration: "20s",
-		delay: "-5s",
-		drift: "12px",
-		bottom: "18%",
-	},
-	{
-		left: "22%",
-		size: "1.45rem",
-		duration: "29s",
-		delay: "-18s",
-		drift: "20px",
-		bottom: "9%",
-	},
-	{
-		left: "29%",
-		size: "0.74rem",
-		duration: "19s",
-		delay: "-8s",
-		drift: "-10px",
-		bottom: "15%",
-	},
-	{
-		left: "36%",
-		size: "1.05rem",
-		duration: "23s",
-		delay: "-14s",
-		drift: "18px",
-		bottom: "7%",
-	},
-	{
-		left: "43%",
-		size: "0.58rem",
-		duration: "16s",
-		delay: "-2s",
-		drift: "-12px",
-		bottom: "13%",
-	},
-	{
-		left: "49%",
-		size: "1.62rem",
-		duration: "31s",
-		delay: "-21s",
-		drift: "22px",
-		bottom: "5%",
-	},
-	{
-		left: "55%",
-		size: "0.88rem",
-		duration: "22s",
-		delay: "-9s",
-		drift: "-14px",
-		bottom: "16%",
-	},
-	{
-		left: "61%",
-		size: "1.12rem",
-		duration: "25s",
-		delay: "-12s",
-		drift: "16px",
-		bottom: "8%",
-	},
-	{
-		left: "67%",
-		size: "0.7rem",
-		duration: "18s",
-		delay: "-6s",
-		drift: "10px",
-		bottom: "20%",
-	},
-	{
-		left: "73%",
-		size: "1.38rem",
-		duration: "28s",
-		delay: "-16s",
-		drift: "-18px",
-		bottom: "6%",
-	},
-	{
-		left: "79%",
-		size: "0.78rem",
-		duration: "21s",
-		delay: "-7s",
-		drift: "12px",
-		bottom: "14%",
-	},
-	{
-		left: "85%",
-		size: "1rem",
-		duration: "24s",
-		delay: "-13s",
-		drift: "-12px",
-		bottom: "11%",
-	},
-	{
-		left: "91%",
-		size: "0.62rem",
-		duration: "18s",
-		delay: "-4s",
-		drift: "9px",
-		bottom: "17%",
-	},
-	{
-		left: "95%",
-		size: "1.28rem",
-		duration: "27s",
-		delay: "-19s",
-		drift: "-14px",
-		bottom: "7%",
-	},
-];
+const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right-0 grid ${gridCols} grid-rows-none md:grid-rows-[auto] mx-auto gap-4 px-2 md:px-4 ${!mobileShowSidebar || !hasMobileDrawerComponents ? "mobile-no-sidebar" : ""} ${hasRightSidebarComponents ? "mobile-both-sidebar" : ""}`;
 ---
 
 <Layout
@@ -232,32 +103,63 @@ const homeBubbles = [
 
 	<slot slot="head" name="head" />
 
-	<div
-		id="top-row"
-		class="z-50 pointer-events-none relative transition-all duration-700 max-w-(--page-width) px-0 md:px-4 mx-auto"
-		class:list={[""]}
-	>
-		<div
-			id="navbar-wrapper"
-			class="pointer-events-auto sticky top-0 transition-all"
-		>
-			<Navbar />
-		</div>
-	</div>
+	{
+		isHomePage ? (
+			<section id="home-first-screen" class="home-hero-screen">
+				<div
+					id="top-row"
+					class="z-50 pointer-events-none relative transition-all duration-700 max-w-(--page-width) px-0 md:px-4 mx-auto"
+					class:list={[""]}
+				>
+					<div
+						id="navbar-wrapper"
+						class="pointer-events-auto sticky top-0 transition-all"
+					>
+						<Navbar />
+					</div>
+				</div>
 
-	<Banner
-		bannerImages={bannerImages}
-		mobileNonHomeBannerClass=""
-		showTextOverlay={isHomePage &&
-			(siteConfig.banner.homeText?.enable ?? false)}
-	/>
+				<Banner
+					bannerImages={bannerImages}
+					mobileNonHomeBannerClass=""
+					showTextOverlay={siteConfig.banner.homeText?.enable ?? false}
+				/>
+			</section>
+		) : (
+			<>
+				<div
+					id="top-row"
+					class="z-50 pointer-events-none relative transition-all duration-700 max-w-(--page-width) px-0 md:px-4 mx-auto"
+					class:list={[""]}
+				>
+					<div
+						id="navbar-wrapper"
+						class="pointer-events-auto sticky top-0 transition-all"
+					>
+						<Navbar />
+					</div>
+				</div>
+
+				<Banner
+					bannerImages={bannerImages}
+					mobileNonHomeBannerClass=""
+					showTextOverlay={false}
+				/>
+			</>
+		)
+	}
 
 	<div
 		id="page-main-panel"
 		class={`absolute w-full z-30 pointer-events-none ${siteConfig.wallpaperMode.defaultMode === "none" ? "no-banner-layout" : ""} ${transparentClass}`}
 		style={`top: ${finalMainPanelTop}`}
 	>
-		<div class="relative max-w-(--page-width) mx-auto pointer-events-auto">
+		<div
+			class:list={[
+				"relative pointer-events-auto",
+				isHomePage ? "w-full" : "max-w-(--page-width) mx-auto",
+			]}
+		>
 			{
 				hasBannerCredit && (
 					<a
@@ -297,79 +199,84 @@ const homeBubbles = [
 			}
 
 			<section
+				id={isHomePage ? "home-second-screen" : undefined}
 				class:list={[
-					"underwater-section",
-					{ "is-home-underwater": isHomePage },
+					"relative",
+					{ "underwater-section is-home-underwater": isHomePage },
 				]}
 			>
 				{
 					isHomePage && (
-						<>
-							<div class="underwater-surface" aria-hidden="true"></div>
-							<div class="underwater-light" aria-hidden="true"></div>
-							<div class="bubble-layer" aria-hidden="true">
-								{
-									homeBubbles.map((bubble) => (
-										<span
-											class="bubble"
-											style={`--bubble-left:${bubble.left};--bubble-size:${bubble.size};--bubble-duration:${bubble.duration};--bubble-delay:${bubble.delay};--bubble-drift:${bubble.drift};--bubble-bottom:${bubble.bottom};`}
-										></span>
-									))
-								}
-							</div>
-						</>
+						<video
+							class="underwater-video"
+							autoplay
+							loop
+							muted
+							playsinline
+							preload="auto"
+							aria-hidden="true"
+						>
+							<source src="/videos/underwater.mp4" type="video/mp4" />
+						</video>
 					)
 				}
 
 				<div
-					id="main-grid"
-					class={`relative z-10 transition duration-700 w-full left-0 right-0 grid ${gridCols} grid-rows-none md:grid-rows-[auto] mx-auto gap-4 px-2 md:px-4 ${!mobileShowSidebar || !hasMobileDrawerComponents ? "mobile-no-sidebar" : ""} ${hasRightSidebarComponents ? "mobile-both-sidebar" : ""}`}
-					data-layout-mode={defaultPostListLayout}
+					class:list={[
+						"relative max-w-(--page-width) mx-auto pointer-events-auto",
+						{ "underwater-content": isHomePage },
+					]}
 				>
-					<div class="contents">
-						{
-							(mobileShowSidebar ||
-								tabletShowSidebar ||
-								desktopShowSidebar) && (
-								<SideBar
-									class={`${sidebarClass} ${transparentClass}`}
-									headings={headings}
-								/>
-							)
-						}
-
-						{
-							hasRightSidebarComponents && (
-								<div
-									class={`right-sidebar-container ${rightSidebarClass} ${transparentClass}`}
-								>
-									<RightSideBar headings={headings} />
-								</div>
-							)
-						}
-					</div>
-
-					<main
-						id="swup-container"
-						class={`${mainContentClass} transition-main`}
-					>
-						<div
-							id="content-wrapper"
-							class="onload-animation transition-leaving"
-						>
-							<slot />
-							<div
-								class="footer col-span-full onload-animation hidden lg:block"
-							>
-								<Footer />
-							</div>
-						</div>
-					</main>
-
 					<div
-						class="footer col-span-full onload-animation block lg:hidden"
+						id="main-grid"
+						class={mainGridClass}
+						data-layout-mode={defaultPostListLayout}
 					>
-						<Footer />
+						<div class="contents">
+							{
+								(mobileShowSidebar ||
+									tabletShowSidebar ||
+									desktopShowSidebar) && (
+									<SideBar
+										class={`${sidebarClass} ${transparentClass}`}
+										headings={headings}
+									/>
+								)
+							}
+
+							{
+								hasRightSidebarComponents && (
+									<div
+										class={`right-sidebar-container ${rightSidebarClass} ${transparentClass}`}
+									>
+										<RightSideBar headings={headings} />
+									</div>
+								)
+							}
+						</div>
+
+						<main
+							id="swup-container"
+							class={`${mainContentClass} transition-main`}
+						>
+							<div
+								id="content-wrapper"
+								class="onload-animation transition-leaving"
+							>
+								<slot />
+								<div
+									class="footer col-span-full onload-animation hidden lg:block"
+								>
+									<Footer />
+								</div>
+							</div>
+						</main>
+
+						<div
+							class="footer col-span-full onload-animation block lg:hidden"
+						>
+							<Footer />
+						</div>
 					</div>
 				</div>
 			</section>
@@ -379,204 +286,40 @@ const homeBubbles = [
 	</div>
 
 	<style>
-		.underwater-section {
+		.home-hero-screen {
 			position: relative;
+			width: 100%;
+			min-height: 100vh;
+			overflow: hidden;
 		}
 
 		.underwater-section.is-home-underwater {
 			position: relative;
-			background:
-				url("/images/underwater-background.png") center 28% / cover
-					no-repeat !important;
-			background-color: transparent !important;
+			min-height: 100vh;
+			width: 100%;
 			overflow: hidden;
 			isolation: isolate;
-			z-index: 0;
 		}
 
-		.underwater-section.is-home-underwater::before {
-			content: "";
+		.underwater-video {
 			position: absolute;
 			top: 0;
 			bottom: 0;
 			left: 50%;
-			width: 100vw;
 			transform: translateX(-50%);
+			width: 100vw;
+			min-width: 100vw;
+			height: 100%;
+			object-fit: cover;
 			z-index: 0;
 			pointer-events: none;
-			background:
-				url("/images/underwater-background.png") center 28% / cover
-					no-repeat !important;
+			filter: brightness(0.85) saturate(1.05);
 		}
 
-		.underwater-section.is-home-underwater::after {
-			content: none;
-		}
-
-		.underwater-surface {
-			position: absolute;
-			top: -6rem;
-			right: -6%;
-			left: -6%;
-			height: clamp(12rem, 22vw, 17rem);
-			z-index: 1;
-			pointer-events: none;
-			background:
-				radial-gradient(
-					118% 92% at 50% -14%,
-					rgba(255, 247, 232, 0.34) 0%,
-					rgba(226, 247, 252, 0.16) 42%,
-					rgba(148, 213, 232, 0.08) 62%,
-					rgba(96, 163, 208, 0) 82%
-				),
-				radial-gradient(
-					72% 66% at 50% 10%,
-					rgba(255, 255, 255, 0.08) 0%,
-					rgba(255, 255, 255, 0) 76%
-				);
-			filter: blur(20px);
-			opacity: 0.62;
-			mix-blend-mode: screen;
-		}
-
-		.underwater-surface::before {
-			content: "";
-			position: absolute;
-			inset: 0;
-			background:
-				radial-gradient(
-					24% 86% at 18% 42%,
-					rgba(255, 255, 255, 0.12) 0%,
-					rgba(255, 255, 255, 0) 70%
-				),
-				radial-gradient(
-					28% 82% at 78% 36%,
-					rgba(216, 247, 255, 0.12) 0%,
-					rgba(216, 247, 255, 0) 72%
-				);
-			filter: blur(26px);
-			opacity: 0.72;
-		}
-
-		.underwater-surface::after {
-			content: none;
-		}
-
-		.underwater-light {
-			position: absolute;
-			top: 0;
-			right: -4%;
-			left: -4%;
-			height: min(28rem, 44vw);
+		.underwater-content {
+			position: relative;
 			z-index: 2;
-			pointer-events: none;
-			background:
-				radial-gradient(
-					20rem 12rem at 18% 8%,
-					rgba(244, 253, 255, 0.14) 0%,
-					rgba(244, 253, 255, 0) 72%
-				),
-				radial-gradient(
-					20rem 12rem at 80% 12%,
-					rgba(191, 241, 255, 0.12) 0%,
-					rgba(191, 241, 255, 0) 74%
-				),
-				radial-gradient(
-					34rem 18rem at 50% 10%,
-					rgba(255, 255, 255, 0.07) 0%,
-					rgba(255, 255, 255, 0) 72%
-				);
-			filter: blur(22px);
-			mix-blend-mode: screen;
-			opacity: 0.42;
-		}
-
-		.bubble-layer {
-			position: absolute;
-			inset: clamp(1rem, 3vw, 2rem) 0 0;
-			z-index: 3;
-			pointer-events: none;
-			overflow: hidden;
-		}
-
-		.bubble {
-			position: absolute;
-			left: var(--bubble-left);
-			bottom: var(--bubble-bottom);
-			width: calc(var(--bubble-size) * 1.5);
-			height: calc(var(--bubble-size) * 1.5);
-			border-radius: 999px;
-			background: radial-gradient(
-				circle at 32% 28%,
-				rgba(255, 255, 255, 0.82) 0%,
-				rgba(255, 255, 255, 0.42) 24%,
-				rgba(255, 255, 255, 0.18) 54%,
-				rgba(255, 255, 255, 0) 78%
-			);
-			box-shadow:
-				inset 0 0 0 1px rgba(255, 255, 255, 0.34),
-				0 0 18px rgba(177, 235, 255, 0.22);
-			filter: blur(0.1px);
-			mix-blend-mode: screen;
-			opacity: 0;
-			will-change: transform, opacity;
-			animation:
-				underwater-bubble-rise var(--bubble-duration) linear infinite,
-				underwater-bubble-sway calc(var(--bubble-duration) * 0.46)
-					ease-in-out infinite;
-			animation-delay: var(--bubble-delay);
-		}
-
-		.bubble:nth-child(4n) {
-			box-shadow:
-				inset 0 0 0 1px rgba(255, 255, 255, 0.4),
-				0 0 24px rgba(202, 243, 255, 0.26);
-		}
-
-		.bubble:nth-child(5n) {
-			background: radial-gradient(
-				circle at 32% 28%,
-				rgba(255, 255, 255, 0.88) 0%,
-				rgba(255, 255, 255, 0.44) 22%,
-				rgba(255, 255, 255, 0.16) 56%,
-				rgba(255, 255, 255, 0) 80%
-			);
-		}
-
-		@keyframes underwater-bubble-rise {
-			0% {
-				transform: translate3d(0, 3.5rem, 0) scale(0.7);
-				opacity: 0;
-			}
-
-			12% {
-				opacity: 0.28;
-			}
-
-			24% {
-				opacity: 0.46;
-			}
-
-			78% {
-				opacity: 0.28;
-			}
-
-			100% {
-				transform: translate3d(var(--bubble-drift), -40rem, 0)
-					scale(1.24);
-				opacity: 0;
-			}
-		}
-
-		@keyframes underwater-bubble-sway {
-			0%,
-			100% {
-				margin-left: 0;
-			}
-
-			50% {
-				margin-left: calc(var(--bubble-drift) * -0.65);
-			}
+			min-height: 100vh;
 		}
 
 		.right-sidebar-container {
@@ -586,29 +329,6 @@ const homeBubbles = [
 
 		.right-sidebar-container #right-sidebar {
 			height: fit-content;
-		}
-
-		@media (max-width: 767px) {
-			.underwater-surface {
-				top: -4.5rem;
-				height: clamp(9rem, 24vw, 12rem);
-			}
-
-			.underwater-light {
-				height: min(20rem, 56vw);
-				opacity: 0.38;
-			}
-
-			.bubble:nth-child(3n) {
-				display: none;
-			}
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.bubble {
-				animation: none;
-				opacity: 0.12;
-			}
 		}
 	</style>
 

@@ -277,11 +277,16 @@ export class SwupHooksManager {
 	 */
 	private handleBodyClass(isHomePage: boolean): void {
 		const bodyElement = this.getCachedElement("body");
+		const htmlElement = document.documentElement;
 		if (bodyElement) {
 			if (isHomePage) {
 				bodyElement.classList.add("lg:is-home");
+				bodyElement.classList.add("home-two-screen");
+				htmlElement.classList.add("home-two-screen");
 			} else {
 				bodyElement.classList.remove("lg:is-home");
+				bodyElement.classList.remove("home-two-screen");
+				htmlElement.classList.remove("home-two-screen");
 			}
 		}
 	}
