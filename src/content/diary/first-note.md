@@ -1,11 +1,13 @@
 ---
 title: 第一则日记
-date: 2026-04-13T11:45:00+08:00
+date: 2026-04-10T07:21:00+08:00
 slug: first-note
 description: Sveltia CMS 接入前先打通 diary 的 markdown 内容链路。
 tags:
   - 博客
   - diary
+location: ''
+mood: ''
 draft: false
 ---
 
