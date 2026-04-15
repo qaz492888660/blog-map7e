@@ -7,7 +7,11 @@ import {
 	SKIP_ERROR_DELAY,
 	STORAGE_KEY_VOLUME,
 } from "@/components/widgets/music-player/constants";
-import type { RepeatMode, Song } from "@/components/widgets/music-player/types";
+import type {
+	LyricLine,
+	RepeatMode,
+	Song,
+} from "@/components/widgets/music-player/types";
 import { musicPlayerConfig } from "@/config";
 
 export interface MusicPlayerState {
@@ -27,6 +31,9 @@ export interface MusicPlayerState {
 	showError: boolean;
 	isExpanded: boolean;
 	isHidden: boolean;
+	lyricLines: LyricLine[];
+	currentLyric: string;
+	activeLyricIndex: number;
 	autoplayFailed: boolean;
 	willAutoPlay: boolean;
 }
@@ -48,6 +55,8 @@ class MusicPlayerStore {
 	private audio: HTMLAudioElement | null = null;
 	private state: MusicPlayerState;
 	private isInitialized = false;
+	private hasAutoPlayed = false;
+	private lyricRequestId = 0;
 	private unregisterInteraction: (() => void) | undefined;
 	private listeners = new Set<(state: MusicPlayerState) => void>();
 
@@ -73,6 +82,9 @@ class MusicPlayerStore {
 			showError: false,
 			isExpanded: false,
 			isHidden: false,
+			lyricLines: [],
+			currentLyric: "",
+			activeLyricIndex: -1,
 			autoplayFailed: false,
 			willAutoPlay: false,
 		};
@@ -83,6 +95,7 @@ class MusicPlayerStore {
 			...this.state,
 			currentSong: { ...this.state.currentSong },
 			playlist: this.state.playlist.map((song) => ({ ...song })),
+			lyricLines: this.state.lyricLines.map((line) => ({ ...line })),
 		};
 	}
 
@@ -117,6 +130,7 @@ class MusicPlayerStore {
 		this.loadVolumeFromStorage();
 		this.registerInteractionHandler();
 		await this.loadPlaylist();
+		this.tryInitialAutoplay();
 	}
 
 	private setupAudioListeners(): void {
@@ -140,6 +154,7 @@ class MusicPlayerStore {
 		this.audio.addEventListener("timeupdate", () => {
 			if (this.audio) {
 				this.state.currentTime = this.audio.currentTime;
+				this.updateCurrentLyric();
 				this.broadcastState();
 			}
 		});
@@ -196,13 +211,8 @@ class MusicPlayerStore {
 		}
 
 		if (this.state.willAutoPlay || this.state.isPlaying) {
-			const playPromise = this.audio?.play();
-			if (playPromise !== undefined) {
-				playPromise.catch(() => {
-					this.state.autoplayFailed = true;
-					this.state.isPlaying = false;
-				});
-			}
+			void this.tryPlayWithAutoplayFallback();
+			return;
 		}
 		this.broadcastState();
 	}
@@ -225,24 +235,65 @@ class MusicPlayerStore {
 	}
 
 	private registerInteractionHandler(): void {
-		const handler = () => {
-			if (this.state.autoplayFailed && this.audio) {
-				const playPromise = this.audio.play();
-				if (playPromise !== undefined) {
-					playPromise
-						.then(() => {
-							this.state.autoplayFailed = false;
-						})
-						.catch(() => {});
-				}
-			}
-		};
-		document.addEventListener("click", handler, { once: true });
-		document.addEventListener("keydown", handler, { once: true });
-		this.unregisterInteraction = () => {
-			document.removeEventListener("click", handler);
+		let handledInteraction = false;
+
+		const cleanup = () => {
+			window.removeEventListener("pointerdown", handler);
+			window.removeEventListener("click", handler);
 			document.removeEventListener("keydown", handler);
 		};
+
+		const handler = () => {
+			if (handledInteraction) {
+				return;
+			}
+			handledInteraction = true;
+			cleanup();
+
+			if (!this.audio) {
+				return;
+			}
+
+			if (this.audio.muted) {
+				this.audio.muted = false;
+				this.state.isMuted = this.state.volume === 0;
+			}
+
+			if (this.state.autoplayFailed && this.state.currentSong.url) {
+				this.audio
+					.play()
+					.then(() => {
+						this.state.autoplayFailed = false;
+						this.broadcastState();
+					})
+					.catch(() => {
+						this.state.autoplayFailed = true;
+						this.state.isPlaying = false;
+						this.broadcastState();
+					});
+				return;
+			}
+
+			this.broadcastState();
+		};
+		window.addEventListener("pointerdown", handler, { once: true });
+		window.addEventListener("click", handler, { once: true });
+		document.addEventListener("keydown", handler, { once: true });
+		this.unregisterInteraction = cleanup;
+	}
+
+	private tryInitialAutoplay(): void {
+		if (
+			this.hasAutoPlayed ||
+			!this.audio ||
+			this.state.playlist.length === 0
+		) {
+			return;
+		}
+
+		this.hasAutoPlayed = true;
+		this.state.currentIndex = 0;
+		this.loadSong(this.state.playlist[0], true);
 	}
 
 	private async loadPlaylist(): Promise<void> {
@@ -330,6 +381,7 @@ class MusicPlayerStore {
 			artist,
 			cover: song.pic ?? "",
 			url: song.url ?? "",
+			lyric: "",
 			duration: dur,
 		};
 	}
@@ -348,21 +400,148 @@ class MusicPlayerStore {
 			return;
 		}
 		if (song.url !== this.state.currentSong.url) {
+			const lyricRequestId = ++this.lyricRequestId;
 			this.state.currentSong = { ...song };
+			this.state.currentTime = 0;
+			this.state.duration = song.duration ?? 0;
+			this.state.lyricLines = [];
+			this.state.currentLyric = "";
+			this.state.activeLyricIndex = -1;
 			if (song.url) {
 				this.state.isLoading = true;
 			} else {
 				this.state.isLoading = false;
 			}
+			void this.loadLyrics(song, lyricRequestId);
 		}
 		this.state.willAutoPlay = autoPlay;
 		if (this.audio) {
 			if (this.audio.src && song.url) {
 				this.audio.src = "";
 			}
-			this.audio.src = getAssetPath(song.url);
+			this.audio.src = encodeURI(getAssetPath(song.url));
 			this.audio.load();
 		}
+		this.broadcastState();
+	}
+
+	private async loadLyrics(song: Song, requestId: number): Promise<void> {
+		const lyricPath = song.lyric?.trim();
+		if (!lyricPath) {
+			return;
+		}
+
+		try {
+			const response = await fetch(encodeURI(getAssetPath(lyricPath)));
+			if (!response.ok) {
+				throw new Error("lyric fetch failed");
+			}
+
+			const rawLyric = await response.text();
+			if (requestId !== this.lyricRequestId) {
+				return;
+			}
+
+			this.state.lyricLines = this.parseLyric(rawLyric);
+			this.updateCurrentLyric();
+			this.broadcastState();
+		} catch {
+			if (requestId !== this.lyricRequestId) {
+				return;
+			}
+
+			this.state.lyricLines = [];
+			this.state.currentLyric = "";
+			this.state.activeLyricIndex = -1;
+			this.broadcastState();
+		}
+	}
+
+	private parseLyric(rawLyric: string): LyricLine[] {
+		const lyricLines: LyricLine[] = [];
+
+		for (const rawLine of rawLyric.split(/\r?\n/)) {
+			const timeTags = [
+				...rawLine.matchAll(/\[(\d{2}):(\d{2})(?:\.(\d{1,3}))?\]/g),
+			];
+			if (timeTags.length === 0) {
+				continue;
+			}
+
+			const text = rawLine
+				.replace(/\[(\d{2}):(\d{2})(?:\.(\d{1,3}))?\]/g, "")
+				.trim();
+			if (!text) {
+				continue;
+			}
+
+			for (const [, minuteText, secondText, fractionText = "0"] of timeTags) {
+				const minutes = Number.parseInt(minuteText, 10);
+				const seconds = Number.parseInt(secondText, 10);
+				const milliseconds = Number.parseInt(
+					fractionText.padEnd(3, "0").slice(0, 3),
+					10,
+				);
+				if (
+					!Number.isFinite(minutes) ||
+					!Number.isFinite(seconds) ||
+					!Number.isFinite(milliseconds)
+				) {
+					continue;
+				}
+
+				lyricLines.push({
+					time: minutes * 60 + seconds + milliseconds / 1000,
+					text,
+				});
+			}
+		}
+
+		return lyricLines.sort((a, b) => a.time - b.time);
+	}
+
+	private updateCurrentLyric(): void {
+		if (this.state.lyricLines.length === 0) {
+			this.state.currentLyric = "";
+			this.state.activeLyricIndex = -1;
+			return;
+		}
+
+		let activeIndex = -1;
+		for (let i = 0; i < this.state.lyricLines.length; i += 1) {
+			if (this.state.currentTime >= this.state.lyricLines[i].time) {
+				activeIndex = i;
+			} else {
+				break;
+			}
+		}
+
+		const fallbackIndex = activeIndex >= 0 ? activeIndex : 0;
+		this.state.activeLyricIndex = fallbackIndex;
+		this.state.currentLyric =
+			this.state.lyricLines[fallbackIndex]?.text ?? "";
+	}
+
+	private async tryPlayWithAutoplayFallback(): Promise<void> {
+		if (!this.audio || !this.state.currentSong.url) {
+			return;
+		}
+
+		try {
+			await this.audio.play();
+			this.state.autoplayFailed = false;
+		} catch {
+			try {
+				this.audio.muted = true;
+				this.state.isMuted = true;
+				await this.audio.play();
+				this.state.autoplayFailed = false;
+			} catch {
+				this.state.autoplayFailed = true;
+				this.state.isPlaying = false;
+			}
+		}
+
 		this.broadcastState();
 	}
 
@@ -459,6 +638,7 @@ class MusicPlayerStore {
 		if (time >= 0 && time <= this.state.duration) {
 			this.audio.currentTime = time;
 			this.state.currentTime = time;
+			this.updateCurrentLyric();
 			this.broadcastState();
 		}
 	}
@@ -553,6 +733,7 @@ class MusicPlayerStore {
 		const newTime = percent * this.state.duration;
 		this.audio.currentTime = newTime;
 		this.state.currentTime = newTime;
+		this.updateCurrentLyric();
 		this.broadcastState();
 	}
 
@@ -583,6 +764,7 @@ class MusicPlayerStore {
 			this.audio = null;
 		}
 		this.isInitialized = false;
+		this.hasAutoPlayed = false;
 	}
 }
 

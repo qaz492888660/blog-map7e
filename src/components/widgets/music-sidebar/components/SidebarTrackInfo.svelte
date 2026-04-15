@@ -7,6 +7,7 @@
 		currentSong: Song;
 		currentTime: number;
 		duration: number;
+		currentLyric: string;
 		volume: number;
 		isMuted: boolean;
 		onToggleMute: () => void;
@@ -17,6 +18,7 @@
 		currentSong,
 		currentTime,
 		duration,
+		currentLyric,
 		volume,
 		isMuted,
 		onToggleMute,
@@ -82,6 +84,11 @@
 	<div class="artist-row">
 		<span class="artist-text truncate">{currentSong.artist}</span>
 	</div>
+	{#if currentLyric}
+		<div class="lyric-row" aria-live="polite">
+			<span class="lyric-text truncate">{currentLyric}</span>
+		</div>
+	{/if}
 	<div class="meta-row">
 		<div class="time-label" aria-live="polite">
 			<span>{currentTimeLabel}</span>
@@ -150,6 +157,18 @@
 
 	.artist-row {
 		margin-bottom: 0.36rem;
+	}
+
+	.lyric-row {
+		margin-bottom: 0.32rem;
+		min-width: 0;
+	}
+
+	.lyric-text {
+		display: block;
+		font-size: 0.7rem;
+		line-height: 1.2;
+		color: color-mix(in srgb, var(--primary) 68%, var(--content-meta) 32%);
 	}
 
 	.meta-row {
@@ -235,6 +254,14 @@
 	@media (max-width: 520px) {
 		.artist-row {
 			margin-bottom: 0.28rem;
+		}
+
+		.lyric-row {
+			margin-bottom: 0.24rem;
+		}
+
+		.lyric-text {
+			font-size: 0.66rem;
 		}
 
 		.meta-row {
