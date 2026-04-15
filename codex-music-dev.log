@@ -1,0 +1,42 @@
+
+> mizuki@9.0 predev F:\DEMO\blog-map7e
+> node scripts/sync-content.js || true
+
+已加载 .env 配置文件
+
+开始同步内容...
+
+内容目录不存在：F:\DEMO\blog-map7e\content
+将使用独立仓库模式
+提示：请设置 CONTENT_REPO_URL 环境变量，或手动创建内容目录
+
+> mizuki@9.0 dev F:\DEMO\blog-map7e
+> astro dev --host 0.0.0.0 "--" "--port" "4321"
+
+[vite] connected.
+[2m03:42:14[22m [34m[types][39m Generated [2m0ms[22m
+[vite] connected.
+[2m03:42:15[22m [34m[content][39m Syncing content
+[2m03:42:15[22m [34m[content][39m Synced content
+[2m03:42:15[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[42m[1m astro [22m[49m [32mv6.1.2[39m [2mready in[22m 2705 [2mms[22m
+[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+[2m┃[22m Network  [36mhttp://192.168.5.138:4321/[39m
+[2m03:42:15[22m [32mwatching for file changes...[39m
+[2m03:42:23[22m [34m[200][39m / [2m1479ms[22m
+[2m03:44:08[22m [34m[200][39m / [2m34ms[22m
+[2m03:44:09[22m [34m[vite][39m [32m✨ new dependencies optimized: [33mastro/runtime/client/dev-toolbar/entrypoint.js, @swup/astro/serialise, @swup/astro/idle, @swup/astro/client/Swup, @swup/astro/client/SwupA11yPlugin, @swup/astro/client/SwupScriptsPlugin[32m[39m
+[2m03:44:09[22m [34m[vite][39m [32m✨ optimized dependencies changed. reloading[39m
+[2m03:44:12[22m [34m[200][39m /api/calendar-data.json [2m1ms[22m
+[2m03:48:26[22m [34m[watch][39m /src/components/widgets/music-player/MusicPlayer.svelte, /src/components/widgets/music-player/FabMusicPanel.svelte, /src/components/widgets/music-sidebar/SidebarMusicClient.svelte, /src/components/control/MusicFabButton.svelte, /src/styles/main.css
+[2m03:48:26[22m [34m[watch][39m src/components/widgets/music-player/constants.ts
+[vite] program reload
+[2m03:48:26[22m [34m[watch][39m /src/components/widgets/music-player/MusicPlayer.svelte, /src/components/widgets/music-player/FabMusicPanel.svelte, /src/components/widgets/music-sidebar/SidebarMusicClient.svelte, /src/components/control/MusicFabButton.svelte, /src/styles/main.css
+[2m03:48:26[22m [34m[watch][39m src/stores/musicPlayerStore.ts
+[vite] program reload
+[2m03:49:07[22m [34m[watch][39m /src/components/widgets/music-player/MusicPlayer.svelte, /src/components/widgets/music-player/FabMusicPanel.svelte, /src/components/widgets/music-sidebar/SidebarMusicClient.svelte, /src/components/control/MusicFabButton.svelte, /src/styles/main.css
+[2m03:49:07[22m [34m[watch][39m src/stores/musicPlayerStore.ts
+[vite] program reload
+[2m03:59:31[22m [34m[200][39m / [2m96ms[22m
+[2m03:59:32[22m [34m[200][39m /api/calendar-data.json [2m1ms[22m
+ ELIFECYCLE  Command failed with exit code 3221225786.
