@@ -82,6 +82,7 @@
 			currentSong={state.currentSong}
 			currentTime={state.currentTime}
 			duration={state.duration}
+			currentLyric={state.currentLyric}
 			volume={state.volume}
 			isMuted={state.isMuted}
 			onToggleMute={toggleMute}

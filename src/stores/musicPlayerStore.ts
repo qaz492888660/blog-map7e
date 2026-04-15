@@ -10,6 +10,11 @@ import {
 import type { RepeatMode, Song } from "@/components/widgets/music-player/types";
 import { musicPlayerConfig } from "@/config";
 
+interface LyricLine {
+	time: number;
+	text: string;
+}
+
 export interface MusicPlayerState {
 	currentSong: Song;
 	playlist: Song[];
@@ -29,19 +34,48 @@ export interface MusicPlayerState {
 	isHidden: boolean;
 	autoplayFailed: boolean;
 	willAutoPlay: boolean;
+	currentLyric: string;
 }
 
 function getAssetPath(path: string): string {
 	if (!path) {
 		return "";
 	}
-	if (path.startsWith("http://") || path.startsWith("https://")) {
-		return path;
-	}
-	if (path.startsWith("/")) {
-		return path;
-	}
-	return `/${path}`;
+
+	const normalizedPath =
+		path.startsWith("http://") ||
+		path.startsWith("https://") ||
+		path.startsWith("/")
+			? path
+			: `/${path}`;
+
+	return encodeURI(normalizedPath);
+}
+
+function parseLrc(content: string): LyricLine[] {
+	return content
+		.split(/\r?\n/u)
+		.flatMap((line) => {
+			const matches = [
+				...line.matchAll(/\[(\d{1,2}):(\d{1,2}(?:\.\d{1,3})?)\]/gu),
+			];
+			const text = line.replace(/\[[^\]]+\]/gu, "").trim();
+
+			if (matches.length === 0 || !text) {
+				return [];
+			}
+
+			return matches.map((match) => {
+				const minutes = Number.parseInt(match[1] ?? "0", 10);
+				const seconds = Number.parseFloat(match[2] ?? "0");
+
+				return {
+					time: minutes * 60 + seconds,
+					text,
+				};
+			});
+		})
+		.sort((left, right) => left.time - right.time);
 }
 
 class MusicPlayerStore {
@@ -50,6 +84,10 @@ class MusicPlayerStore {
 	private isInitialized = false;
 	private unregisterInteraction: (() => void) | undefined;
 	private listeners = new Set<(state: MusicPlayerState) => void>();
+	private lyricLines: LyricLine[] = [];
+	private lyricRequestId = 0;
+	private hasAutoPlayed = false;
+	private mutedForAutoplayRecovery = false;
 
 	constructor() {
 		this.state = this.createInitialState();
@@ -75,6 +113,7 @@ class MusicPlayerStore {
 			isHidden: false,
 			autoplayFailed: false,
 			willAutoPlay: false,
+			currentLyric: "",
 		};
 	}
 
@@ -113,6 +152,7 @@ class MusicPlayerStore {
 		}
 
 		this.audio = new Audio();
+		this.audio.preload = "auto";
 		this.setupAudioListeners();
 		this.loadVolumeFromStorage();
 		this.registerInteractionHandler();
@@ -140,6 +180,7 @@ class MusicPlayerStore {
 		this.audio.addEventListener("timeupdate", () => {
 			if (this.audio) {
 				this.state.currentTime = this.audio.currentTime;
+				this.updateCurrentLyric(this.audio.currentTime);
 				this.broadcastState();
 			}
 		});
@@ -166,11 +207,12 @@ class MusicPlayerStore {
 		if (this.state.isRepeating === 1) {
 			if (this.audio) {
 				this.audio.currentTime = 0;
-				this.audio.play().catch(() => {});
+				void this.playAudio();
 			}
-		} else {
-			this.next(true);
+			return;
 		}
+
+		this.next(true);
 	}
 
 	private handleAudioError(): void {
@@ -179,9 +221,10 @@ class MusicPlayerStore {
 
 		if (this.state.playlist.length > 1) {
 			setTimeout(() => this.next(true), SKIP_ERROR_DELAY);
-		} else if (this.state.playlist.length <= 1) {
+		} else {
 			this.showError(i18n(Key.musicPlayerErrorEmpty));
 		}
+
 		this.broadcastState();
 	}
 
@@ -195,52 +238,125 @@ class MusicPlayerStore {
 			};
 		}
 
-		if (this.state.willAutoPlay || this.state.isPlaying) {
-			const playPromise = this.audio?.play();
-			if (playPromise !== undefined) {
-				playPromise.catch(() => {
-					this.state.autoplayFailed = true;
-					this.state.isPlaying = false;
-				});
-			}
+		void this.resumePlaybackIfNeeded();
+		this.broadcastState();
+	}
+
+	private async resumePlaybackIfNeeded(): Promise<void> {
+		if (!this.audio || !this.state.currentSong.url) {
+			return;
 		}
+
+		if (this.state.willAutoPlay && !this.hasAutoPlayed) {
+			await this.attemptInitialAutoplay();
+			return;
+		}
+
+		if (this.state.willAutoPlay || this.state.isPlaying) {
+			await this.playAudio();
+			this.broadcastState();
+		}
+	}
+
+	private async playAudio(): Promise<boolean> {
+		if (!this.audio) {
+			return false;
+		}
+
+		try {
+			const playPromise = this.audio.play();
+			if (playPromise !== undefined) {
+				await playPromise;
+			}
+			this.state.autoplayFailed = false;
+			return true;
+		} catch {
+			this.state.autoplayFailed = true;
+			this.state.isPlaying = false;
+			return false;
+		}
+	}
+
+	private async attemptInitialAutoplay(): Promise<void> {
+		if (!this.audio || this.hasAutoPlayed || !this.state.currentSong.url) {
+			return;
+		}
+
+		this.hasAutoPlayed = true;
+		const played = await this.playAudio();
+		if (played) {
+			this.broadcastState();
+			return;
+		}
+
+		this.audio.muted = true;
+		this.state.isMuted = true;
+		this.mutedForAutoplayRecovery = true;
+
+		const playedMuted = await this.playAudio();
+		if (!playedMuted) {
+			this.state.isPlaying = false;
+		}
+
 		this.broadcastState();
 	}
 
 	private loadVolumeFromStorage(): void {
-		if (typeof localStorage !== "undefined") {
-			const savedVolume = localStorage.getItem(STORAGE_KEY_VOLUME);
-			if (savedVolume) {
-				const volume = parseFloat(savedVolume);
-				if (!isNaN(volume) && volume >= 0 && volume <= 1) {
-					this.state.volume = volume;
-					this.state.isMuted = volume === 0;
-					if (this.audio) {
-						this.audio.volume = volume;
-						this.audio.muted = this.state.isMuted;
-					}
-				}
-			}
+		if (typeof localStorage === "undefined") {
+			return;
+		}
+
+		const savedVolume = localStorage.getItem(STORAGE_KEY_VOLUME);
+		if (!savedVolume) {
+			return;
+		}
+
+		const volume = Number.parseFloat(savedVolume);
+		if (Number.isNaN(volume) || volume < 0 || volume > 1) {
+			return;
+		}
+
+		this.state.volume = volume;
+		this.state.isMuted = volume === 0;
+		if (this.audio) {
+			this.audio.volume = volume;
+			this.audio.muted = this.state.isMuted;
 		}
 	}
 
 	private registerInteractionHandler(): void {
 		const handler = () => {
-			if (this.state.autoplayFailed && this.audio) {
-				const playPromise = this.audio.play();
-				if (playPromise !== undefined) {
-					playPromise
-						.then(() => {
-							this.state.autoplayFailed = false;
-						})
-						.catch(() => {});
-				}
+			if (!this.audio) {
+				return;
+			}
+
+			if (this.mutedForAutoplayRecovery) {
+				window.setTimeout(() => {
+					if (!this.audio || !this.mutedForAutoplayRecovery) {
+						return;
+					}
+
+					this.mutedForAutoplayRecovery = false;
+					this.state.isMuted = false;
+					this.audio.muted = false;
+					this.broadcastState();
+				}, 0);
+			}
+
+			if (this.state.autoplayFailed) {
+				void this.playAudio().then(() => {
+					this.broadcastState();
+				});
 			}
 		};
-		document.addEventListener("click", handler, { once: true });
-		document.addEventListener("keydown", handler, { once: true });
+
+		document.addEventListener("click", handler);
+		document.addEventListener("pointerdown", handler);
+		document.addEventListener("keydown", handler);
+
 		this.unregisterInteraction = () => {
 			document.removeEventListener("click", handler);
+			document.removeEventListener("pointerdown", handler);
 			document.removeEventListener("keydown", handler);
 		};
 	}
@@ -261,9 +377,10 @@ class MusicPlayerStore {
 				meting_type,
 				meting_id,
 			);
-		} else {
-			this.loadLocalPlaylist();
+			return;
 		}
+
+		this.loadLocalPlaylist();
 	}
 
 	private async fetchMetingPlaylist(
@@ -291,19 +408,22 @@ class MusicPlayerStore {
 			if (!res.ok) {
 				throw new Error("meting api error");
 			}
+
 			const list: any[] = await res.json();
 			this.state.playlist = list.map((song) =>
 				this.convertMetingSong(song),
 			);
 			this.state.isLoading = false;
+			this.state.currentIndex = 0;
 
 			if (this.state.playlist.length > 0) {
 				this.loadSong(this.state.playlist[0], false);
 			}
-		} catch (e) {
+		} catch {
 			this.showError(i18n(Key.musicPlayerErrorPlaylist));
 			this.state.isLoading = false;
 		}
+
 		this.broadcastState();
 	}
 
@@ -312,7 +432,7 @@ class MusicPlayerStore {
 		const artist = song.artist ?? song.author ?? i18n(Key.unknownArtist);
 		let dur = song.duration ?? 0;
 		if (typeof dur === "string") {
-			dur = parseInt(dur, 10);
+			dur = Number.parseInt(dur, 10);
 		}
 		if (dur > 10000) {
 			dur = Math.floor(dur / 1000);
@@ -324,7 +444,7 @@ class MusicPlayerStore {
 		return {
 			id:
 				typeof song.id === "string"
-					? parseInt(song.id, 10)
+					? Number.parseInt(song.id, 10)
 					: (song.id ?? 0),
 			title,
 			artist,
@@ -335,27 +455,41 @@ class MusicPlayerStore {
 	}
 
 	private loadLocalPlaylist(): void {
-		this.state.playlist = [...LOCAL_PLAYLIST];
+		this.state.playlist = LOCAL_PLAYLIST.map((song) => ({ ...song }));
+		this.state.currentIndex = 0;
+
 		if (this.state.playlist.length === 0) {
-			this.showError("本地播放列表为空");
-		} else {
-			this.loadSong(this.state.playlist[0], false);
+			this.showError(i18n(Key.musicPlayerErrorEmpty));
+			return;
 		}
+
+		this.loadSong(this.state.playlist[0], true);
 	}
 
 	private loadSong(song: Song, autoPlay = true): void {
 		if (!song) {
 			return;
 		}
+
 		if (song.url !== this.state.currentSong.url) {
 			this.state.currentSong = { ...song };
+			this.state.currentTime = 0;
+			this.state.duration = song.duration ?? 0;
+			this.state.currentLyric = "";
+			this.lyricLines = [];
+			this.lyricRequestId += 1;
+
 			if (song.url) {
 				this.state.isLoading = true;
 			} else {
 				this.state.isLoading = false;
 			}
 		}
+
+		this.state.autoplayFailed = false;
 		this.state.willAutoPlay = autoPlay;
+		void this.loadLyrics(song);
+
 		if (this.audio) {
 			if (this.audio.src && song.url) {
 				this.audio.src = "";
@@ -363,7 +497,61 @@ class MusicPlayerStore {
 			this.audio.src = getAssetPath(song.url);
 			this.audio.load();
 		}
+
 		this.broadcastState();
+	}
+
+	private async loadLyrics(song: Song): Promise<void> {
+		const requestId = this.lyricRequestId;
+		if (!song.lyric) {
+			this.state.currentLyric = "";
+			this.lyricLines = [];
+			this.broadcastState();
+			return;
+		}
+
+		try {
+			const response = await fetch(getAssetPath(song.lyric));
+			if (!response.ok) {
+				throw new Error("lyric fetch failed");
+			}
+
+			const content = await response.text();
+			if (requestId !== this.lyricRequestId) {
+				return;
+			}
+
+			this.lyricLines = parseLrc(content);
+			this.updateCurrentLyric(this.state.currentTime);
+			this.broadcastState();
+		} catch {
+			if (requestId !== this.lyricRequestId) {
+				return;
+			}
+
+			this.lyricLines = [];
+			this.state.currentLyric = "";
+			this.broadcastState();
+		}
+	}
+
+	private updateCurrentLyric(time: number): void {
+		if (this.lyricLines.length === 0) {
+			this.state.currentLyric = "";
+			return;
+		}
+
+		let nextLyric = "";
+		for (const line of this.lyricLines) {
+			if (time + 0.15 >= line.time) {
+				nextLyric = line.text;
+				continue;
+			}
+
+			break;
+		}
+
+		this.state.currentLyric = nextLyric;
 	}
 
 	private showError(message: string): void {
@@ -385,24 +573,32 @@ class MusicPlayerStore {
 		if (!this.audio || !this.state.currentSong.url) {
 			return;
 		}
+
 		if (this.state.isPlaying) {
 			this.audio.pause();
-		} else {
-			this.audio.play().catch(() => {});
+			return;
 		}
+
+		void this.playAudio().then(() => {
+			this.broadcastState();
+		});
 	}
 
 	play(): void {
 		if (!this.audio || !this.state.currentSong.url) {
 			return;
 		}
-		this.audio.play().catch(() => {});
+
+		void this.playAudio().then(() => {
+			this.broadcastState();
+		});
 	}
 
 	pause(): void {
 		if (!this.audio) {
 			return;
 		}
+
 		this.audio.pause();
 	}
 
@@ -436,6 +632,7 @@ class MusicPlayerStore {
 		if (this.state.playlist.length <= 1) {
 			return;
 		}
+
 		const newIndex =
 			this.state.currentIndex > 0
 				? this.state.currentIndex - 1
@@ -448,6 +645,7 @@ class MusicPlayerStore {
 		if (index < 0 || index >= this.state.playlist.length) {
 			return;
 		}
+
 		this.state.currentIndex = index;
 		this.loadSong(this.state.playlist[index], true);
 	}
@@ -456,9 +654,11 @@ class MusicPlayerStore {
 		if (!this.audio) {
 			return;
 		}
+
 		if (time >= 0 && time <= this.state.duration) {
 			this.audio.currentTime = time;
 			this.state.currentTime = time;
+			this.updateCurrentLyric(time);
 			this.broadcastState();
 		}
 	}
@@ -467,21 +667,28 @@ class MusicPlayerStore {
 		const clampedVolume = Math.max(0, Math.min(1, volume));
 		this.state.volume = clampedVolume;
 		this.state.isMuted = clampedVolume === 0;
+		this.mutedForAutoplayRecovery = false;
+
 		if (this.audio) {
 			this.audio.volume = clampedVolume;
 			this.audio.muted = this.state.isMuted;
 		}
+
 		if (typeof localStorage !== "undefined") {
 			localStorage.setItem(STORAGE_KEY_VOLUME, String(clampedVolume));
 		}
+
 		this.broadcastState();
 	}
 
 	toggleMute(): void {
 		this.state.isMuted = !this.state.isMuted;
+		this.mutedForAutoplayRecovery = false;
+
 		if (this.audio) {
 			this.audio.muted = this.state.isMuted;
 		}
+
 		this.broadcastState();
 	}
 
@@ -507,11 +714,13 @@ class MusicPlayerStore {
 			this.toggleShuffle();
 			return;
 		}
+
 		if (this.state.isRepeating === 2) {
 			this.toggleRepeat();
 			this.toggleShuffle();
 			return;
 		}
+
 		this.toggleRepeat();
 	}
 
@@ -522,8 +731,6 @@ class MusicPlayerStore {
 
 	toggleExpanded(): void {
 		this.state.isExpanded = !this.state.isExpanded;
-		// 保持与原先 usePlayerState.toggleExpandedUI 一致的联动行为：
-		// 展开时强制取消隐藏，并关闭播放列表，避免状态组合异常
 		if (this.state.isExpanded) {
 			this.state.showPlaylist = false;
 			this.state.isHidden = false;
@@ -533,8 +740,6 @@ class MusicPlayerStore {
 
 	toggleHidden(): void {
 		this.state.isHidden = !this.state.isHidden;
-		// 保持与原先 usePlayerState.toggleHiddenUI 一致的联动行为：
-		// 隐藏时收起播放器并关闭播放列表，防止展开 UI 悬挂在小球旁边
 		if (this.state.isHidden) {
 			this.state.isExpanded = false;
 			this.state.showPlaylist = false;
@@ -550,9 +755,11 @@ class MusicPlayerStore {
 		if (!this.audio) {
 			return;
 		}
+
 		const newTime = percent * this.state.duration;
 		this.audio.currentTime = newTime;
 		this.state.currentTime = newTime;
+		this.updateCurrentLyric(newTime);
 		this.broadcastState();
 	}
 
@@ -566,6 +773,7 @@ class MusicPlayerStore {
 		if (typeof window === "undefined") {
 			return;
 		}
+
 		window.dispatchEvent(
 			new CustomEvent("music-sidebar:state", {
 				detail: snapshot,
@@ -577,11 +785,17 @@ class MusicPlayerStore {
 		if (this.unregisterInteraction) {
 			this.unregisterInteraction();
 		}
+
 		if (this.audio) {
 			this.audio.pause();
 			this.audio.src = "";
 			this.audio = null;
 		}
+
+		this.lyricLines = [];
+		this.lyricRequestId = 0;
+		this.hasAutoPlayed = false;
+		this.mutedForAutoplayRecovery = false;
 		this.isInitialized = false;
 	}
 }

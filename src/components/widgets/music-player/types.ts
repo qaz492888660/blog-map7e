@@ -4,6 +4,7 @@ export interface Song {
 	artist: string;
 	cover: string;
 	url: string;
+	lyric?: string;
 	duration: number;
 }
 
@@ -30,4 +31,5 @@ export interface PlayerState {
 	currentIndex: number;
 	autoplayFailed: boolean;
 	willAutoPlay: boolean;
+	currentLyric: string;
 }

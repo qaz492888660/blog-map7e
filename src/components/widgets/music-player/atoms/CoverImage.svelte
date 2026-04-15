@@ -23,13 +23,13 @@
 	}: Props = $props();
 
 	function getAssetPath(path: string): string {
-		if (path.startsWith("http://") || path.startsWith("https://")) {
-			return path;
-		}
-		if (path.startsWith("/")) {
-			return path;
-		}
-		return `/${path}`;
+		const normalizedPath =
+			path.startsWith("http://") ||
+			path.startsWith("https://") ||
+			path.startsWith("/")
+				? path
+				: `/${path}`;
+		return encodeURI(normalizedPath);
 	}
 
 	const containerClasses = {
