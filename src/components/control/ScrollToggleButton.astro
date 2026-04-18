@@ -140,12 +140,37 @@ import { Icon } from "astro-icon/components";
 					this.init();
 				}
 
+				isHomePage() {
+					return document.body.classList.contains("lg:is-home");
+				}
+
 				getTargetElement() {
+					if (!this.isHomePage()) {
+						return null;
+					}
 					return document.getElementById("page-second-screen");
+				}
+
+				hideButton() {
+					if (!this.button || !this.innerButton) {
+						return;
+					}
+
+					this.button.classList.add("hide");
+					this.button.classList.remove("is-second-screen");
+					this.innerButton.setAttribute("aria-label", "Scroll to top");
+					window.dispatchEvent(
+						new CustomEvent("floating-control:visibility"),
+					);
 				}
 
 				init() {
 					if (!this.button || !this.innerButton) {
+						return;
+					}
+
+					if (!this.isHomePage()) {
+						this.hideButton();
 						return;
 					}
 
@@ -164,14 +189,14 @@ import { Icon } from "astro-icon/components";
 						return;
 					}
 
+					if (!this.isHomePage()) {
+						this.hideButton();
+						return;
+					}
+
 					const targetElement = this.getTargetElement();
 					if (!targetElement) {
-						this.button.classList.add("hide");
-						this.button.classList.remove("is-second-screen");
-						this.innerButton.setAttribute("aria-label", "Scroll to top");
-						window.dispatchEvent(
-							new CustomEvent("floating-control:visibility"),
-						);
+						this.hideButton();
 						return;
 					}
 
@@ -194,6 +219,10 @@ import { Icon } from "astro-icon/components";
 				}
 
 				onClick() {
+					if (!this.isHomePage()) {
+						return;
+					}
+
 					const targetElement = this.getTargetElement();
 
 					const isSecondScreen =
