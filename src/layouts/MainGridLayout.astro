@@ -334,14 +334,14 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 	</style>
 
 	<style is:global>
-		html:has(body #home-first-screen),
-		body:has(#home-first-screen) {
+		html:has(body.lg\:is-home),
+		body.lg\:is-home {
 			scroll-snap-type: y mandatory;
 			scroll-behavior: smooth;
 		}
 
-		body:has(#home-first-screen) #home-first-screen,
-		body:has(#home-first-screen)
+		body.lg\:is-home #home-first-screen,
+		body.lg\:is-home
 			#page-second-screen[data-home-second-screen="true"] {
 			min-height: 100vh;
 			scroll-snap-align: start;
