@@ -83,11 +83,19 @@ class MusicPlayerStore {
 	private state: MusicPlayerState;
 	private isInitialized = false;
 	private unregisterInteraction: (() => void) | undefined;
+	private unregisterPageLifecycle: (() => void) | undefined;
 	private listeners = new Set<(state: MusicPlayerState) => void>();
 	private lyricLines: LyricLine[] = [];
 	private lyricRequestId = 0;
 	private hasAutoPlayed = false;
 	private mutedForAutoplayRecovery = false;
+	private pageFadeTimer: number | undefined;
+	private pageFadeToken = 0;
+	private pageWasPlayingBeforeLeave = false;
+	private pageTransitionState: "idle" | "leaving" | "returning" = "idle";
+	private pageLifecycleRequestId = 0;
+	private readonly pageFadeDuration = 650;
+	private readonly pageFadeTick = 50;
 
 	constructor() {
 		this.state = this.createInitialState();
@@ -133,6 +141,209 @@ class MusicPlayerStore {
 		return this.audio;
 	}
 
+	private getEffectiveVolume(): number {
+		return this.state.isMuted ? 0 : this.state.volume;
+	}
+
+	private stopPageFadeTimer(): void {
+		if (this.pageFadeTimer !== undefined) {
+			window.clearInterval(this.pageFadeTimer);
+			this.pageFadeTimer = undefined;
+		}
+		this.pageFadeToken += 1;
+	}
+
+	private clearPageTransitionState(): void {
+		this.stopPageFadeTimer();
+		this.pageTransitionState = "idle";
+		this.pageWasPlayingBeforeLeave = false;
+		this.pageLifecycleRequestId += 1;
+	}
+
+	private startPageVolumeFade(
+		targetVolume: number,
+		onComplete?: () => void,
+	): void {
+		if (!this.audio) {
+			return;
+		}
+
+		const startVolume = Math.max(0, Math.min(1, this.audio.volume));
+		const endVolume = Math.max(0, Math.min(1, targetVolume));
+		const duration = this.pageFadeDuration;
+
+		this.stopPageFadeTimer();
+		const token = this.pageFadeToken;
+		const startedAt = Date.now();
+		let completed = false;
+
+		const tick = () => {
+			if (!this.audio || token !== this.pageFadeToken || completed) {
+				return;
+			}
+
+			const elapsed = Date.now() - startedAt;
+			const progress = Math.min(1, elapsed / duration);
+			const nextVolume =
+				startVolume + (endVolume - startVolume) * progress;
+
+			this.audio.volume = Math.max(0, Math.min(1, nextVolume));
+
+			if (progress >= 1) {
+				completed = true;
+				this.stopPageFadeTimer();
+				this.audio.volume = endVolume;
+				onComplete?.();
+			}
+		};
+
+		tick();
+		if (completed) {
+			return;
+		}
+
+		this.pageFadeTimer = window.setInterval(tick, this.pageFadeTick);
+	}
+
+	private registerPageLifecycleHandlers(): void {
+		const handleVisibilityChange = () => {
+			if (document.hidden) {
+				this.handlePageLeave();
+				return;
+			}
+
+			this.handlePageReturn();
+		};
+
+		const handleBlur = () => {
+			this.handlePageLeave();
+		};
+
+		const handleFocus = () => {
+			if (!document.hidden) {
+				this.handlePageReturn();
+			}
+		};
+
+		document.addEventListener("visibilitychange", handleVisibilityChange);
+		window.addEventListener("blur", handleBlur);
+		window.addEventListener("focus", handleFocus);
+
+		this.unregisterPageLifecycle = () => {
+			document.removeEventListener(
+				"visibilitychange",
+				handleVisibilityChange,
+			);
+			window.removeEventListener("blur", handleBlur);
+			window.removeEventListener("focus", handleFocus);
+		};
+	}
+
+	private handlePageLeave(): void {
+		if (!this.audio || !this.state.currentSong.url) {
+			return;
+		}
+
+		if (this.pageTransitionState === "leaving") {
+			return;
+		}
+
+		const isActuallyPlaying =
+			this.state.isPlaying || !this.audio.paused;
+
+		if (!isActuallyPlaying) {
+			if (!this.pageWasPlayingBeforeLeave) {
+				this.clearPageTransitionState();
+			}
+			return;
+		}
+
+		this.pageWasPlayingBeforeLeave = true;
+		this.pageTransitionState = "leaving";
+		const requestId = ++this.pageLifecycleRequestId;
+
+		this.startPageVolumeFade(0, () => {
+			if (
+				!this.audio ||
+				this.pageTransitionState !== "leaving" ||
+				requestId !== this.pageLifecycleRequestId
+			) {
+				return;
+			}
+
+			this.audio.volume = 0;
+			this.audio.pause();
+			this.pageTransitionState = "idle";
+		});
+	}
+
+	private handlePageReturn(): void {
+		if (!this.audio || !this.state.currentSong.url) {
+			return;
+		}
+
+		if (!this.pageWasPlayingBeforeLeave) {
+			this.clearPageTransitionState();
+			return;
+		}
+
+		if (this.pageTransitionState === "returning") {
+			return;
+		}
+
+		const targetVolume = this.getEffectiveVolume();
+		const shouldMute = targetVolume <= 0;
+		this.pageTransitionState = "returning";
+		const requestId = ++this.pageLifecycleRequestId;
+
+		const finishResume = () => {
+			if (!this.audio) {
+				return;
+			}
+
+			this.audio.muted = shouldMute;
+
+			if (shouldMute) {
+				this.audio.volume = 0;
+				this.pageTransitionState = "idle";
+				this.pageWasPlayingBeforeLeave = false;
+				return;
+			}
+
+			this.startPageVolumeFade(targetVolume, () => {
+				if (!this.audio) {
+					return;
+				}
+
+				this.audio.volume = targetVolume;
+				this.audio.muted = false;
+				this.pageTransitionState = "idle";
+				this.pageWasPlayingBeforeLeave = false;
+			});
+		};
+
+		if (this.audio.paused) {
+			void this.playAudio().then((played) => {
+				if (
+					!played ||
+					!this.audio ||
+					requestId !== this.pageLifecycleRequestId
+				) {
+					this.pageTransitionState = "idle";
+					if (requestId === this.pageLifecycleRequestId) {
+						this.broadcastState();
+					}
+					return;
+				}
+
+				finishResume();
+			});
+			return;
+		}
+
+		finishResume();
+	}
+
 	subscribe(listener: (state: MusicPlayerState) => void): () => void {
 		this.listeners.add(listener);
 		listener(this.createSnapshot());
@@ -156,6 +367,7 @@ class MusicPlayerStore {
 		this.setupAudioListeners();
 		this.loadVolumeFromStorage();
 		this.registerInteractionHandler();
+		this.registerPageLifecycleHandlers();
 		await this.loadPlaylist();
 	}
 
@@ -471,6 +683,8 @@ class MusicPlayerStore {
 			return;
 		}
 
+		this.clearPageTransitionState();
+
 		if (song.url !== this.state.currentSong.url) {
 			this.state.currentSong = { ...song };
 			this.state.currentTime = 0;
@@ -574,6 +788,8 @@ class MusicPlayerStore {
 			return;
 		}
 
+		this.clearPageTransitionState();
+
 		if (this.state.isPlaying) {
 			this.audio.pause();
 			return;
@@ -589,6 +805,8 @@ class MusicPlayerStore {
 			return;
 		}
 
+		this.clearPageTransitionState();
+
 		void this.playAudio().then(() => {
 			this.broadcastState();
 		});
@@ -599,6 +817,7 @@ class MusicPlayerStore {
 			return;
 		}
 
+		this.clearPageTransitionState();
 		this.audio.pause();
 	}
 
@@ -665,6 +884,7 @@ class MusicPlayerStore {
 
 	setVolume(volume: number): void {
 		const clampedVolume = Math.max(0, Math.min(1, volume));
+		this.clearPageTransitionState();
 		this.state.volume = clampedVolume;
 		this.state.isMuted = clampedVolume === 0;
 		this.mutedForAutoplayRecovery = false;
@@ -682,6 +902,7 @@ class MusicPlayerStore {
 	}
 
 	toggleMute(): void {
+		this.clearPageTransitionState();
 		this.state.isMuted = !this.state.isMuted;
 		this.mutedForAutoplayRecovery = false;
 
@@ -785,6 +1006,12 @@ class MusicPlayerStore {
 		if (this.unregisterInteraction) {
 			this.unregisterInteraction();
 		}
+
+		if (this.unregisterPageLifecycle) {
+			this.unregisterPageLifecycle();
+		}
+
+		this.clearPageTransitionState();
 
 		if (this.audio) {
 			this.audio.pause();
