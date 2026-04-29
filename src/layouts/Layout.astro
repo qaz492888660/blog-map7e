@@ -3,6 +3,7 @@ import ConfigCarrier from "@components/misc/ConfigCarrier.astro";
 import MusicPlayer from "@components/widgets/music-player/MusicPlayer.svelte";
 import Pio from "@components/features/pio/Pio.svelte"; // 使用 Svelte 版本的 Pio 组件
 import { PageProgressBar } from "@components/control/PageProgressBar";
+import FloatingPageScrollbar from "@components/control/FloatingPageScrollbar.astro";
 import { pioConfig, profileConfig, siteConfig } from "@/config";
 
 const BANNER_HEIGHT = 35;
@@ -230,6 +231,7 @@ if (siteConfig.font) {
 			height={siteConfig.pageProgressBar?.height ?? 3}
 			duration={siteConfig.pageProgressBar?.duration ?? 8000}
 		/>
+		<FloatingPageScrollbar />
 		<slot />
 
 		<!-- Music Player - 核心始终加载（当enable=true），UI通过showFloatingPlayer控制 -->

@@ -1,0 +1,249 @@
+---
+---
+
+<div id="floating-page-scrollbar" aria-hidden="true">
+	<div id="floating-page-scrollbar-thumb"></div>
+</div>
+
+<style>
+	@media (min-width: 769px) {
+		#floating-page-scrollbar {
+			position: fixed;
+			top: 8px;
+			right: 4px;
+			bottom: 8px;
+			width: 5px;
+			z-index: 45;
+			pointer-events: auto;
+			background: transparent;
+		}
+
+		#floating-page-scrollbar-thumb {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 5px;
+			min-height: 48px;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.32);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(6px);
+			box-shadow:
+				0 0 8px rgba(255, 255, 255, 0.12),
+				inset 0 0 6px rgba(255, 255, 255, 0.16);
+			opacity: 0.9;
+			transform: translateY(0);
+			transition:
+				background 180ms ease,
+				box-shadow 180ms ease,
+				opacity 180ms ease;
+			will-change: transform, height;
+		}
+
+		#floating-page-scrollbar:hover #floating-page-scrollbar-thumb {
+			background: rgba(255, 255, 255, 0.42);
+			opacity: 1;
+		}
+
+		#floating-page-scrollbar.is-active #floating-page-scrollbar-thumb {
+			background: rgba(255, 255, 255, 0.38);
+			opacity: 1;
+		}
+	}
+
+	@media (max-width: 768px) {
+		#floating-page-scrollbar {
+			display: none;
+		}
+	}
+</style>
+
+<script is:inline>
+	(() => {
+		if (typeof window.FloatingPageScrollbarManager === "undefined") {
+			window.FloatingPageScrollbarManager = class FloatingPageScrollbarManager {
+				constructor() {
+					this.root = null;
+					this.thumb = null;
+					this.rafId = 0;
+					this.hideTimer = 0;
+					this.boundScroll = this.onScroll.bind(this);
+					this.boundResize = this.requestUpdate.bind(this);
+					this.boundPageLoad = this.init.bind(this);
+					this.boundContentReplaced = this.init.bind(this);
+					this.boundVisibilityChange = this.requestUpdate.bind(this);
+				}
+
+				cacheElements() {
+					this.root = document.getElementById("floating-page-scrollbar");
+					this.thumb = document.getElementById(
+						"floating-page-scrollbar-thumb",
+					);
+					return Boolean(this.root && this.thumb);
+				}
+
+				isDesktop() {
+					return window.matchMedia("(min-width: 769px)").matches;
+				}
+
+				getMetrics() {
+					const doc = document.documentElement;
+					const body = document.body;
+					const viewportHeight = window.innerHeight || doc.clientHeight || 0;
+					const scrollTop =
+						window.scrollY || doc.scrollTop || body?.scrollTop || 0;
+					const scrollHeight = Math.max(
+						doc.scrollHeight,
+						doc.offsetHeight,
+						body?.scrollHeight || 0,
+						body?.offsetHeight || 0,
+						doc.clientHeight,
+					);
+
+					return {
+						viewportHeight,
+						scrollTop,
+						scrollHeight,
+						maxScroll: Math.max(0, scrollHeight - viewportHeight),
+					};
+				}
+
+				hide() {
+					if (!this.root || !this.thumb) {
+						return;
+					}
+
+					this.root.style.display = "none";
+					this.root.classList.remove("is-active");
+				}
+
+				show() {
+					if (!this.root) {
+						return;
+					}
+
+					this.root.style.display = "";
+				}
+
+				update() {
+					this.rafId = 0;
+
+					if (!this.root || !this.thumb) {
+						return;
+					}
+
+					if (!this.isDesktop()) {
+						this.hide();
+						return;
+					}
+
+					const { viewportHeight, scrollTop, scrollHeight, maxScroll } =
+						this.getMetrics();
+
+					if (maxScroll <= 0 || viewportHeight <= 0 || scrollHeight <= 0) {
+						this.hide();
+						return;
+					}
+
+					this.show();
+
+					const trackHeight = this.root.clientHeight || Math.max(0, viewportHeight - 16);
+					if (trackHeight <= 0) {
+						return;
+					}
+
+					const thumbHeight = Math.max(
+						48,
+						Math.round((viewportHeight / scrollHeight) * trackHeight),
+					);
+					const maxThumbTop = Math.max(0, trackHeight - thumbHeight);
+					const thumbTop =
+						maxScroll === 0
+							? 0
+							: Math.round((scrollTop / maxScroll) * maxThumbTop);
+
+					this.thumb.style.height = `${thumbHeight}px`;
+					this.thumb.style.transform = `translateY(${thumbTop}px)`;
+				}
+
+				requestUpdate() {
+					if (this.rafId) {
+						return;
+					}
+
+					this.rafId = window.requestAnimationFrame(() => this.update());
+				}
+
+				activate() {
+					if (!this.root || !this.thumb) {
+						return;
+					}
+
+					this.root.classList.add("is-active");
+					window.clearTimeout(this.hideTimer);
+					this.hideTimer = window.setTimeout(() => {
+						this.root?.classList.remove("is-active");
+					}, 900);
+				}
+
+				onScroll() {
+					this.activate();
+					this.requestUpdate();
+				}
+
+				init() {
+					this.destroy();
+
+					if (!this.cacheElements()) {
+						return;
+					}
+
+					window.addEventListener("scroll", this.boundScroll, {
+						passive: true,
+					});
+					window.addEventListener("resize", this.boundResize, {
+						passive: true,
+					});
+					document.addEventListener("astro:page-load", this.boundPageLoad);
+					document.addEventListener(
+						"swup:contentReplaced",
+						this.boundContentReplaced,
+					);
+					document.addEventListener(
+						"visibilitychange",
+						this.boundVisibilityChange,
+					);
+
+					this.requestUpdate();
+				}
+
+				destroy() {
+					window.removeEventListener("scroll", this.boundScroll);
+					window.removeEventListener("resize", this.boundResize);
+					document.removeEventListener("astro:page-load", this.boundPageLoad);
+					document.removeEventListener(
+						"swup:contentReplaced",
+						this.boundContentReplaced,
+					);
+					document.removeEventListener(
+						"visibilitychange",
+						this.boundVisibilityChange,
+					);
+
+					window.clearTimeout(this.hideTimer);
+					this.hideTimer = 0;
+
+					if (this.rafId) {
+						window.cancelAnimationFrame(this.rafId);
+						this.rafId = 0;
+					}
+				}
+			};
+		}
+
+		window.__floatingPageScrollbarManager?.destroy?.();
+		window.__floatingPageScrollbarManager =
+			new window.FloatingPageScrollbarManager();
+		window.__floatingPageScrollbarManager.init();
+	})();
+</script>
