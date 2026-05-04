@@ -277,6 +277,20 @@ const {
 		}
 
 		try {
+			const revealVideo = () => {
+				underwaterVideo.style.opacity = "1";
+			};
+
+			if (!underwaterVideo.dataset.loadedRevealBound) {
+				underwaterVideo.dataset.loadedRevealBound = "true";
+				underwaterVideo.addEventListener("loadeddata", revealVideo);
+				underwaterVideo.addEventListener("canplay", revealVideo);
+			}
+
+			if (underwaterVideo.readyState >= 2) {
+				revealVideo();
+			}
+
 			if (underwaterVideo.readyState === 0) {
 				underwaterVideo.load();
 			}

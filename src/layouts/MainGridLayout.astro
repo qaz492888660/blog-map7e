@@ -292,6 +292,7 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 			pointer-events: none;
 			overflow: hidden;
 			isolation: isolate;
+			background: radial-gradient(circle at center, #0a1f2e 0%, #050d14 100%);
 		}
 
 		.global-underwater-video {
@@ -299,7 +300,8 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 			height: 100%;
 			object-fit: cover;
 			object-position: center center;
-			opacity: 1;
+			opacity: 0;
+			transition: opacity 0.6s ease;
 			filter: brightness(0.85) saturate(1.05);
 			transform: translateZ(0);
 			will-change: transform;
