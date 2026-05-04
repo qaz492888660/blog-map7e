@@ -21,7 +21,7 @@ const localAnimeList: AnimeItem[] = [
 		status: "completed",
 		rating: 10,
 		cover: "/assets/anime/lkls.webp",
-		description: "人类与巨人之间的生存之战，节奏紧凑，气氛压迫感很强。",
+		description: "人类与巨人之间的生存之战，节奏紧凑，压迫感很强。",
 		episodes: "87 集",
 		year: "2013",
 		genre: ["动作", "悬疑", "战斗"],
