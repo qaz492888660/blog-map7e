@@ -17,17 +17,19 @@ const OUTPUT_FILE = path.join(
 	"../src/data/bilibili-data.json",
 );
 
-// 状态映射: 1=想看, 2=在看, 3=已看
 const STATUS_MAP = {
 	1: "planned",
 	2: "watching",
 	3: "completed",
 };
 
-// 延迟函数
+const TYPE_MAP = {
+	1: "anime",
+	2: "drama",
+};
+
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// 带重试机制的请求
 async function withRetry(apiCall, retries = 3) {
 	for (let i = 0; i < retries; i++) {
 		try {
@@ -57,7 +59,7 @@ async function getUserIdFromConfig() {
 		}
 		throw new Error("Could not find bilibili.vmid in config.ts");
 	} catch (error) {
-		console.error("✘ Failed to read Bilibili vmid from config.ts");
+		console.error("Failed to read Bilibili vmid from config.ts");
 		throw error;
 	}
 }
@@ -96,7 +98,7 @@ async function getAnimeModeFromConfig() {
 			return match[1];
 		}
 		return "bangumi";
-	} catch (error) {
+	} catch {
 		return "bangumi";
 	}
 }
@@ -117,6 +119,7 @@ async function getDataPage(vmid, status, typeNum = 1) {
 			data: Math.ceil(response.data.data.total / PAGE_SIZE) + 1,
 		};
 	}
+
 	return {
 		success: false,
 		data: response?.data?.message || "Failed to fetch data",
@@ -148,23 +151,18 @@ async function getData(
 	}
 
 	return (response?.data?.data?.list || []).map((bangumi) => {
-		// 处理封面图
 		let cover = bangumi?.cover || "";
 		if (cover) {
 			try {
-				// 确保使用 https
 				if (cover.startsWith("http://")) {
 					cover = cover.replace("http://", "https://");
 				}
-				// 如果需要使用镜像源
 				if (coverMirror) {
 					cover = `${coverMirror}${cover}`;
 				}
-				// 如果需要WebP格式
 				if (useWebp && !cover.includes("@")) {
 					try {
 						const urlObj = new URL(cover);
-						// 如果路径中还没有尺寸参数，添加WebP优化参数
 						if (!urlObj.pathname.includes("@")) {
 							urlObj.pathname += "@220w_280h.webp";
 							cover = urlObj.toString();
@@ -173,22 +171,17 @@ async function getData(
 							}
 						}
 					} catch {
-						// URL解析失败，使用原始封面
+						// keep original cover
 					}
 				}
 			} catch {
-				// URL处理失败，使用原始封面
+				// keep original cover
 			}
 		}
 
-		// 处理观看进度
 		let progress = 0;
 		if (bangumi?.progress) {
-			// progress可能是字符串如"1/14"或数字或空字符串
-			if (
-				typeof bangumi.progress === "string" &&
-				bangumi.progress.trim()
-			) {
+			if (typeof bangumi.progress === "string" && bangumi.progress.trim()) {
 				const progressMatch = bangumi.progress.match(/(\d+)/);
 				if (progressMatch) {
 					progress = parseInt(progressMatch[1], 10) || 0;
@@ -198,16 +191,13 @@ async function getData(
 			}
 		}
 
-		// 总集数
 		const totalEpisodes = bangumi?.total_count || 0;
 		const progressPercent =
 			totalEpisodes > 0 && progress > 0
 				? Math.round((progress / totalEpisodes) * 100)
 				: 0;
 
-		// 描述（从evaluate或summary字段获取）
 		let description = bangumi?.evaluate || bangumi?.summary || "";
-		// 清理描述中的特殊字符和换行
 		if (description) {
 			description = description
 				.replace(/\u003c/g, "<")
@@ -216,44 +206,35 @@ async function getData(
 				.trim();
 		}
 
-		// 提取年份（从发布时间或发布日期）
 		let year = "";
 		if (bangumi?.publish?.release_date) {
-			// 优先使用release_date，格式如 "2018-07-08"
 			const dateMatch = bangumi.publish.release_date.match(/^(\d{4})/);
 			if (dateMatch) {
 				year = dateMatch[1];
 			}
 		} else if (bangumi?.publish?.pub_time) {
-			// 如果release_date不存在，使用pub_time，格式如 "2018-07-08 00:30:00"
 			const dateMatch = bangumi.publish.pub_time.match(/^(\d{4})/);
 			if (dateMatch) {
 				year = dateMatch[1];
 			}
 		}
 
-		// 提取地区/制作信息（作为studio）
 		let studio = "";
 		if (bangumi?.areas && bangumi.areas.length > 0) {
 			studio = bangumi.areas[0].name || "";
 		}
 
-		// 提取类型/标签（使用styles数组）
 		const genre = [];
 		if (bangumi?.styles && Array.isArray(bangumi.styles)) {
-			// 使用styles作为genre
 			genre.push(...bangumi.styles);
 		}
-		// 如果没有styles，使用season_type_name作为备选
 		if (genre.length === 0 && bangumi?.season_type_name) {
 			genre.push(bangumi.season_type_name);
 		}
-		// 如果还是没有，使用"未知"
 		if (genre.length === 0) {
 			genre.push("Unknown");
 		}
 
-		// 构建链接（优先使用url字段，否则使用season_id）
 		let link = "#";
 		if (bangumi?.url) {
 			link = bangumi.url;
@@ -264,32 +245,26 @@ async function getData(
 		}
 
 		return {
+			type: TYPE_MAP[typeNum] || "anime",
 			title: bangumi?.title || "Unknown",
 			status: STATUS_MAP[status] || "planned",
 			rating: bangumi?.rating?.score
 				? parseFloat(bangumi.rating.score.toFixed(1))
 				: 0,
-			cover: cover,
-			description: description,
-			year: year,
-			studio: studio,
-			genre: genre,
-			link: link,
-			progress: progress,
-			totalEpisodes: totalEpisodes,
-			progressPercent: progressPercent,
+			cover,
+			description,
+			year,
+			studio,
+			genre,
+			link,
+			progress,
+			totalEpisodes,
+			progressPercent,
 		};
 	});
 }
 
-async function processData(
-	vmid,
-	status,
-	typeNum,
-	useWebp,
-	coverMirror,
-	SESSDATA,
-) {
+async function processData(vmid, status, typeNum, useWebp, coverMirror, SESSDATA) {
 	const page = await getDataPage(vmid, status, typeNum);
 	if (!page?.success) {
 		console.error(`Get bangumi data error:`, page?.data);
@@ -311,10 +286,23 @@ async function processData(
 			SESSDATA,
 		);
 		list.push(...data);
-		await delay(300); // 延迟避免请求过快
+		await delay(300);
 	}
+
 	console.log("");
 	return list;
+}
+
+async function processTypeData(vmid, typeNum, useWebp, coverMirror, SESSDATA) {
+	const planned = await processData(vmid, 1, typeNum, useWebp, coverMirror, SESSDATA);
+	const watching = await processData(vmid, 2, typeNum, useWebp, coverMirror, SESSDATA);
+	const completed = await processData(vmid, 3, typeNum, useWebp, coverMirror, SESSDATA);
+	return {
+		planned,
+		watching,
+		completed,
+		typeData: [...planned, ...watching, ...completed],
+	};
 }
 
 async function main() {
@@ -330,9 +318,7 @@ async function main() {
 
 	const VMID = await getUserIdFromConfig();
 	if (!VMID) {
-		console.error(
-			"✘ Bilibili vmid is not set. Please set it in src/config.ts",
-		);
+		console.error("Bilibili vmid is not set. Please set it in src/config.ts");
 		process.exit(1);
 	}
 	console.log(`Read User ID: ${VMID}`);
@@ -341,34 +327,25 @@ async function main() {
 	const coverMirror = await getCoverMirrorFromConfig();
 	const useWebp = await getUseWebpFromConfig();
 
-	// 获取三种状态的数据 (1=想看, 2=在看, 3=已看)
-	console.log("\nFetching Bilibili bangumi data...");
-	const planned = await processData(
+	console.log("\nFetching Bilibili anime data...");
+	const animeResult = await processTypeData(
 		VMID,
-		1,
-		1,
-		useWebp,
-		coverMirror,
-		SESSDATA,
-	);
-	const watching = await processData(
-		VMID,
-		2,
-		1,
-		useWebp,
-		coverMirror,
-		SESSDATA,
-	);
-	const completed = await processData(
-		VMID,
-		3,
 		1,
 		useWebp,
 		coverMirror,
 		SESSDATA,
 	);
 
-	const finalAnimeList = [...planned, ...watching, ...completed];
+	console.log("\nFetching Bilibili drama data...");
+	const dramaResult = await processTypeData(
+		VMID,
+		2,
+		useWebp,
+		coverMirror,
+		SESSDATA,
+	);
+
+	const allData = [...animeResult.typeData, ...dramaResult.typeData];
 
 	const dir = path.dirname(OUTPUT_FILE);
 	try {
@@ -377,16 +354,21 @@ async function main() {
 		await fs.mkdir(dir, { recursive: true });
 	}
 
-	await fs.writeFile(OUTPUT_FILE, JSON.stringify(finalAnimeList, null, 2));
+	await fs.writeFile(OUTPUT_FILE, JSON.stringify(allData, null, 2));
 	console.log(`\nUpdate complete! Data saved to: ${OUTPUT_FILE}`);
-	console.log(`Total collected: ${finalAnimeList.length} anime series`);
-	console.log(`  - Planned: ${planned.length}`);
-	console.log(`  - Watching: ${watching.length}`);
-	console.log(`  - Completed: ${completed.length}`);
+	console.log(`Type 1 collected: ${animeResult.typeData.length}`);
+	console.log(`  - Planned: ${animeResult.planned.length}`);
+	console.log(`  - Watching: ${animeResult.watching.length}`);
+	console.log(`  - Completed: ${animeResult.completed.length}`);
+	console.log(`Type 2 collected: ${dramaResult.typeData.length}`);
+	console.log(`  - Planned: ${dramaResult.planned.length}`);
+	console.log(`  - Watching: ${dramaResult.watching.length}`);
+	console.log(`  - Completed: ${dramaResult.completed.length}`);
+	console.log(`Total collected: ${allData.length} items`);
 }
 
 main().catch((err) => {
-	console.error("\n✘ Script execution error:");
+	console.error("\nScript execution error:");
 	console.error(err);
 	process.exit(1);
 });

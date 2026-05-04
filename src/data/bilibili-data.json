@@ -1,0 +1,105 @@
+[
+  {
+    "type": "anime",
+    "title": "假面骑士ZZZ",
+    "status": "planned",
+    "rating": 9.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/88406f07db1dad1f2663b93f6035eeb222bde0b5.jpg@220w_280h.webp",
+    "description": "新时代的假面骑士，觉醒了。 他的名字是…  假面骑士ZZZ。  新假面骑士， 是在梦境世界战斗的特工！  普通的青年在梦中摇身一变成为“无敌的特工”， 守护人类，对抗侵害现实世界的噩梦怪人“梦魇”！ ...",
+    "year": "2025",
+    "studio": "日本",
+    "genre": [
+      "原创",
+      "热血",
+      "战斗",
+      "励志",
+      "特摄"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss109700",
+    "progress": 0,
+    "totalEpisodes": 50,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "刀剑神域",
+    "status": "watching",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/fcdb9db0cc3f5c0c3aaa4ca1a9ddea6c121db471.jpg@220w_280h.webp",
+    "description": "2022年，人类实现了现实世界和假想空间的融合，电子制造商开发了名为《刀剑神域（Sword Art Online）》的在线电子游戏。SAO甫一面世便大受好评，限量一万份的名额在发售当天的短时间内便被抢...",
+    "year": "2012",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "科幻",
+      "战斗",
+      "小说改",
+      "励志",
+      "穿越",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss4452",
+    "progress": 0,
+    "totalEpisodes": 25,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "航海王：红发歌姬",
+    "status": "planned",
+    "rating": 8.5,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/3a450129562bdeba90bc676789b7177f62946d09.png@220w_280h.webp",
+    "description": "令全世界为之疯狂的歌姬·乌塔，她的身世成谜，歌声却被誉为“来自别的次元”。而这次，她将举办演唱会并第一次露出庐山真面目。为了欣赏她的歌声，路飞率领的草帽一伙，以及世界各地的歌迷都汇聚在会场之中。全世界...",
+    "year": "2022",
+    "studio": "日本",
+    "genre": [
+      "动作",
+      "奇幻",
+      "动画",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss45003?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "火影忍者剧场版：忍者之路",
+    "status": "watching",
+    "rating": 9.5,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/5fbf4380fd163b3817b9d6d595eb8875253b4e79.png@220w_280h.webp",
+    "description": "刚刚结束了与叛忍集团“晓”的抗争，木叶村被一股诡异不祥的气氛所笼罩。此时此刻，漩涡鸣人（竹内顺子 配音）沉浸在对家人的思念中，孤独无助。某个晚上，心情糟糕的鸣人巧遇刚刚和家人吵架的小樱（中村千绘 ...",
+    "year": "2024",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "冒险",
+      "动画"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss68640?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "让子弹飞",
+    "status": "watching",
+    "rating": 9.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/371e9be67b2ae3938a8bafa2b80b466268f34b9d.jpg@220w_280h.webp",
+    "description": "民国年间，花钱捐得县长的马邦德（葛优 饰）走马上任，遭劫匪张麻子（姜文 饰）一伙伏击。马为保命，谎称自己是县长的汤师爷。为汤师爷许下的财富所动，张麻子摇身一变，化身县长，带着手下上任。鹅城地处偏僻，一...",
+    "year": "2010",
+    "studio": "中国大陆",
+    "genre": [
+      "剧情",
+      "喜剧",
+      "动作"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss12548?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  }
+]
