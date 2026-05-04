@@ -334,6 +334,11 @@ export const navBarConfig: NavBarConfig = {
 					url: "/timeline/#timeline-section",
 					icon: "material-symbols:timeline",
 				},
+				{
+					name: "留言板",
+					url: "/message/#message-section",
+					icon: "material-symbols:chat",
+				},
 			],
 		},
 	],
@@ -424,17 +429,17 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 };
 
 export const commentConfig: CommentConfig = {
-	enable: false, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
-	system: "twikoo", // 评论系统选择: "twikoo" | "giscus"
+	enable: true, // 启用评论功能。当设置为 false 时，评论组件将不会显示在文章区域。
+	system: "giscus", // 评论系统选择: "twikoo" | "giscus"
 	twikoo: {
 		envId: "https://twikoo.vercel.app",
 		lang: SITE_LANG,
 	},
 	giscus: {
 		repo: "your-github-username/your-repo-name",
-		repoId: "your-repo-id",
+		repoId: "R_kgDOR7unrA",
 		category: "Announcements",
-		categoryId: "your-category-id",
+		categoryId: "DIC_kwDOR7unrM4C8UKk",
 		mapping: "pathname",
 		strict: "0",
 		reactionsEnabled: "1",
