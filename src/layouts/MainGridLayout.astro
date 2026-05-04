@@ -101,6 +101,20 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 	<FullscreenWallpaper config={fullscreenWallpaperConfig} />
 	<IconifyLoader />
 
+	<div id="global-underwater-bg" aria-hidden="true">
+		<video
+			class="global-underwater-video"
+			autoplay
+			loop
+			muted
+			playsinline
+			preload="auto"
+			aria-hidden="true"
+		>
+			<source src="/videos/underwater.mp4" type="video/mp4" />
+		</video>
+	</div>
+
 	<slot slot="head" name="head" />
 
 	{
@@ -206,22 +220,6 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 				]}
 				data-home-second-screen={isHomePage ? "true" : undefined}
 			>
-				{
-					isHomePage && (
-						<video
-							class="underwater-video"
-							autoplay
-							loop
-							muted
-							playsinline
-							preload="auto"
-							aria-hidden="true"
-						>
-							<source src="/videos/underwater.mp4" type="video/mp4" />
-						</video>
-					)
-				}
-
 				<div
 					class:list={[
 						"relative max-w-(--page-width) mx-auto pointer-events-auto",
@@ -287,6 +285,26 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 	</div>
 
 	<style>
+		#global-underwater-bg {
+			position: fixed;
+			inset: 0;
+			z-index: 0;
+			pointer-events: none;
+			overflow: hidden;
+			isolation: isolate;
+		}
+
+		.global-underwater-video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center center;
+			opacity: 1;
+			filter: brightness(0.85) saturate(1.05);
+			transform: translateZ(0);
+			will-change: transform;
+		}
+
 		.home-hero-screen {
 			position: relative;
 			width: 100%;
@@ -303,18 +321,7 @@ const mainGridClass = `relative z-10 transition duration-700 w-full left-0 right
 		}
 
 		.underwater-video {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 50%;
-			transform: translateX(-50%);
-			width: 100vw;
-			min-width: 100vw;
-			height: 100%;
-			object-fit: cover;
-			z-index: 0;
-			pointer-events: none;
-			filter: brightness(0.85) saturate(1.05);
+			display: none;
 		}
 
 		.underwater-content {

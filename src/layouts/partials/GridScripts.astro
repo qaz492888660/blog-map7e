@@ -269,13 +269,17 @@ const {
 	});
 
 	function ensureUnderwaterVideoPlayback() {
-		const underwaterVideo = document.querySelector(".underwater-video");
+		const underwaterVideo = document.querySelector(
+			".global-underwater-video",
+		);
 		if (!(underwaterVideo instanceof HTMLVideoElement)) {
 			return;
 		}
 
 		try {
-			underwaterVideo.load();
+			if (underwaterVideo.readyState === 0) {
+				underwaterVideo.load();
+			}
 			const playPromise = underwaterVideo.play();
 			if (playPromise && typeof playPromise.catch === "function") {
 				playPromise.catch(() => {});
