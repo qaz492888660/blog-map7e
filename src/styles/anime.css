@@ -95,6 +95,10 @@
   display: none !important;
 }
 
+.anime-grid-container:not([data-pagination-ready]) [data-anime-status]:nth-of-type(n + 7) {
+  display: none !important;
+}
+
 .anime-filter-container {
   display: flex;
   flex-wrap: wrap;
@@ -122,6 +126,49 @@
   background: var(--primary);
   color: white;
   border-color: var(--primary);
+}
+
+.anime-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.anime-pagination.hidden {
+  display: none;
+}
+
+.anime-pagination-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line-divider);
+  border-radius: var(--radius-large);
+  background: var(--btn-regular-bg);
+  color: var(--btn-content);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.anime-pagination-button:hover:not(:disabled) {
+  border-color: var(--primary);
+  background: var(--btn-regular-bg-hover);
+  transform: translateY(-1px);
+}
+
+.anime-pagination-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.anime-pagination-info {
+  color: var(--btn-content);
+  font-size: 0.875rem;
+  font-weight: 500;
+  min-width: 6rem;
+  text-align: center;
 }
 
 .anime-grid-container [data-anime-status].anime-hidden {
