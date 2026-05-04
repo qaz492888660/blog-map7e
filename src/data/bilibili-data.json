@@ -1,6 +1,48 @@
 [
   {
     "type": "anime",
+    "title": "假面骑士时王",
+    "status": "planned",
+    "rating": 6.5,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f6c9d50f64d4a2707d0883291864a578c9864ce0.png@220w_280h.webp",
+    "description": "2018年秋天，在梦想成为王者的18岁主人公面前，时光机突然出现。从时光机中现身的神秘少女告诉他：“我是从2068年过来的。魔王降临未来世界，他让人们饱受折磨，让世界陷入绝望之中”。为了改变未来绝望的...",
+    "year": "2018",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "少儿",
+      "战斗",
+      "原创",
+      "特摄"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss47534",
+    "progress": 0,
+    "totalEpisodes": 49,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "圣斗士星矢 THE LOST CANVAS 冥王神话",
+    "status": "planned",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/55d1b9b8a095e0855dd161ac6dfa9bf155657ae6.jpg@220w_280h.webp",
+    "description": "本作讲述的是距《圣斗士星矢》本篇所处年代的243年之前，上一代圣战的故事。出场人物有本篇登场的黄金圣斗士童虎和史昂、这个时代的天马座圣斗士·天马、天马的挚友·被哈迪斯选中为转生体的亚伦、雅典娜的转生·...",
+    "year": "2009",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "声控",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss800",
+    "progress": 0,
+    "totalEpisodes": 26,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
     "title": "假面骑士ZZZ",
     "status": "planned",
     "rating": 9.9,
@@ -22,8 +64,508 @@
   },
   {
     "type": "anime",
-    "title": "刀剑神域",
+    "title": "JOJO的奇妙冒险 黄金之风",
     "status": "watching",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/f34ff3975c39913af936c133ae60a5891babba08.png@220w_280h.webp",
+    "description": "住在意大利那不勒斯的青年乔鲁诺·乔巴纳，是继承了乔斯达家宿敌·DIO之血脉的儿子。  幼年时遭受迫害而自暴自弃的他，由于拯救了一名黑帮男子，而学到了“相信他人”。不忘恩义、带着敬意对待自己的黑帮，让他...",
+    "year": "2018",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "智斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss25681",
+    "progress": 0,
+    "totalEpisodes": 39,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "名侦探柯南",
+    "status": "completed",
+    "rating": 9.4,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/38e2a273f528fd01c34f1fc4df0f69c64487efad.png@220w_280h.webp",
+    "description": "主角工藤新一原本是一位颇具名声的高中生侦探，在目击黑暗组织的地下交易后，正准备追踪时却被突袭击昏，并被灌下代号为“APTX4869”的不明药物。后来虽然幸免于死，但身体就此缩小为小学时期的模样。之后他...",
+    "year": "1996",
+    "studio": "日本",
+    "genre": [
+      "智斗",
+      "推理",
+      "漫画改",
+      "悬疑"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss33378",
+    "progress": 0,
+    "totalEpisodes": -1,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "我独自升级",
+    "status": "completed",
+    "rating": 8.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/3a3eb31610713c19bed556fa915a2b7776d8c85d.png@220w_280h.webp",
+    "description": "自从连接异次元与当前世界的通道“门”突然出现后已过去十余年， 世界上出现了被称为“猎人”的，觉醒了非凡力量的人们。 猎人在门内攻略地下城以获取回报以维持生计， 但在强者如云的猎人中，「水篠旬」作为被称...",
+    "year": "2024",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss47211",
+    "progress": 0,
+    "totalEpisodes": 12,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "Re：从零开始的异世界生活 新编集版",
+    "status": "completed",
+    "rating": 9.6,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/3c125e1aad08643e3eff2fb7d45e740c1a052725.png@220w_280h.webp",
+    "description": "在从便利商店回家的路上，突然被异世界召唤的少年菜月昴。在无法依靠任何东西的异世界，无力的少年手唯一的力量……那是“死去然后重新开始”的力量。为了守护最重要的人们，为了取回确实存在着又无可替代的时间，少...",
+    "year": "2020",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "小说改",
+      "魔法",
+      "穿越",
+      "架空"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss29590",
+    "progress": 0,
+    "totalEpisodes": 13,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/9d8d2922b08f3d08d018e6e59e49607cf16d39e6.png@220w_280h.webp",
+    "description": "在古代墨西哥繁盛一时的太阳的子民阿兹特克，他们流传着一枚奇妙的「石鬼面」。 那是一枚奇迹的面具，能让人拥有一种力量，能获得永远的生命并成为真正的掌控者。然而从某个时候开始，就从历史中消失了踪影。 时光...",
+    "year": "2012",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss4334",
+    "progress": 0,
+    "totalEpisodes": 26,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "成龙历险记 中文配音",
+    "status": "completed",
+    "rating": 8.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/22afe34a7ee7b28aa45ea1bc0d5c326836c5e8b7.png@220w_280h.webp",
+    "description": "剧情讲述了成龙一家有趣的历险故事，成龙和小玉在世界各地探索各种神秘悬疑的谜团，生活和经历中充满着许多奇幻色彩，其中有关武功和魔法，包含了亲情和友情，以及中国文化的元素。成龙的职业是一位考古专家，但事实...",
+    "year": "2000",
+    "studio": "美国",
+    "genre": [
+      "热血",
+      "少儿",
+      "战斗",
+      "智斗",
+      "社团",
+      "原创"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss45263",
+    "progress": 0,
+    "totalEpisodes": 95,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "假面骑士帝骑",
+    "status": "completed",
+    "rating": 7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f72b45f4fe76dd1539d9ef183d4052a26dbb07a5.png@220w_280h.webp",
+    "description": "男主门矢士失去了以前的记忆，在街头流浪的门矢士被女主光夏海发现，光夏海好心将门矢士收留在了爷爷的照相馆。门矢士整天都要出门拍照，似乎在寻找着什么。某日，门矢士和往常一样出门拍照，结果，原本平静的街头突...",
+    "year": "2009",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "原创",
+      "励志",
+      "特摄"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss47818",
+    "progress": 0,
+    "totalEpisodes": 29,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "游戏王 怪兽之决斗",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/9ae207910892d1fdf9924c73b15df2e42e256f87.jpg@220w_280h.webp",
+    "description": "《游☆戏☆王 Duel Monsters》改编自高桥和希所作的漫画《游戏王》，于2000-2004年间在东京电视台播出。故事以原作剧情为主，但因为中途超出了漫画连载进度，因此加入了相当程度的原创角色和...",
+    "year": "2000",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss3054",
+    "progress": 0,
+    "totalEpisodes": 224,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "幽游白书",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/346ab926ef5ad03da6269448d913aea26d417d5a.jpg@220w_280h.webp",
+    "description": "一个十四岁的不良少年，浦饭幽助为了救一名小孩而被汽车撞死了，由于灵界并没有预计到他的死亡，并没有他的容身之所，所以他得到了一个重生的机会。经过了灵界的考验，幽助终于重回自己的身体，并成为灵界侦探。...",
+    "year": "1992",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "战斗",
+      "漫画改",
+      "神魔",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss2338",
+    "progress": 0,
+    "totalEpisodes": 112,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "鬼灭之刃 柱合会议·蝶屋篇",
+    "status": "completed",
+    "rating": 9.2,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/7bb606a278f21fa07d4db0262496caeff22bc342.png@220w_280h.webp",
+    "description": "本作为由TV动画《鬼灭之刃》22-26话整合而成的特别上映版。 主人公炭治郎身为鬼杀队队员却依旧带着成为鬼的妹妹·祢豆子一同行动，这一违反队规的行为在柱合会议上被鬼杀队的“柱”们审判。在那田蜘蛛山负伤...",
+    "year": "2020",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss39145?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "鬼灭之刃 那田蜘蛛山篇",
+    "status": "completed",
+    "rating": 9.1,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/bf1c35629b376907250a756b5e67453d011806d4.png@220w_280h.webp",
+    "description": "本片由TV动画《鬼灭之刃》第15话-21话构成。 炭治郎，伊之助还有我妻善逸在打败响凯，并得到休整后，《鬼灭之刃》的故事也将进入新的篇章，那就是“那田蜘蛛山篇”。在这一篇章，真正有着十二鬼月实力的角色...",
+    "year": "2020",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss39144?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "鬼灭之刃 无限列车篇 中配版",
+    "status": "completed",
+    "rating": 9.1,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/394c32c7dbebbc24b626f7e12e0fa9e6aef5da92.png@220w_280h.webp",
+    "description": "结束了在蝶屋中的修行的炭治郎一行人，前往了下一个任务地点——无限列车。 此处据说在短时间内就有四十人以上的乘客下落不明。 炭治郎携带着祢豆子，与善逸、伊之助等人，同鬼杀队最强剑士之一的炎柱炼狱杏寿郎汇...",
+    "year": "2022",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss41005",
+    "progress": 0,
+    "totalEpisodes": 7,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "鬼灭之刃 柱训练篇",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/07a4ec8e2a95558a99859e1e374fe4b634e47aaf.png@220w_280h.webp",
+    "description": "以集英社《JUMP COMICS》1卷~23卷累积发行量突破1亿5000万册的吾峠呼世晴的漫画作品为原作。动画由ufotable制作。  本作的开端是，家人被鬼杀害的少年灶门炭治郎，为了让变成鬼的妹妹...",
+    "year": "2024",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss47836",
+    "progress": 0,
+    "totalEpisodes": 8,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "鬼灭之刃 刀匠村篇",
+    "status": "completed",
+    "rating": 9.2,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/6806055cb3a313ff70bb57f899ef49189e5d4c42.png@220w_280h.webp",
+    "description": "故事来到了新的地方—— 炭治郎的目的地是「刀匠村」。 与鬼杀队的最强剑士，霞柱·时透无一郎与恋柱·甘露寺蜜璃再会，而鬼也悄然逼近。 炭治郎一行人新的战斗即将开始。...",
+    "year": "2023",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss44860",
+    "progress": 0,
+    "totalEpisodes": 13,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "鬼灭之刃 游郭篇",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f641f81aa1933d73c91d5ef76b525acbcdbcf3e7.png@220w_280h.webp",
+    "description": "结束了无限列车的任务，炭治郎前往下一个任务地点。 与鬼杀队最强之一的音柱·宇髄天元一同前往鬼所栖身的游郭之中。 新的战斗即将开幕。...",
+    "year": "2021",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss39433",
+    "progress": 0,
+    "totalEpisodes": 11,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 石之海",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/14ccd8457a9b7351e7be1d87db2719791108ddc0.png@220w_280h.webp",
+    "description": "西历2011年，美国·佛罗里达州。 在与恋人兜风途中遇到了交通事故的空条徐伦，因被陷害而获刑15年。  收容设施是州立绿海豚街重警备监狱——别名「水族馆」。 深陷绝望之中的徐伦，在手握父亲所托的吊坠时...",
+    "year": "2021",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss39431",
+    "progress": 0,
+    "totalEpisodes": 38,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 星尘远征军",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/47c0108259355d6d2c517ed97f6b90fb777f844f.png@220w_280h.webp",
+    "description": "时为1987年，乔瑟夫·乔斯达与“柱之男”们之间的死战后过了50年……乔瑟夫为了为了帮助“被恶灵附身了”的外孙子·空条承太郎而来到了日本。原来那并不是恶灵而是幽波纹（替身）。替身突然出现的原因在于，从...",
+    "year": "2014",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss4185",
+    "progress": 0,
+    "totalEpisodes": 24,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 不灭钻石",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/6a04c87e990ab74cd8d555ef45a863de0993b161.png@220w_280h.webp",
+    "description": "在埃及与宿敌DIO的死斗之后过了11年。1999年，空条承太郎为了与祖父乔瑟夫·乔斯达的私生子东方仗助见面，而来到了日本M县S市杜王町。但，仗助却持有与承太郎相同的特殊能力“替身”。之后，以承太郎的来...",
+    "year": "2016",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss5398",
+    "progress": 0,
+    "totalEpisodes": 39,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "命运之夜  06版",
+    "status": "completed",
+    "rating": 9.5,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/1113d844ad3a9b42af576d80142146cbecc1b7ff.jpg@220w_280h.webp",
+    "description": "传说中，圣杯是能够实现拥有者愿望的宝物。 为了让这圣杯出现必须要进行一项仪式 被圣杯所选的七位魔术师MASTER 将被赐与圣杯所选出的七位使魔SERVANT 剑士“SABER” 枪兵“LANCER” ...",
+    "year": "2006",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "魔法",
+      "游戏改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss25210",
+    "progress": 0,
+    "totalEpisodes": 24,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "猫和老鼠 旧版",
+    "status": "completed",
+    "rating": 9.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/065926cbda8f464a31293758054620cca15e5589.jpg@220w_280h.webp",
+    "description": "机灵老鼠与笨猫的故事，堪与米老鼠和唐老鸭的故事相媲美。没有动物世界中恃强凌弱的残酷，只有两个邻居之间的日常琐事和纷争，诸如杰瑞偷吃了汤姆的奶酪，汤姆把捕鼠器放到了杰里的洞门口等等，中间穿插的无数恶作剧...",
+    "year": "1940",
+    "studio": "美国",
+    "genre": [
+      "日常",
+      "少儿",
+      "搞笑"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss357",
+    "progress": 0,
+    "totalEpisodes": 55,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "蜡笔小新 第一季（中文）",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/a406781e410c84bc58154f666ffb409f79c22f57.jpg@220w_280h.webp",
+    "description": "野原新之助今年5岁，是一个人小鬼大的小孩。他喜欢漂亮的姐姐，收养了一条棉花糖一样的流浪狗小白。小新的妈妈美冴是一个全职主妇，粗心而又有点神经质的她经常被小新捉弄得七窍生烟，爸爸野原也经常被这两母子搞得...",
+    "year": "1992",
+    "studio": "日本",
+    "genre": [
+      "搞笑"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss6260",
+    "progress": 0,
+    "totalEpisodes": 479,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "Fate/Apocrypha",
+    "status": "completed",
+    "rating": 6,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/1804e361cc9fefad1fd8be8245f3b35ff685ae1a.jpg@220w_280h.webp",
+    "description": "过去，在被称作冬木的城市曾举行过由七位魔术师与英灵参加的“圣杯战争”。然而趁着第二次世界大战的混乱，“某位魔术师”强行夺走了圣杯。数十年过去，千界树一族高举那个圣杯为象征，叛离了魔术协会，宣布独立。愤...",
+    "year": "2017",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss6301",
+    "progress": 0,
+    "totalEpisodes": 25,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "剧场版 咒术回战 0",
+    "status": "completed",
+    "rating": 8.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/0082a5c243151ef989439578e745785268c58e7d.png@220w_280h.webp",
+    "description": "《咒术回战》的原点，一个爱与诅咒的故事。 由芥见下下创作，集英社《周刊少年JUMP》连载的漫画作品《咒术回战》。于2018年3月开始连载，讲述咒术师以咒术祓除人们负面感情中诞生的诅咒的战斗故事，其单行...",
+    "year": "2021",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss48001?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "咒术回战 第二季",
+    "status": "completed",
+    "rating": 9.4,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/69683aa3df3dbfc946afc0526296e8c80dfdfed3.png@220w_280h.webp",
+    "description": "这是无敌的两人再也回不去的青春。 2018年6月，虎杖悠仁被两面宿傩附身。 2017年12月，乙骨忧太解除祈本里香的诅咒。 再往前追溯到2006年春——五条悟和夏油杰还在高专时期。  成为咒术师大显身...",
+    "year": "2023",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss45574",
+    "progress": 0,
+    "totalEpisodes": 23,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "咒术回战",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/91e9534cc55aa1a6dc959e7d6d33bde970208232.png@220w_280h.webp",
+    "description": "少年战斗着——「为寻求正确的死亡」 辛酸·后悔·耻辱  人类产生的负面情感，化为诅咒，潜入日常生活  诅咒是蔓延于世界的祸源，最糟糕的情况下，会让人类踏入死亡 并且，诅咒只能以诅咒祓除  拥有惊人身体...",
+    "year": "2020",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss34430",
+    "progress": 0,
+    "totalEpisodes": 24,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "刀剑神域",
+    "status": "completed",
     "rating": 9.7,
     "cover": "https://i0.hdslb.com/bfs/bangumi/fcdb9db0cc3f5c0c3aaa4ca1a9ddea6c121db471.jpg@220w_280h.webp",
     "description": "2022年，人类实现了现实世界和假想空间的融合，电子制造商开发了名为《刀剑神域（Sword Art Online）》的在线电子游戏。SAO甫一面世便大受好评，限量一万份的名额在发售当天的短时间内便被抢...",
@@ -42,6 +584,26 @@
     "link": "https://www.bilibili.com/bangumi/play/ss4452",
     "progress": 0,
     "totalEpisodes": 25,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "鬼灭之刃：无限城篇 第一章 猗窝座再袭",
+    "status": "planned",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f76bc25e6b6bf7c537dd1554caca360d4d7c6970.png@220w_280h.webp",
+    "description": "为了让变成鬼的妹妹祢豆子重新变回人类，灶门炭治郎加入了猎鬼组织“鬼杀队”，与同伴我妻善逸、嘴平伊之助一同对抗各类恶鬼，在成长的过程中彼此间的友情与羁绊也日益加深。此后，炭治郎与“鬼杀队”中最高级别的剑...",
+    "year": "2025",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "冒险",
+      "动作",
+      "动画"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss119759?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 0,
     "progressPercent": 0
   },
   {
@@ -86,7 +648,7 @@
   {
     "type": "drama",
     "title": "让子弹飞",
-    "status": "watching",
+    "status": "completed",
     "rating": 9.9,
     "cover": "https://i0.hdslb.com/bfs/bangumi/371e9be67b2ae3938a8bafa2b80b466268f34b9d.jpg@220w_280h.webp",
     "description": "民国年间，花钱捐得县长的马邦德（葛优 饰）走马上任，遭劫匪张麻子（姜文 饰）一伙伏击。马为保命，谎称自己是县长的汤师爷。为汤师爷许下的财富所动，张麻子摇身一变，化身县长，带着手下上任。鹅城地处偏僻，一...",

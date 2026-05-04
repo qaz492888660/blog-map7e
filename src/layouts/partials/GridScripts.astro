@@ -268,14 +268,46 @@ const {
 		applyWallpaperMode();
 	});
 
-	// 在 DOM 加载后执行
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", applyWallpaperMode);
-	} else {
-		applyWallpaperMode();
+	function ensureUnderwaterVideoPlayback() {
+		const underwaterVideo = document.querySelector(".underwater-video");
+		if (!(underwaterVideo instanceof HTMLVideoElement)) {
+			return;
+		}
+
+		try {
+			underwaterVideo.load();
+			const playPromise = underwaterVideo.play();
+			if (playPromise && typeof playPromise.catch === "function") {
+				playPromise.catch(() => {});
+			}
+		} catch {
+			// Ignore autoplay restrictions or page-switch timing issues.
+		}
 	}
 
-	// 支持 Swup 页面过渡 - 在内容替换之前就应用布局，避免闪烁
+	let backgroundSyncRafId = 0;
+	function syncBackgroundState() {
+		if (backgroundSyncRafId) {
+			return;
+		}
+
+		backgroundSyncRafId = window.requestAnimationFrame(() => {
+			backgroundSyncRafId = 0;
+			applyWallpaperMode();
+			ensureUnderwaterVideoPlayback();
+		});
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", syncBackgroundState);
+	} else {
+		syncBackgroundState();
+	}
+
+	document.addEventListener("astro:page-load", syncBackgroundState);
+	document.addEventListener("swup:contentReplaced", syncBackgroundState);
+	document.addEventListener("swup:page:view", syncBackgroundState);
+
 	function setupSwupLayoutSync() {
 		// @ts-ignore
 		if (typeof window !== "undefined" && window.swup) {
@@ -293,6 +325,7 @@ const {
 			// 在内容替换后立即应用布局，不等待其他脚本
 			// @ts-ignore
 			window.swup.hooks.on("content:replace", function () {
+			syncBackgroundState();
 				const mainGrid = document.getElementById("main-grid");
 				if (mainGrid) {
 					// @ts-ignore
@@ -376,7 +409,7 @@ const {
 
 	// 支持 Swup 页面过渡
 	document.addEventListener("swup:page:view", function () {
-		applyWallpaperMode();
+		syncBackgroundState();
 
 		// 在Swup页面切换时也要重新应用布局模式
 		requestAnimationFrame(function () {
