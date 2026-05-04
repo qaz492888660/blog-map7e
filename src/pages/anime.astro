@@ -69,7 +69,7 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 ---
 
 <MainGridLayout
-	title={i18n(I18nKey.anime)}
+	title="追番追剧"
 	description={i18n(I18nKey.animeSubtitle)}
 >
 	<div
@@ -79,9 +79,21 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 		<div class="card-base anime-card-base z-10 px-9 py-6 relative w-full">
 			<div class="relative w-full mb-8">
 				<PageHeader
-					title={i18n(I18nKey.animeTitle)}
+					title="追番追剧"
 					subtitle={i18n(I18nKey.animeSubtitle)}
 				/>
+
+				<div class="mb-4 flex flex-wrap gap-2">
+					<button
+						class="anime-filter-tag anime-type-tag anime-active"
+						data-anime-type="anime"
+					>
+						追番
+					</button>
+					<button class="anime-filter-tag anime-type-tag" data-anime-type="drama">
+						追剧
+					</button>
+				</div>
 
 				<div class="mb-6">
 					<AnimeFilters
@@ -117,7 +129,20 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 							statusMap={statusMap}
 							yearLabel={i18n(I18nKey.animeYear)}
 							studioLabel={i18n(I18nKey.animeStudio)}
+							activeAnimeType="anime"
 						/>
+						<div
+							id="anime-filter-empty-state"
+							class="hidden text-center py-12"
+						>
+							<div class="text-5xl mb-4">馃槩</div>
+							<h3 class="text-xl font-medium text-black/80 dark:text-white/80 mb-2">
+								{emptyMessage}
+							</h3>
+							<p class="text-black/60 dark:text-white/60">
+								{emptyDescription}
+							</p>
+						</div>
 					)
 				}
 			</div>
@@ -325,8 +350,86 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 			window.animeFilterEventListeners = [];
 		}
 
+		function getActiveAnimeType() {
+			return (
+				document
+					.querySelector(".anime-type-tag.anime-active")
+					?.getAttribute("data-anime-type") || "anime"
+			);
+		}
+
+		function loadLazyAnimeItems(lazyStore, listContainer, sentinel) {
+			if (
+				!lazyStore ||
+				lazyStore.content.children.length === 0 ||
+				!listContainer
+			) {
+				return;
+			}
+
+			const fragment = document.createDocumentFragment();
+			while (lazyStore.content.firstChild) {
+				const node = lazyStore.content.firstChild;
+				fragment.appendChild(node);
+			}
+			listContainer.appendChild(fragment);
+
+			if (sentinel) {
+				sentinel.style.display = "none";
+			}
+
+			const initialHidden =
+				listContainer.querySelectorAll(".initial-hidden");
+			initialHidden.forEach((el) => {
+				el.classList.remove("hidden", "initial-hidden");
+			});
+		}
+
+		function updateAnimeEmptyState() {
+			const listContainer = document.getElementById("anime-list-container");
+			const lazyStore = document.getElementById("anime-lazy-store");
+			const emptyState = document.getElementById(
+				"anime-filter-empty-state",
+			);
+			if (!listContainer || !emptyState) {
+				return;
+			}
+
+			const activeType = getActiveAnimeType();
+			const activeStatus =
+				document
+					.querySelector(".anime-filter-tag[data-status].anime-active")
+					?.getAttribute("data-status") || "all";
+			const animeItems = [
+				...Array.from(listContainer.querySelectorAll("[data-anime-status]")),
+				...(lazyStore
+					? Array.from(
+							lazyStore.content.querySelectorAll("[data-anime-status]"),
+					  )
+					: []),
+			];
+			const visibleCount = animeItems.filter((item) => {
+				const itemType = item.getAttribute("data-anime-type") || "anime";
+				const itemStatus = item.getAttribute("data-anime-status");
+				return (
+					itemType === activeType &&
+					(activeStatus === "all" || itemStatus === activeStatus)
+				);
+			}).length;
+
+			if (visibleCount === 0) {
+				listContainer.classList.add("hidden");
+				emptyState.classList.remove("hidden");
+			} else {
+				listContainer.classList.remove("hidden");
+				emptyState.classList.add("hidden");
+			}
+		}
+
 		function initFilterButtons() {
-			const filterTags = document.querySelectorAll(".anime-filter-tag");
+			const filterTags = document.querySelectorAll(
+				".anime-filter-tag[data-status]",
+			);
 			const sentinel = document.getElementById(
 				"infinite-scroll-sentinel",
 			);
@@ -350,28 +453,9 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 					);
 					this.classList.add("anime-active");
 
-					if (
-						lazyStore &&
-						lazyStore.content.children.length > 0 &&
-						listContainer
-					) {
-						const fragment = document.createDocumentFragment();
-						while (lazyStore.content.firstChild) {
-							const node = lazyStore.content.firstChild;
-							fragment.appendChild(node);
-						}
-						listContainer.appendChild(fragment);
-					}
+					loadLazyAnimeItems(lazyStore, listContainer, sentinel);
 
-					if (sentinel) {
-						sentinel.style.display = "none";
-					}
-					const initialHidden =
-						listContainer.querySelectorAll(".initial-hidden");
-					initialHidden.forEach((el) => {
-						el.classList.remove("hidden", "initial-hidden");
-					});
-
+					const activeAnimeType = getActiveAnimeType();
 					const status = this.getAttribute("data-status");
 					const animeItems = Array.from(
 						listContainer.children,
@@ -382,8 +466,11 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 					animeItems.forEach((item) => {
 						const itemStatus =
 							item.getAttribute("data-anime-status");
+						const itemType =
+							item.getAttribute("data-anime-type") || "anime";
 						const shouldShow =
-							status === "all" || itemStatus === status;
+							(status === "all" || itemStatus === status) &&
+							itemType === activeAnimeType;
 						const isCurrentlyVisible =
 							!item.classList.contains("anime-hidden");
 
@@ -397,6 +484,7 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 							}
 						}
 					});
+					updateAnimeEmptyState();
 					const firstPositions = new Map();
 					itemsToKeep.forEach((item) => {
 						const rect = item.getBoundingClientRect();
@@ -492,6 +580,41 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 					clickHandler,
 				]);
 			});
+
+			const typeTags = document.querySelectorAll(
+				".anime-type-tag[data-anime-type]",
+			);
+			typeTags.forEach((tag) => {
+				const typeClickHandler = function () {
+					if (this.classList.contains("anime-active")) {
+						return;
+					}
+
+					typeTags.forEach((t) => t.classList.remove("anime-active"));
+					this.classList.add("anime-active");
+
+					if (listContainer) {
+						listContainer.dataset.activeAnimeType =
+							this.getAttribute("data-anime-type") || "anime";
+					}
+
+					loadLazyAnimeItems(lazyStore, listContainer, sentinel);
+
+					const activeStatusButton =
+						document.querySelector(
+							'.anime-filter-tag[data-status].anime-active',
+						);
+					if (activeStatusButton) {
+						activeStatusButton.classList.remove("anime-active");
+						activeStatusButton.click();
+					} else {
+						updateAnimeEmptyState();
+					}
+				};
+
+				tag.addEventListener("click", typeClickHandler);
+			});
+
 			if (sentinel && lazyStore && listContainer) {
 				const observer = new IntersectionObserver(
 					(entries) => {
@@ -532,6 +655,30 @@ const emptyMessage = i18n(I18nKey.animeEmpty);
 			} else if (sentinel) {
 				sentinel.style.display = "none";
 			}
+
+			const initialActiveType = getActiveAnimeType();
+			const initialVisibleActiveCount = Array.from(
+				listContainer.querySelectorAll("[data-anime-status]"),
+			).filter((item) => {
+				const itemType = item.getAttribute("data-anime-type") || "anime";
+				return (
+					itemType === initialActiveType && item.offsetParent !== null
+				);
+			}).length;
+			const initialLazyActiveCount = lazyStore
+				? Array.from(
+						lazyStore.content.querySelectorAll("[data-anime-status]"),
+				  ).filter((item) => {
+						const itemType =
+							item.getAttribute("data-anime-type") || "anime";
+						return itemType === initialActiveType;
+				  }).length
+				: 0;
+			if (initialVisibleActiveCount === 0 && initialLazyActiveCount > 0) {
+				loadLazyAnimeItems(lazyStore, listContainer, sentinel);
+			}
+
+			updateAnimeEmptyState();
 		}
 
 		document.addEventListener("DOMContentLoaded", initFilterButtons);

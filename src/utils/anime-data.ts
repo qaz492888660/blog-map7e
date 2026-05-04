@@ -6,6 +6,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 
 export interface RawAnimeItem {
+	type?: "anime" | "drama";
 	title?: string;
 	cover?: string;
 	link?: string;
@@ -20,6 +21,7 @@ export interface RawAnimeItem {
 }
 
 export interface AnimeItem {
+	type?: "anime" | "drama";
 	title: string;
 	cover: string;
 	link: string;
@@ -55,6 +57,7 @@ export function loadAnimeData(filename: string): AnimeItem[] {
 		const rawData = JSON.parse(fileContent) as RawAnimeItem[];
 
 		return rawData.map((item) => ({
+			type: item.type === "drama" ? "drama" : "anime",
 			title: item.title || "Unknown",
 			cover: item.cover || "",
 			link: item.link || "",

@@ -90,6 +90,11 @@
   line-clamp: 4;
 }
 
+.anime-grid-container[data-active-anime-type="anime"] [data-anime-type="drama"],
+.anime-grid-container[data-active-anime-type="drama"] [data-anime-type="anime"] {
+  display: none !important;
+}
+
 .anime-filter-container {
   display: flex;
   flex-wrap: wrap;

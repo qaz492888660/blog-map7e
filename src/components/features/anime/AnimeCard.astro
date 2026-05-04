@@ -3,6 +3,7 @@ import Image from "@components/atoms/Image/Image.astro";
 
 interface Props {
 	anime: {
+		type?: string;
 		title: string;
 		cover: string;
 		link: string;
@@ -33,6 +34,7 @@ const progressPercent =
 <div
 	class="group relative bg-[var(--card-bg)] border border-[var(--line-divider)] rounded-[var(--radius-large)] overflow-hidden hover:shadow-lg"
 	data-anime-status={anime.status}
+	data-anime-type={anime.type || "anime"}
 >
 	<div class="relative anime-cover-container aspect-[2/3] overflow-hidden">
 		<a

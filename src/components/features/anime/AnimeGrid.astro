@@ -8,6 +8,7 @@ interface StatusInfo {
 }
 
 interface AnimeItem {
+	type?: string;
 	title: string;
 	cover: string;
 	link: string;
@@ -27,10 +28,17 @@ interface Props {
 	statusMap: Record<string, StatusInfo>;
 	yearLabel: string;
 	studioLabel: string;
+	activeAnimeType?: string;
 }
 
-const { visibleAnimeList, hiddenAnimeList, statusMap, yearLabel, studioLabel } =
-	Astro.props;
+const {
+	visibleAnimeList,
+	hiddenAnimeList,
+	statusMap,
+	yearLabel,
+	studioLabel,
+	activeAnimeType = "anime",
+} = Astro.props;
 
 const hasHiddenItems = hiddenAnimeList.length > 0;
 ---
@@ -38,6 +46,7 @@ const hasHiddenItems = hiddenAnimeList.length > 0;
 <div
 	id="anime-list-container"
 	class="anime-grid-container grid gap-4 md:gap-6 opacity-0 transition-opacity duration-300"
+	data-active-anime-type={activeAnimeType}
 >
 	{
 		visibleAnimeList.map((anime) => {
