@@ -436,7 +436,7 @@ export const commentConfig: CommentConfig = {
 		lang: SITE_LANG,
 	},
 	giscus: {
-		repo: "your-github-username/your-repo-name",
+		repo: "qaz492888660/blog-map7e",
 		repoId: "R_kgDOR7unrA",
 		category: "Announcements",
 		categoryId: "DIC_kwDOR7unrM4C8UKk",
