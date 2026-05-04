@@ -70,7 +70,8 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 
 <div
 	id="banner-wrapper"
-	class={`absolute z-10 w-full transition duration-700 overflow-hidden ${mobileNonHomeBannerClass}`}
+	class={`banner-wrapper absolute z-10 w-full transition duration-700 overflow-hidden ${mobileNonHomeBannerClass}`}
+	data-home-banner={showTextOverlay ? "true" : undefined}
 	style={`top: -${BANNER_HEIGHT_EXTEND}vh`}
 >
 	{isCarouselEnabled ? (
@@ -88,7 +89,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 				<div class="banner-image-slot-mobile absolute inset-0 block md:hidden">
 					<Image
 						alt="Mobile banner image 1"
-						class="object-cover h-full w-full"
+						class="object-cover h-full w-full banner-parallax-image"
 						src={mobileImages[0]}
 						position={siteConfig.banner.position}
 						widths={[640, 1024, 1536]}
@@ -102,7 +103,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 				<template class="banner-tpl-mobile">
 					<Image
 						alt={`Mobile banner image ${i + 2}`}
-						class="object-cover h-full w-full"
+						class="object-cover h-full w-full banner-parallax-image"
 						src={src}
 						position={siteConfig.banner.position}
 						widths={[640, 1024, 1536]}
@@ -119,7 +120,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 					<Image
 						id="banner"
 						alt="Desktop banner image 1"
-						class="object-cover h-full w-full"
+						class="object-cover h-full w-full banner-parallax-image"
 						src={desktopImages[0]}
 						position={siteConfig.banner.position}
 						widths={[1024, 1536, 2048, 2560]}
@@ -133,7 +134,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 				<template class="banner-tpl-desktop">
 					<Image
 						alt={`Desktop banner image ${i + 2}`}
-						class="object-cover h-full w-full"
+						class="object-cover h-full w-full banner-parallax-image"
 						src={src}
 						position={siteConfig.banner.position}
 						widths={[1024, 1536, 2048, 2560]}
@@ -188,7 +189,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 						const mobileImg = document.createElement("img");
 						mobileImg.alt = "Mobile banner image of the blog";
 						mobileImg.className =
-							"block md:hidden object-cover h-full w-full transition duration-700 opacity-100";
+							"block md:hidden object-cover h-full w-full transition duration-700 opacity-100 banner-parallax-image";
 						mobileImg.src = mobileSrc;
 						mobileImg.loading = "eager";
 						mobileImg.fetchPriority = "high";
@@ -201,7 +202,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 						desktopImg.id = "banner";
 						desktopImg.alt = "Desktop banner image of the blog";
 						desktopImg.className =
-							"hidden md:block object-cover h-full w-full transition duration-700 opacity-100";
+							"hidden md:block object-cover h-full w-full transition duration-700 opacity-100 banner-parallax-image";
 						desktopImg.src = desktopSrc;
 						desktopImg.loading = "eager";
 						desktopImg.fetchPriority = "high";
@@ -595,7 +596,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 
 	<!-- 首页文字覆盖层 -->
 	{siteConfig.banner.homeText?.enable && (
-		<div class={`banner-text-overlay absolute inset-0 z-20 flex items-center justify-center ${!showTextOverlay ? "hidden" : ""}`}>
+		<div class={`banner-text-overlay absolute inset-0 z-20 flex items-center justify-center pointer-events-none ${showTextOverlay ? "banner-text-overlay-auto-fade" : "hidden"}`}>
 			<div class="w-4/5 lg:w-3/4 text-center mb-0">
 				<div class="flex flex-col">
 					{overlayTitle && (
@@ -624,6 +625,100 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 				</div>
 			</div>
 		</div>
+	)}
+
+	{showTextOverlay && (
+		<script is:inline data-swup-ignore-script>
+			(function initHomeBannerEffects() {
+				var wrapper = document.querySelector('.banner-wrapper[data-home-banner="true"]');
+				if (!wrapper) return;
+
+				if (window.__homeBannerEffectsCleanup) {
+					window.__homeBannerEffectsCleanup();
+					window.__homeBannerEffectsCleanup = null;
+				}
+
+				var rafId = 0;
+				var nextX = 0;
+				var nextRotate = 0;
+				var isParallaxBound = false;
+				var reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+				var desktopPointerQuery = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 769px)');
+				console.debug("[home-banner-effects] init", wrapper);
+
+				function setParallax(x, rotate) {
+					wrapper.style.setProperty('--banner-parallax-x', x + 'px');
+					wrapper.style.setProperty('--banner-parallax-rotate', rotate + 'deg');
+				}
+
+				function applyParallax() {
+					rafId = 0;
+					setParallax(nextX, nextRotate);
+				}
+
+				function requestParallaxUpdate(x, rotate) {
+					nextX = x;
+					nextRotate = rotate;
+					if (rafId) return;
+					rafId = window.requestAnimationFrame(applyParallax);
+				}
+
+				function resetParallax() {
+					requestParallaxUpdate(0, 0);
+				}
+
+				function canUseParallax() {
+					return desktopPointerQuery.matches && !reduceMotionQuery.matches;
+				}
+
+				function onMouseMove(event) {
+					var rect = wrapper.getBoundingClientRect();
+					if (!rect.width) return;
+
+					var percent = (event.clientX - rect.left) / rect.width - 0.5;
+					var x = Math.max(-1, Math.min(1, percent * 2));
+					requestParallaxUpdate(x * 14, x * 0.7);
+				}
+
+				function bindParallax() {
+					if (isParallaxBound) return;
+					wrapper.addEventListener('mousemove', onMouseMove);
+					wrapper.addEventListener('mouseleave', resetParallax);
+					isParallaxBound = true;
+				}
+
+				function unbindParallax() {
+					if (!isParallaxBound) return;
+					wrapper.removeEventListener('mousemove', onMouseMove);
+					wrapper.removeEventListener('mouseleave', resetParallax);
+					isParallaxBound = false;
+				}
+
+				function syncParallaxBinding() {
+					if (canUseParallax()) {
+						bindParallax();
+					} else {
+						unbindParallax();
+						resetParallax();
+					}
+				}
+
+				syncParallaxBinding();
+				reduceMotionQuery.addEventListener('change', syncParallaxBinding);
+				desktopPointerQuery.addEventListener('change', syncParallaxBinding);
+
+				window.__homeBannerEffectsCleanup = function() {
+					if (rafId) {
+						window.cancelAnimationFrame(rafId);
+						rafId = 0;
+					}
+					resetParallax();
+					unbindParallax();
+					reduceMotionQuery.removeEventListener('change', syncParallaxBinding);
+					desktopPointerQuery.removeEventListener('change', syncParallaxBinding);
+				};
+			})();
+		</script>
 	)}
 
 	<!-- 水波纹效果 -->
@@ -709,8 +804,26 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 	)}
 </div>
 
-<style>
+<style is:global>
+	.banner-wrapper {
+		--banner-parallax-x: 0px;
+		--banner-parallax-rotate: 0deg;
+	}
+
+	.banner-wrapper[data-home-banner="true"] .banner-parallax-image {
+		transform: translate3d(var(--banner-parallax-x), 0, 0)
+			rotate(var(--banner-parallax-rotate)) scale(1.035);
+		transition: transform 0.22s ease-out;
+		will-change: transform;
+	}
+
 	/* Banner 文本样式 */
+	.banner-wrapper[data-home-banner="true"] .banner-text-overlay-auto-fade {
+		animation: homeBannerTextFadeOut 1s ease forwards;
+		animation-delay: 6s;
+		will-change: opacity, transform, visibility;
+	}
+
 	.banner-title {
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 		animation: fadeInUp 1s ease-out;
@@ -732,6 +845,46 @@ const hasBannerLink = !!siteConfig.banner.credit.url;
 		to {
 			opacity: 1;
 			transform: translateY(0);
+		}
+	}
+
+	@keyframes homeBannerTextFadeOut {
+		0% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			visibility: visible;
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-10px) scale(0.985);
+			visibility: hidden;
+			pointer-events: none;
+		}
+	}
+
+	@media (max-width: 768px), (hover: none), (pointer: coarse) {
+		.banner-wrapper[data-home-banner="true"] .banner-parallax-image {
+			transform: none;
+			transition: none;
+			will-change: auto;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.banner-wrapper[data-home-banner="true"] .banner-parallax-image {
+			transform: none;
+			transition: none;
+			will-change: auto;
+		}
+
+		.banner-title,
+		.banner-subtitle {
+			animation: none;
+		}
+
+		.banner-wrapper[data-home-banner="true"] .banner-text-overlay-auto-fade {
+			animation: homeBannerTextFadeOut 0.3s ease forwards;
+			animation-delay: 6s;
 		}
 	}
 </style>
