@@ -1,6 +1,27 @@
 [
   {
     "type": "anime",
+    "title": "假面骑士ZZZ",
+    "status": "planned",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/88406f07db1dad1f2663b93f6035eeb222bde0b5.jpg@220w_280h.webp",
+    "description": "新时代的假面骑士，觉醒了。 他的名字是…  假面骑士ZZZ。  新假面骑士， 是在梦境世界战斗的特工！  普通的青年在梦中摇身一变成为“无敌的特工”， 守护人类，对抗侵害现实世界的噩梦怪人“梦魇”！ ...",
+    "year": "2025",
+    "studio": "日本",
+    "genre": [
+      "原创",
+      "热血",
+      "战斗",
+      "励志",
+      "特摄"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss109700",
+    "progress": 0,
+    "totalEpisodes": 50,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
     "title": "假面骑士时王",
     "status": "planned",
     "rating": 6.5,
@@ -43,23 +64,22 @@
   },
   {
     "type": "anime",
-    "title": "假面骑士ZZZ",
-    "status": "planned",
+    "title": "Re：从零开始的异世界生活 第二季 后半",
+    "status": "watching",
     "rating": 9.9,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/88406f07db1dad1f2663b93f6035eeb222bde0b5.jpg@220w_280h.webp",
-    "description": "新时代的假面骑士，觉醒了。 他的名字是…  假面骑士ZZZ。  新假面骑士， 是在梦境世界战斗的特工！  普通的青年在梦中摇身一变成为“无敌的特工”， 守护人类，对抗侵害现实世界的噩梦怪人“梦魇”！ ...",
-    "year": "2025",
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/4f3edbede7fc0bdb52842075cf8faaa1c5953eaa.png@220w_280h.webp",
+    "description": "我一定会拯救你。 在打倒了魔女教大罪司教「怠惰」担当——培提其乌斯·罗曼尼康帝之后，菜月昴和爱蜜莉雅又得以重新开始。 克服了艰难的诀别，两人终于和解，然而这只是新一轮风波的序幕。 超乎想象的绝境危机，...",
+    "year": "2021",
     "studio": "日本",
     "genre": [
-      "原创",
-      "热血",
-      "战斗",
-      "励志",
-      "特摄"
+      "奇幻",
+      "小说改",
+      "穿越",
+      "冒险"
     ],
-    "link": "https://www.bilibili.com/bangumi/play/ss109700",
+    "link": "https://www.bilibili.com/bangumi/play/ss36429",
     "progress": 0,
-    "totalEpisodes": 50,
+    "totalEpisodes": 12,
     "progressPercent": 0
   },
   {
@@ -86,32 +106,33 @@
   },
   {
     "type": "anime",
-    "title": "名侦探柯南",
-    "status": "completed",
-    "rating": 9.4,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/38e2a273f528fd01c34f1fc4df0f69c64487efad.png@220w_280h.webp",
-    "description": "主角工藤新一原本是一位颇具名声的高中生侦探，在目击黑暗组织的地下交易后，正准备追踪时却被突袭击昏，并被灌下代号为“APTX4869”的不明药物。后来虽然幸免于死，但身体就此缩小为小学时期的模样。之后他...",
-    "year": "1996",
-    "studio": "日本",
+    "title": "成龙历险记",
+    "status": "watching",
+    "rating": 9.2,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/22afe34a7ee7b28aa45ea1bc0d5c326836c5e8b7.png@220w_280h.webp",
+    "description": "剧情讲述了成龙一家有趣的历险故事，成龙和小玉在世界各地探索各种神秘悬疑的谜团，生活和经历中充满着许多奇幻色彩，其中有关武功和魔法，包含了亲情和友情，以及中国文化的元素。成龙的职业是一位考古专家，但事实...",
+    "year": "2000",
+    "studio": "美国",
     "genre": [
+      "热血",
+      "少儿",
+      "战斗",
       "智斗",
-      "推理",
-      "漫画改",
-      "悬疑"
+      "社团"
     ],
-    "link": "https://www.bilibili.com/bangumi/play/ss33378",
+    "link": "https://www.bilibili.com/bangumi/play/ss44024",
     "progress": 0,
-    "totalEpisodes": -1,
+    "totalEpisodes": 95,
     "progressPercent": 0
   },
   {
     "type": "anime",
-    "title": "我独自升级",
-    "status": "completed",
-    "rating": 8.9,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/3a3eb31610713c19bed556fa915a2b7776d8c85d.png@220w_280h.webp",
-    "description": "自从连接异次元与当前世界的通道“门”突然出现后已过去十余年， 世界上出现了被称为“猎人”的，觉醒了非凡力量的人们。 猎人在门内攻略地下城以获取回报以维持生计， 但在强者如云的猎人中，「水篠旬」作为被称...",
-    "year": "2024",
+    "title": "JOJO的奇妙冒险",
+    "status": "watching",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/9d8d2922b08f3d08d018e6e59e49607cf16d39e6.png@220w_280h.webp",
+    "description": "在古代墨西哥繁盛一时的太阳的子民阿兹特克，他们流传着一枚奇妙的「石鬼面」。 那是一枚奇迹的面具，能让人拥有一种力量，能获得永远的生命并成为真正的掌控者。然而从某个时候开始，就从历史中消失了踪影。 时光...",
+    "year": "2012",
     "studio": "日本",
     "genre": [
       "奇幻",
@@ -119,9 +140,30 @@
       "漫画改",
       "冒险"
     ],
-    "link": "https://www.bilibili.com/bangumi/play/ss47211",
+    "link": "https://www.bilibili.com/bangumi/play/ss4334",
     "progress": 0,
-    "totalEpisodes": 12,
+    "totalEpisodes": 26,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "Re：从零开始的异世界生活 Memory Snow(雪之回忆)",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/137c9c239aed5d7666f35ab1d28528547d05544f.png@220w_280h.webp",
+    "description": "昴等人打倒了诅咒的元凶——魔兽沃尔加姆，拯救了阿拉姆村的孩子们。终于到来的安稳并未持续很久，昴就瞒着所有人前去挑战某个极秘任务。尽管昴做了变装，但很快就被以佩特拉为首的村里的孩子们识破了真实身份。开始...",
+    "year": "2019",
+    "studio": "日本",
+    "genre": [
+      "日常",
+      "奇幻",
+      "搞笑",
+      "小说改",
+      "穿越"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss31150",
+    "progress": 0,
+    "totalEpisodes": 1,
     "progressPercent": 0
   },
   {
@@ -147,12 +189,93 @@
   },
   {
     "type": "anime",
-    "title": "JOJO的奇妙冒险",
+    "title": "Re：从零开始的异世界生活 第二季 前半",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f2425cbdb07cc93bd0d3ba1c0099bfe78f5dc58a.png@220w_280h.webp",
+    "description": "我一定会拯救你。 在打倒了魔女教大罪司教「怠惰」担当——培提其乌斯·罗曼尼康帝之后，菜月昴和爱蜜莉雅又得以重新开始。 克服了艰难的诀别，两人终于和解，然而这只是新一轮风波的序幕。 超乎想象的绝境危机，...",
+    "year": "2020",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "小说改",
+      "穿越",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss33802",
+    "progress": 0,
+    "totalEpisodes": 13,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "名侦探柯南",
+    "status": "completed",
+    "rating": 9.4,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/38e2a273f528fd01c34f1fc4df0f69c64487efad.png@220w_280h.webp",
+    "description": "主角工藤新一原本是一位颇具名声的高中生侦探，在目击黑暗组织的地下交易后，正准备追踪时却被突袭击昏，并被灌下代号为“APTX4869”的不明药物。后来虽然幸免于死，但身体就此缩小为小学时期的模样。之后他...",
+    "year": "1996",
+    "studio": "日本",
+    "genre": [
+      "智斗",
+      "推理",
+      "漫画改",
+      "悬疑"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss33378",
+    "progress": 0,
+    "totalEpisodes": -1,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 石之海",
     "status": "completed",
     "rating": 9.8,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/9d8d2922b08f3d08d018e6e59e49607cf16d39e6.png@220w_280h.webp",
-    "description": "在古代墨西哥繁盛一时的太阳的子民阿兹特克，他们流传着一枚奇妙的「石鬼面」。 那是一枚奇迹的面具，能让人拥有一种力量，能获得永远的生命并成为真正的掌控者。然而从某个时候开始，就从历史中消失了踪影。 时光...",
-    "year": "2012",
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/14ccd8457a9b7351e7be1d87db2719791108ddc0.png@220w_280h.webp",
+    "description": "西历2011年，美国·佛罗里达州。 在与恋人兜风途中遇到了交通事故的空条徐伦，因被陷害而获刑15年。  收容设施是州立绿海豚街重警备监狱——别名「水族馆」。 深陷绝望之中的徐伦，在手握父亲所托的吊坠时...",
+    "year": "2021",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss39431",
+    "progress": 0,
+    "totalEpisodes": 38,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 不灭钻石",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/6a04c87e990ab74cd8d555ef45a863de0993b161.png@220w_280h.webp",
+    "description": "在埃及与宿敌DIO的死斗之后过了11年。1999年，空条承太郎为了与祖父乔瑟夫·乔斯达的私生子东方仗助见面，而来到了日本M县S市杜王町。但，仗助却持有与承太郎相同的特殊能力“替身”。之后，以承太郎的来...",
+    "year": "2016",
+    "studio": "日本",
+    "genre": [
+      "热血",
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss5398",
+    "progress": 0,
+    "totalEpisodes": 39,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 星尘远征军 埃及篇",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f6709b76e88f50aa132d1e09e2d8de9663a09b3e.png@220w_280h.webp",
+    "description": "在乔斯达家的宿敌·迪奥（DIO）复活的影响下，一位年轻人——空条承太郎，得到了名为“幽波纹（替身）”的能力。为了拯救因迪奥的诅咒而倒下的母亲荷莉，空条承太郎与外祖父·乔瑟夫以及伙伴们，一起为了打倒迪奥...",
+    "year": "2015",
     "studio": "日本",
     "genre": [
       "奇幻",
@@ -160,9 +283,83 @@
       "漫画改",
       "冒险"
     ],
-    "link": "https://www.bilibili.com/bangumi/play/ss4334",
+    "link": "https://www.bilibili.com/bangumi/play/ss4213",
     "progress": 0,
-    "totalEpisodes": 26,
+    "totalEpisodes": 24,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "JOJO的奇妙冒险 星尘远征军",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/47c0108259355d6d2c517ed97f6b90fb777f844f.png@220w_280h.webp",
+    "description": "时为1987年，乔瑟夫·乔斯达与“柱之男”们之间的死战后过了50年……乔瑟夫为了为了帮助“被恶灵附身了”的外孙子·空条承太郎而来到了日本。原来那并不是恶灵而是幽波纹（替身）。替身突然出现的原因在于，从...",
+    "year": "2014",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss4185",
+    "progress": 0,
+    "totalEpisodes": 24,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "一人之下",
+    "status": "completed",
+    "rating": 9.3,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/af334241d73ff092c5d78d0c9ee9ad893592f9c4.jpg@220w_280h.webp",
+    "description": "这个世界是存在异人的。 张楚岚就是一个隐藏在普通人中的异人。在生命的前19年中，他一直小心隐藏着自己和别人的不同。直到有一天，神秘少女冯宝宝找上了他。从此他被活尸追，被怪人砍，被卷入了前所未见的麻烦之...",
+    "year": "2016",
+    "studio": "中国大陆",
+    "genre": [
+      "国创"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss5050",
+    "progress": 0,
+    "totalEpisodes": 12,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "一人之下 第二季",
+    "status": "completed",
+    "rating": 9.5,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/f4e355ac82b4508e26f1883e92320879151453a7.jpg@220w_280h.webp",
+    "description": "这个世界是存在异人的。张楚岚为了解开爷爷和自身的秘密，和冯宝宝一起前往龙虎山天师府参加异人界的盛会——罗天大醮，并与众多异人高手对战。 ...",
+    "year": "2017",
+    "studio": "中国大陆",
+    "genre": [
+      "国创"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss6402",
+    "progress": 0,
+    "totalEpisodes": 24,
+    "progressPercent": 0
+  },
+  {
+    "type": "anime",
+    "title": "我独自升级",
+    "status": "completed",
+    "rating": 8.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/3a3eb31610713c19bed556fa915a2b7776d8c85d.png@220w_280h.webp",
+    "description": "自从连接异次元与当前世界的通道“门”突然出现后已过去十余年， 世界上出现了被称为“猎人”的，觉醒了非凡力量的人们。 猎人在门内攻略地下城以获取回报以维持生计， 但在强者如云的猎人中，「水篠旬」作为被称...",
+    "year": "2024",
+    "studio": "日本",
+    "genre": [
+      "奇幻",
+      "战斗",
+      "漫画改",
+      "冒险"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss47211",
+    "progress": 0,
+    "totalEpisodes": 12,
     "progressPercent": 0
   },
   {
@@ -191,7 +388,7 @@
     "type": "anime",
     "title": "假面骑士帝骑",
     "status": "completed",
-    "rating": 7,
+    "rating": 6.9,
     "cover": "https://i0.hdslb.com/bfs/bangumi/image/f72b45f4fe76dd1539d9ef183d4052a26dbb07a5.png@220w_280h.webp",
     "description": "男主门矢士失去了以前的记忆，在街头流浪的门矢士被女主光夏海发现，光夏海好心将门矢士收留在了爷爷的照相馆。门矢士整天都要出门拍照，似乎在寻找着什么。某日，门矢士和往常一样出门拍照，结果，原本平静的街头突...",
     "year": "2009",
@@ -368,67 +565,6 @@
   },
   {
     "type": "anime",
-    "title": "JOJO的奇妙冒险 石之海",
-    "status": "completed",
-    "rating": 9.8,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/14ccd8457a9b7351e7be1d87db2719791108ddc0.png@220w_280h.webp",
-    "description": "西历2011年，美国·佛罗里达州。 在与恋人兜风途中遇到了交通事故的空条徐伦，因被陷害而获刑15年。  收容设施是州立绿海豚街重警备监狱——别名「水族馆」。 深陷绝望之中的徐伦，在手握父亲所托的吊坠时...",
-    "year": "2021",
-    "studio": "日本",
-    "genre": [
-      "热血",
-      "奇幻",
-      "战斗",
-      "漫画改"
-    ],
-    "link": "https://www.bilibili.com/bangumi/play/ss39431",
-    "progress": 0,
-    "totalEpisodes": 38,
-    "progressPercent": 0
-  },
-  {
-    "type": "anime",
-    "title": "JOJO的奇妙冒险 星尘远征军",
-    "status": "completed",
-    "rating": 9.8,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/47c0108259355d6d2c517ed97f6b90fb777f844f.png@220w_280h.webp",
-    "description": "时为1987年，乔瑟夫·乔斯达与“柱之男”们之间的死战后过了50年……乔瑟夫为了为了帮助“被恶灵附身了”的外孙子·空条承太郎而来到了日本。原来那并不是恶灵而是幽波纹（替身）。替身突然出现的原因在于，从...",
-    "year": "2014",
-    "studio": "日本",
-    "genre": [
-      "奇幻",
-      "战斗",
-      "漫画改",
-      "冒险"
-    ],
-    "link": "https://www.bilibili.com/bangumi/play/ss4185",
-    "progress": 0,
-    "totalEpisodes": 24,
-    "progressPercent": 0
-  },
-  {
-    "type": "anime",
-    "title": "JOJO的奇妙冒险 不灭钻石",
-    "status": "completed",
-    "rating": 9.8,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/6a04c87e990ab74cd8d555ef45a863de0993b161.png@220w_280h.webp",
-    "description": "在埃及与宿敌DIO的死斗之后过了11年。1999年，空条承太郎为了与祖父乔瑟夫·乔斯达的私生子东方仗助见面，而来到了日本M县S市杜王町。但，仗助却持有与承太郎相同的特殊能力“替身”。之后，以承太郎的来...",
-    "year": "2016",
-    "studio": "日本",
-    "genre": [
-      "热血",
-      "奇幻",
-      "战斗",
-      "漫画改",
-      "冒险"
-    ],
-    "link": "https://www.bilibili.com/bangumi/play/ss5398",
-    "progress": 0,
-    "totalEpisodes": 39,
-    "progressPercent": 0
-  },
-  {
-    "type": "anime",
     "title": "命运之夜  06版",
     "status": "completed",
     "rating": 9.5,
@@ -588,40 +724,304 @@
   },
   {
     "type": "drama",
-    "title": "鬼灭之刃：无限城篇 第一章 猗窝座再袭",
+    "title": "你行！你上！",
     "status": "planned",
-    "rating": 9.7,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/f76bc25e6b6bf7c537dd1554caca360d4d7c6970.png@220w_280h.webp",
-    "description": "为了让变成鬼的妹妹祢豆子重新变回人类，灶门炭治郎加入了猎鬼组织“鬼杀队”，与同伴我妻善逸、嘴平伊之助一同对抗各类恶鬼，在成长的过程中彼此间的友情与羁绊也日益加深。此后，炭治郎与“鬼杀队”中最高级别的剑...",
+    "rating": 9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/acaf46590de1d2573d1d633ffaec3e4c64616400.png@220w_280h.webp",
+    "description": "这是一对父子的传奇历险，也是两个野心家的一拍即合。从沈阳到美国，从3岁到17岁，弹琴胜似取经，八十八键多过八十一难，父子心无杂念，只管埋头向前，两人赤手空拳让美国殿堂艺术精英们刮目相看。...",
     "year": "2025",
-    "studio": "日本",
+    "studio": "中国大陆",
     "genre": [
-      "奇幻",
-      "冒险",
-      "动作",
-      "动画"
+      "剧情",
+      "喜剧"
     ],
-    "link": "https://www.bilibili.com/bangumi/play/ss119759?theme=movie",
+    "link": "https://www.bilibili.com/bangumi/play/ss99551?theme=movie",
     "progress": 0,
-    "totalEpisodes": 0,
+    "totalEpisodes": 1,
     "progressPercent": 0
   },
   {
     "type": "drama",
-    "title": "航海王：红发歌姬",
-    "status": "planned",
-    "rating": 8.5,
-    "cover": "https://i0.hdslb.com/bfs/bangumi/image/3a450129562bdeba90bc676789b7177f62946d09.png@220w_280h.webp",
-    "description": "令全世界为之疯狂的歌姬·乌塔，她的身世成谜，歌声却被誉为“来自别的次元”。而这次，她将举办演唱会并第一次露出庐山真面目。为了欣赏她的歌声，路飞率领的草帽一伙，以及世界各地的歌迷都汇聚在会场之中。全世界...",
-    "year": "2022",
-    "studio": "日本",
+    "title": "大话西游之月光宝盒",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/5ab23e5b25dc4dac980b8a90627e94f6868d27e9.png@220w_280h.webp",
+    "description": "孙悟空（周星驰）护送唐三藏（罗家英）去西天取经路上，与牛魔王合谋欲杀害唐三藏，并偷走了月光宝盒，此举使观音萌生将其铲除心思，经唐三藏请求，孙悟空被判五百年后重新投胎做人赎其罪孽。五百年后孙悟空化身强盗...",
+    "year": "1995",
+    "studio": "中国大陆",
+    "genre": [
+      "奇幻",
+      "喜剧",
+      "爱情"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss79799?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "大话西游之大圣娶亲",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/893cf9281bc39cd9bcd5ae4f49546387a196c8bd.png@220w_280h.webp",
+    "description": "至尊宝（周星驰 饰）被月光宝盒带回到五百年前，遇见紫霞仙子（朱茵 饰），被对方打上烙印成为对方的人，并发觉自己已变成孙悟空。紫霞与青霞（朱茵 饰）本是如来佛祖座前日月神灯的灯芯（白天是紫霞，晚上是青霞...",
+    "year": "1995",
+    "studio": "中国大陆",
+    "genre": [
+      "奇幻",
+      "喜剧",
+      "爱情"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss79798?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "西游降魔篇",
+    "status": "completed",
+    "rating": 8.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/d5195939d8fe1b952bf0e9c6eb3c7cfed1a3c907.png@220w_280h.webp",
+    "description": "大唐年间妖魔横行，一小渔村因为饱受鱼妖之害请来道士（冯勉恒 饰）除妖，年轻驱魔人陈玄奘（文章 饰）前来帮忙却被误认为骗子，幸亏职业赏金驱魔人段小姐（舒淇 饰）帮助玄奘制服了鱼妖真身（李尚正 饰）。二人...",
+    "year": "2013",
+    "studio": "中国大陆",
+    "genre": [
+      "奇幻",
+      "冒险",
+      "喜剧"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss159615?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "长江七号",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/2cb4cf04330ae4f370029ddc25beb6c4fb940530.png@220w_280h.webp",
+    "description": "小狄是一个在贵族学校念书的穷孩子。他诚实善良，却总是遭到富家子的欺负和嘲笑。小狄和爸爸住在一所废弃的旧房子里，爸爸每天拼命的工作，就是为了让他念好书，将来出人头地。...",
+    "year": "2008",
+    "studio": "中国大陆",
+    "genre": [
+      "喜剧",
+      "科幻"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss39232?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "算死草",
+    "status": "completed",
+    "rating": 8.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/a663ea484162060f36865f04fda5e4ca3465a1b5.png@220w_280h.webp",
+    "description": "著名状师陈梦吉（周星驰饰）与徒弟何欢（葛民辉饰）认识了女子水莲花（邱淑贞饰），师徒两人都对水莲花有意思，刚好水莲花也欣赏陈梦吉的才华。这时陈梦吉的老婆吕忍（莫文蔚饰）从国外读书归来，遇到了尴尬的场面。...",
+    "year": "1997",
+    "studio": "中国香港",
+    "genre": [
+      "剧情",
+      "喜剧"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss37997?theme=movie",
+    "progress": 0,
+    "totalEpisodes": -1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "千王之王2000",
+    "status": "completed",
+    "rating": 8.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/7a9a1574429287cc389ae1dbf0de7ad1f0cd097c.png@220w_280h.webp",
+    "description": "梁宽(张家辉饰）乃一低级警务人员，多次担任卧底小角色。郁郁不得志之时，长官忽派他调查大老千法拉利（王晶饰），宽遂找到自信。一日宽陪女友pizza（关秀媚饰）参加姐姐（吴君如饰）为姐夫大老千黄师虎（周星...",
+    "year": "1999",
+    "studio": "中国香港",
+    "genre": [
+      "喜剧"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss38001?theme=movie",
+    "progress": 0,
+    "totalEpisodes": -1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "功夫",
+    "status": "completed",
+    "rating": 9.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/0c65b23a92ea20115147df841cdfaa3e4b1170df.png@220w_280h.webp",
+    "description": "1940年代，自小受尽欺辱的街头混混阿星（周星驰）为了能出人头地，可谓窥见机会的缝隙就往里钻，今次他盯上行动日益猖獗的黑道势力“斧头帮”，想借之大名成就大业。阿星假冒“斧头帮”成员试图在一个叫“猪笼城...",
+    "year": "2004",
+    "studio": "中国大陆",
+    "genre": [
+      "喜剧",
+      "动作",
+      "犯罪",
+      "奇幻"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss32523?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "食神",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/8b4b16aa10c227764dcb749104db4846f6104558.png@220w_280h.webp",
+    "description": "史提芬·周（周星驰 饰）在饮食界是享誉盛名的食神，但一直骄傲自大，惟利是图。被身边得力助手陷害，一夜间一无所有。他在庙街认识了早已对他倾心的大姐大火鸡（莫文蔚 饰）及一众老大，靠着史提芬周的商业头脑，...",
+    "year": "1996",
+    "studio": "中国香港",
+    "genre": [
+      "喜剧",
+      "动作"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss223261?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "喜剧之王",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/b3cc1585466ca6f226340bedbc761536e015914c.png@220w_280h.webp",
+    "description": "对喜剧情有独钟的尹天仇与舞女柳飘飘逐渐产生感情，之后在杜娟儿的帮助下，尹天仇终于获得机会演主角，但又陷入与柳飘飘、杜娟儿的三角恋漩涡之中……...",
+    "year": "1999",
+    "studio": "中国香港",
+    "genre": [
+      "剧情",
+      "喜剧",
+      "爱情"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss223260?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "蝙蝠侠大战超人：正义黎明",
+    "status": "completed",
+    "rating": 9.4,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/50792eaa21b4b4cccf554925547f5303a3747d18.jpg@220w_280h.webp",
+    "description": "故事发生在大都会之战18个月后，在那场战斗中许多建筑和市民惨遭波及。因为超人（亨利·卡维尔 饰）帮助人类解决了很多问题而被当做神来膜拜，但超人也因与佐德之战对城市造成的破坏而遭到逮捕和审讯，一度成为都...",
+    "year": "2016",
+    "studio": "美国",
     "genre": [
       "动作",
+      "科幻",
       "奇幻",
-      "动画",
+      "冒险",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss34258?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "蝙蝠侠：黑暗骑士",
+    "status": "completed",
+    "rating": 9.7,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/10cb5ebdc15be6848a1d6e3cfb5cf13c13283cf1.jpg@220w_280h.webp",
+    "description": "从亲眼目睹父母被人杀死的阴影中走出来的“蝙蝠侠”，经历了成长之后，已经不再是那个桀骜不驯的孤单英雄了。在警官吉姆·戈登和检察官哈维·登特的通力帮助下，“蝙蝠侠”无后顾之忧地继续满世界的奔波，与日益增长...",
+    "year": "2008",
+    "studio": "美国",
+    "genre": [
+      "剧情",
+      "动作",
+      "科幻",
+      "犯罪",
+      "惊悚",
+      "漫画改"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss28280?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "星际穿越",
+    "status": "completed",
+    "rating": 9.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/3b8acd7a69aa3462297b0b1f206e7093e4961914.jpg@220w_280h.webp",
+    "description": "近未来的地球黄沙遍野，小麦、秋葵等基础农作物相继因枯萎病灭绝，人类不再像从前那样仰望星空，放纵想象力和灵感的迸发，而是每日在沙尘暴的肆虐下倒数着所剩不多的光景。在家务农的前NASA宇航员库珀（马修·麦...",
+    "year": "2014",
+    "studio": "美国",
+    "genre": [
+      "科幻",
+      "冒险",
+      "剧情"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss28585?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "信条",
+    "status": "completed",
+    "rating": 0,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/c2b3fc4a10d6d390ca2c0bfd92536116923119ab.jpg@220w_280h.webp",
+    "description": "世界存亡危在旦夕，“信条”一词是惟一的线索与武器。主人公穿梭于全球各地，开展特工活动，力求揭示“信条”之谜，并完成一项超越了真实时间的神秘任务。这项任务并非时间之旅，而是【时空逆转】。...",
+    "year": "2020",
+    "studio": "美国",
+    "genre": [
+      "剧情",
+      "动作",
+      "科幻",
+      "惊悚"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss30758?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "盗梦空间",
+    "status": "completed",
+    "rating": 9.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/2e9b47a97fb36bd34ac6a42331e5bff8f9989d82.jpg@220w_280h.webp",
+    "description": "道姆·柯布（莱昂纳多·迪卡普里奥 饰）与同事阿瑟和纳什在一次针对日本能源大亨齐藤的盗梦行动中失败，反被齐藤利用。齐藤威逼利诱因遭通缉而流亡海外的柯布帮他拆分他竞争对手的公司，采取极端措施在其唯一继承人...",
+    "year": "2010",
+    "studio": "英国",
+    "genre": [
+      "剧情",
+      "科幻",
+      "悬疑",
       "冒险"
     ],
-    "link": "https://www.bilibili.com/bangumi/play/ss45003?theme=movie",
+    "link": "https://www.bilibili.com/bangumi/play/ss28586?theme=movie",
+    "progress": 0,
+    "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "宝莲灯",
+    "status": "completed",
+    "rating": 9.8,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/7e694d189349b0b078759fe37c0d28a5a2317fb1.png@220w_280h.webp",
+    "description": "《宝莲灯》是上海美术电影制片厂继《大闹天宫》、《哪咤闹海》、《天书奇谭》、《金猴降妖》之后于1999年摄制并公映的一部改编自中国神话《宝莲灯》的长篇动画电影。该片总投资1200万元人民币，其剧本、人物...",
+    "year": "1999",
+    "studio": "中国大陆",
+    "genre": [
+      "动画"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss47697?theme=movie",
     "progress": 0,
     "totalEpisodes": 1,
     "progressPercent": 0
@@ -629,7 +1029,7 @@
   {
     "type": "drama",
     "title": "火影忍者剧场版：忍者之路",
-    "status": "watching",
+    "status": "completed",
     "rating": 9.5,
     "cover": "https://i0.hdslb.com/bfs/bangumi/image/5fbf4380fd163b3817b9d6d595eb8875253b4e79.png@220w_280h.webp",
     "description": "刚刚结束了与叛忍集团“晓”的抗争，木叶村被一股诡异不祥的气氛所笼罩。此时此刻，漩涡鸣人（竹内顺子 配音）沉浸在对家人的思念中，孤独无助。某个晚上，心情糟糕的鸣人巧遇刚刚和家人吵架的小樱（中村千绘 ...",
@@ -643,6 +1043,25 @@
     "link": "https://www.bilibili.com/bangumi/play/ss68640?theme=movie",
     "progress": 0,
     "totalEpisodes": 1,
+    "progressPercent": 0
+  },
+  {
+    "type": "drama",
+    "title": "黑袍纠察队 第一季",
+    "status": "completed",
+    "rating": 8.9,
+    "cover": "https://i0.hdslb.com/bfs/bangumi/image/4964109028fc8ff001d437c69f9b8639da656e35.png@220w_280h.webp",
+    "description": "这是一个超能力者和普通人共存的世界，祖国人（安东尼·斯塔尔 Antony Starr 饰）、火车头（杰西·厄舍 Jessie Usher 饰）、深海主（切斯·克劳福 Chace Crawford ...",
+    "year": "2019",
+    "studio": "美国",
+    "genre": [
+      "科幻",
+      "动作",
+      "犯罪"
+    ],
+    "link": "https://www.bilibili.com/bangumi/play/ss210727",
+    "progress": 0,
+    "totalEpisodes": 8,
     "progressPercent": 0
   },
   {
